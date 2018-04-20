@@ -31,7 +31,7 @@ public class Main extends Application {
 
     public VBox confVBox(Stage primaryStage) throws IOException {
         VBox vbox = new VBox(8);
-        vbox.setStyle("-fx-background-color: #336699;");
+        vbox.setStyle("-fx-background-color: #FFFFFF;");
         Label tytul = new Label("Podaj swoje imię:");
         tytul.setFont(new Font("Arial", 30));
         TextField text = new TextField("name");
@@ -40,7 +40,12 @@ public class Main extends Application {
         submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 RoomsView pokoje = new RoomsView();
-                pokoje.showRoomsView();
+                try {
+                    String imie = text.getText();
+                    pokoje.showRoomsView();
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                }
                 primaryStage.close();
             }
         });
@@ -49,10 +54,6 @@ public class Main extends Application {
         vbox.setAlignment(Pos.CENTER);
         return vbox;
     }
-
-
-
-
 
 
 }

@@ -18,17 +18,17 @@ public class Waiting {
 
     public void Waiting() {
         dialogStage = new Stage();
-        dialogStage.initStyle(StageStyle.TRANSPARENT);
-        dialogStage.setMinWidth(300);
-        dialogStage.setMaxWidth(300);
+        dialogStage.initStyle(StageStyle.DECORATED);
+        dialogStage.setMinWidth(530);
+        dialogStage.setMaxWidth(530);
         dialogStage.setResizable(false);
-        dialogStage.initModality(Modality.APPLICATION_MODAL);
         dialogStage.setAlwaysOnTop(true);
         dialogStage.setTitle("Wczytywanie");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
 
         // PROGRESS BAR
         final Text label = new Text();
-        label.setText("Proszę czekać");
+        label.setText("Proszę czekać na pozostałych graczy");
         label.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 
         pin.setProgress(-1F);
@@ -38,7 +38,7 @@ public class Waiting {
         hb.setAlignment(Pos.CENTER);
         hb.getChildren().addAll(label, pin);
 
-        Scene scene = new Scene(hb, 230, 230);
+        Scene scene = new Scene(hb, 530, 230);
         dialogStage.setScene(scene);
     }
 

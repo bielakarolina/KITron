@@ -15,13 +15,13 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 
-public class Game {
+public class NewRoom {
     private Stage owner;
     private int widthScene=650;
     private int heightScene=550;
     private int widthStage=650;
     private int heightStage=550;
-    private String title = "Wybierz pokój";
+    private String title = "Nowy Pokój";
     private Scene scene;
     private VBox root;
     private int topMarg = 15;
@@ -31,7 +31,7 @@ public class Game {
     private int rootSpacing = 10;
     private String rootStyle ="-fx-background-color: #FFFFFF;";
 
-    public Game(){
+    public NewRoom(){
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
@@ -55,7 +55,7 @@ public class Game {
         root.setSpacing(rootSpacing);
     }
 
-    public void showActualGame(){
+    public void showNewRoom(){
         final Canvas canvas = new Canvas(600,440);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
