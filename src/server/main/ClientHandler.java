@@ -36,20 +36,25 @@ public class ClientHandler implements Runnable {
 
                 String[] messageList = message.split(" ");
 
+                System.out.println(message);
 
                 if(messageList.length == 1) {
                     switch (messageList[0]) {
                         case "left":
                             player.setDirection(Direction.LEFT);
+                            System.out.println("left");
                             break;
                         case "right":
                             player.setDirection(Direction.RIGHT);
+                            System.out.println("right");
                             break;
                         case "down":
                             player.setDirection(Direction.DOWN);
+                            System.out.println("down");
                             break;
                         case "up":
                             player.setDirection(Direction.UP);
+                            System.out.println("up");
                             break;
                     }
                 }
@@ -80,6 +85,7 @@ public class ClientHandler implements Runnable {
 
 
                 //and response for the player
+                //need to think when and what we should response
                 //TODO
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
                 out.println("Response");

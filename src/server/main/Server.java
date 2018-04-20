@@ -66,13 +66,16 @@ public class Server {
 
     public synchronized void addRoom(String name, int maxPeople, Player player) {
         //tutaj dodajemy pokoj i playera do pokoju wydaje mi sie ze pokoje powinny byc osobnymi watkami
+        System.out.println("Player " + player.getName() + " added new Room " + name + " " + maxPeople);
     }
 
     public synchronized void joinRoom(Player player, int roomID){
         //tutaj dodajemy playera do pokoju trzeba napisac wyszukiwanie pokoju po ID
+        System.out.println("Player " + player.getName() + " joined Room " + roomID);
     }
 
     public synchronized void leaveRoom(Player player){
         //albo przeszukamy wszystkie pokoje i znajdziemy playera albo playerom bedziemy przypisywac pokoje
+        System.out.println("Player " + player.getName() + " left the room");
     }
 }

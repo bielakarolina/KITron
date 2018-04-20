@@ -45,6 +45,7 @@ public class Player {
             this.color = color;
             this.name = name;
             initialized = true;
+            System.out.println("Initialized player: " + name);
         }
 
     }
