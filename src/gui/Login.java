@@ -7,7 +7,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -19,7 +20,7 @@ import java.net.Socket;
 
 public class Login {
     private Stage owner;
-    private int widthScene=650;
+    private int widthScene=450;
     private int heightScene=850;
     private int widthStage=650;
     private int heightStage=850;
@@ -36,16 +37,27 @@ public class Login {
     String hostName = "localhost";
     int portNumber = 12345;
     Socket socket = null;
+    public PrintWriter out;
+    public BufferedReader in;
 
-    public Login(){
+    public Login() throws IOException {
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add
+                (Game.class.getResource("stylesheets/default.css").toExternalForm());
+        scene.getStylesheets().add
                 (Login.class.getResource("stylesheets/login.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();
+
+        // create socket
+        socket = new Socket(hostName, portNumber);
+
+        // in & out streams
+        out = new PrintWriter(socket.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
     public void setStageProperty(){
@@ -70,45 +82,27 @@ public class Login {
     }
 
     public VBox setLogin() throws IOException {
-        // create socket
-        socket = new Socket(hostName, portNumber);
-
-        // in & out streams
-        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
         //VBox
         VBox vbox = new VBox(8);
+
         Label tytul = new Label("Enter your name:");
         tytul.setId("tytul");
+
         TextField text = new TextField();
         text.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
+        text.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent ke) {
+                if (ke.getCode().equals(KeyCode.ENTER)) {
+                    sendName(text);
+                }
+            }
+        });
+
         Button submit = new Button("Submit");
-
-
         submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-
-                try {
-                    String imie = text.getText();
-                    if (imie.equals("")) {
-
-                        Alert alert = showAlert();
-                        owner.close();
-                        Login login = new Login();
-                        login.showLogin();
-                    } else {
-                        owner.close();
-                        out.println(imie);
-                        RoomsView pokoje = new RoomsView();
-                        pokoje.showRoomsView();
-                    }
-                }catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-
+                sendName(text);
             }
         });
 
@@ -116,6 +110,30 @@ public class Login {
         vbox.setAlignment(Pos.CENTER);
         return vbox;
     }
+
+    public void sendName(TextField text){
+        try {
+            String imie = text.getText();
+            String msg = "initPlayer ".concat(imie);
+
+            if (imie.equals("")) {
+                showAlert();
+                Login login = new Login();
+                login.showLogin();
+                owner.close();
+            } else {
+                out.println(msg);
+                owner.close();
+                String line = null;
+                line = setRooms();
+                RoomsView pokoje = new RoomsView(line, socket);
+                pokoje.showRoomsView();
+            }
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+    }
+
 
     public Alert showAlert(){
         Alert alert = new Alert(type, "");
@@ -127,6 +145,21 @@ public class Login {
                 .filter(response -> response == ButtonType.OK)
                 .ifPresent(response -> System.out.println("The alert was approved"));
         return alert;
+    }
+
+
+    public String setRooms(){
+        out.println("roomList");
+        String line = null;
+        while(line == null) {
+            try {
+                line = in.readLine();
+            } catch (IOException e1) {
+
+            }
+        }
+        System.out.println(line);
+        return line;
     }
 
 }

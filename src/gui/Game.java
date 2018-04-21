@@ -17,6 +17,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 public class Game {
     private Stage owner;
@@ -32,17 +37,30 @@ public class Game {
     private int bottomMarg = 15;
     private int leftMarg = 12;
     private int rootSpacing = 10;
-    private String rootStyle ="-fx-background-color: #FFFFFF;";
+    String hostName = "localhost";
+    int portNumber = 12345;
+    Socket socket = null;
+    public BufferedReader in;
+    public PrintWriter out;
 
-    public Game(){
+    public Game(Socket socket) throws IOException {
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add
+                (Game.class.getResource("stylesheets/default.css").toExternalForm());
+        scene.getStylesheets().add
                 (Game.class.getResource("stylesheets/gameView.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();
+
+        // create socket
+        this.socket = socket;
+
+        // in & out streams
+        out = new PrintWriter(socket.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
     public void setStageProperty(){
@@ -55,7 +73,7 @@ public class Game {
     }
 
     public void setHBoxProperty() {
-        root.setStyle(rootStyle);
+        //root.setStyle(rootStyle);
         root.setPadding(new Insets(topMarg, rightMarg, bottomMarg, leftMarg));
         root.setSpacing(rootSpacing);
     }
@@ -68,14 +86,15 @@ public class Game {
         Button endGame = new Button("End Game");
         endGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                GameOver gameOver = new GameOver();
-                gameOver.showGameOver();
-                owner.close();
+                GameOver gameOver = null;
+                try {
+                    gameOver = new GameOver(socket);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                gameOver.showGameOver(getOwner());
             }
         });
-//        MapReceiver mapReceiver = new MapReceiver();
-//        new Thread(mapReceiver).start();
-
         root.getChildren().addAll(canvas, endGame);
 
     }
@@ -87,8 +106,8 @@ public class Game {
         DrawPixels drawPixels = new DrawPixels();
         final Canvas canvas = drawPixels.setRoad();
         return  canvas;
-
-
-
+    }
+    public Stage getOwner() {
+        return owner;
     }
 }

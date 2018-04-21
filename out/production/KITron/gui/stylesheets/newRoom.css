@@ -1,14 +1,4 @@
-.root{
-    -fx-background-color: #FFFFFF;
-}
-.text{
-    -fx-color: white;
-}
-.label{
-    -fx-font-family: Arial;
-    -fx-font-size: 30px;
-}
-
+/*
 .button {
     -fx-background-color: #ddd;
     -fx-border: none;
