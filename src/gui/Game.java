@@ -1,10 +1,14 @@
 package gui;
 
+import game.Map;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+
+import javafx.scene.canvas.Canvas;
+
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -69,9 +73,22 @@ public class Game {
 
     }
 
+
     public VBox setCanvas(){
         VBox vbox = new VBox();
 
         return  vbox;
+    public Canvas setCanvas(){
+        Map map = new Map();
+        final Canvas canvas = map.setCanvas();
+//        GraphicsContext gc = canvas.getGraphicsContext2D();
+//
+//        gc.setFill(Color.BLACK);
+//        gc.fillRect(10,10,600,440);
+
+
+
+        return  canvas;
+ master
     }
 }
