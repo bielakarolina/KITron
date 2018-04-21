@@ -15,7 +15,7 @@ public class MockServer {
         int portNumber = 12345;
         ServerSocket serverSocket = null;
         String rooms = "lala,3,4;mama,1,2";
-        String rooms1 = "lala,3,4;mama,1,2;dupa,2,3";
+        String rooms1 = ";bumbum,3,4;nora,1,2;dupa,2,3";
 
         try {
             // create socket
@@ -61,8 +61,9 @@ public class MockServer {
 
                 if (msg.contains("refresh")) {
                     System.out.println(msg);
-                    System.out.println(rooms1);
-                    out.println(rooms1);
+                    rooms = rooms.concat(rooms1);
+                    System.out.println(rooms);
+                    out.println(rooms);
                 }
 
                 if(msg.contains("Zosta")){
@@ -74,7 +75,10 @@ public class MockServer {
                     String[] tmp = msg.split(" ");
                     rooms = rooms.concat(";"+ tmp[1]+","+" 0," + tmp[2]);
                     System.out.println(rooms);
+                }
 
+                if(msg.contains("leaveRoom")){
+                    System.out.println("Odebrano: "+ msg);
                 }
 
 

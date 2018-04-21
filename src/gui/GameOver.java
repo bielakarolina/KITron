@@ -32,7 +32,7 @@ public class GameOver {
     private int bottomMarg = 15;
     private int leftMarg = 12;
     private int rootSpacing = 25;
-    
+
     Socket socket = null;
     public BufferedReader in;
     public PrintWriter out;
@@ -98,7 +98,7 @@ public class GameOver {
         backToRooms.setId("back");
         backToRooms.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                //out.println("lalala");
+                out.println("leaveRoom");
                 try {
                 String line = null;
                 line = setRooms();
