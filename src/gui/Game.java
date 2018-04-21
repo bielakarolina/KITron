@@ -59,7 +59,7 @@ public class Game {
     }
 
     public void showActualGame(){
-        VBox canvas = setCanvas();
+        Canvas canvas = getCanvas();
 
         Button endGame = new Button("End Game");
         endGame.setOnAction(new EventHandler<ActionEvent>() {
@@ -74,21 +74,11 @@ public class Game {
     }
 
 
-    public VBox setCanvas(){
-        VBox vbox = new VBox();
+    public Canvas getCanvas(){
 
-        return  vbox;
-    public Canvas setCanvas(){
         Map map = new Map();
         final Canvas canvas = map.setCanvas();
-//        GraphicsContext gc = canvas.getGraphicsContext2D();
-//
-//        gc.setFill(Color.BLACK);
-//        gc.fillRect(10,10,600,440);
+        return canvas;
 
-
-
-        return  canvas;
- master
     }
 }

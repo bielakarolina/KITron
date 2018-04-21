@@ -74,13 +74,13 @@ public class RoomsView {
 
     public void showRoomsView() throws IOException {
         // create socket
-        socket = new Socket(hostName, portNumber);
+//        socket = new Socket(hostName, portNumber);
+//
+//        // in & out streams
+//        out = new PrintWriter(socket.getOutputStream(), true);
+//        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+//
 
-        // in & out streams
-        out = new PrintWriter(socket.getOutputStream(), true);
-        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        
-  
         Label napis = new Label("Choose room: ");
         napis.setId("tytul");
 
@@ -94,7 +94,7 @@ public class RoomsView {
         acceptBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 String room = list.getSelectionModel().getSelectedItem();
-                out.println(room);
+//                out.println(room);
                 ProgressMaking();
             }
         });
@@ -145,10 +145,10 @@ public class RoomsView {
 
     public ListView<String> setList() throws IOException {
         ListView<String> list = new ListView<String>();
-        String line = in.readLine();
-        String[] tmp = line.split(", ");
+//        String line = in.readLine();
+//        String[] tmp = line.split(", ");
         ObservableList<String> items =
-                FXCollections.observableArrayList (tmp);
+                FXCollections.observableArrayList ("dupa");
         list.setItems(items);
         return list;
     }
