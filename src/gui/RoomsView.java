@@ -104,10 +104,7 @@ public class RoomsView {
         newRoomBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 NewRoom newRoom = new NewRoom();
-                newRoom.showNewRoom();
-                owner.close();
-                ProgressMaking();
-
+                newRoom.showNewRoom(getOwner());
             }
         });
         return newRoomBttn;
@@ -157,6 +154,10 @@ public class RoomsView {
 
         Thread thread = new Thread(task);
         thread.start();
+    }
+
+    public Stage getOwner() {
+        return owner;
     }
 
 

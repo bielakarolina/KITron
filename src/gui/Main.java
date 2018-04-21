@@ -51,6 +51,7 @@ public class Main extends Application {
             }
         });
 
+       vbox.setSpacing(20);
         vbox.getChildren().addAll(tytul,text, submit);
         vbox.setAlignment(Pos.CENTER);
         return vbox;
