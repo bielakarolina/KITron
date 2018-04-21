@@ -17,7 +17,7 @@ public class Room implements Runnable{
     private String name;
     private Timer timer;
 
-    Room(int height, int width, int maxPlayers, String name){
+    public Room(int width, int height, int maxPlayers, String name){
         this.board = new Board(height, width);
         this.maxPlayers = maxPlayers;
         this.name = name;
@@ -36,6 +36,10 @@ public class Room implements Runnable{
 
     public boolean isRoomActive() {
         return roomActive;
+    }
+
+    public void leave(Player player){
+        players.remove(player);
     }
 
     public String getName() {
@@ -74,5 +78,9 @@ public class Room implements Runnable{
             //check collision
             //send update
         }
+    }
+
+    public boolean containsPlayer(Player player) {
+        return players.contains(player);
     }
 }
