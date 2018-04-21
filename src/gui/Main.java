@@ -20,7 +20,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         VBox vbox = confVBox(primaryStage);
         primaryStage.setTitle("KI TRON");
-        primaryStage.setScene(new Scene(vbox, 300, 275));
+        Scene scene = new Scene(vbox, 300, 275);
+        primaryStage.setScene(scene);
+        scene.getStylesheets().add
+                (Main.class.getResource("stylesheets/main.css").toExternalForm());
         primaryStage.show();
     }
 
@@ -30,9 +33,8 @@ public class Main extends Application {
 
     public VBox confVBox(Stage primaryStage) throws IOException {
         VBox vbox = new VBox(8);
-        vbox.setStyle("-fx-background-color: #FFFFFF;");
         Label tytul = new Label("Podaj swoje imię:");
-        tytul.setFont(new Font("Arial", 30));
+        tytul.setId("tytul");
         TextField text = new TextField("name");
         text.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
         Button submit = new Button("Submit");

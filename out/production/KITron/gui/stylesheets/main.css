@@ -1,0 +1,24 @@
+.root{
+    -fx-background-color: #FFFFFF;
+
+}
+
+#tytul{
+    -fx-font: Arial, 15px;
+    /*-fx-font-size: 15px;*/
+}
+
+.button {
+    -fx-background-color: #ddd;
+    -fx-border: none;
+    -fx-color: white;
+    -fx-padding: 16px 32px;
+    -fx-text-align: center;
+    -fx-font-size: 16px;
+    -fx-margin: 4px 2px;
+}
+
+.button:hover {
+    -fx-background-color: #3f4143;
+    -fx-color: black;
+}
