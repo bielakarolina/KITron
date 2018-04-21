@@ -50,6 +50,7 @@ public class RoomsView {
     public String line;
     public ObservableList<String[]> items;
     public ListView<String[]> list;
+    public String response = null;
 
     public RoomsView(String line, Socket socket) throws IOException {
         new JFXPanel();
@@ -248,15 +249,16 @@ public class RoomsView {
         Task<Void> task = new Task<Void>() {
             @Override
             public Void call() throws IOException {
- /*               while(response.equals(null)) {
+                while(response.equals(null)) {
                     String response = in.readLine();
-                    if (response.contains("gameStarted")) {
+                    if (response.contains("startGame")) {
                         return null;
                     }
                 }
-   */             for(int i = 0; i < 10000; i++){
+            /*   for(int i = 0; i < 10000; i++){
                     System.out.println(i);
                 }
+                */
                 return null ;
             }
         };

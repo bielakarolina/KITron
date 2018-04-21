@@ -21,12 +21,14 @@ public class MockServer {
             // create socket
             serverSocket = new ServerSocket(portNumber);
             int i =0;
+            System.out.println(i);
             Socket clientSocket = serverSocket.accept();
             System.out.println("client connected");
+            i++;
             while(true){
                 // accept client
 
-
+                System.out.println(i);
                 // in & out streams
                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
@@ -80,7 +82,7 @@ public class MockServer {
                 if(msg.contains("leaveRoom")){
                     System.out.println("Odebrano: "+ msg);
                 }
-
+                i++;
 
             }
         } catch (IOException e) {

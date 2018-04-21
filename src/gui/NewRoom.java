@@ -44,6 +44,7 @@ public class NewRoom {
     public PrintWriter out;
     public TextField nameField;
     public ChoiceBox cb;
+    public String response;
 
     public NewRoom(Socket socket) throws IOException {
         new JFXPanel();
@@ -143,11 +144,18 @@ public class NewRoom {
         pForm.Waiting();
         Task<Void> task = new Task<Void>() {
             @Override
-            public Void call() {
-                for(int i = 0; i < 10000; i++){
+            public Void call() throws IOException {
+                while(response.equals(null)) {
+                    String response = in.readLine();
+                    if (response.contains("startGame")) {
+                        return null;
+                    }
+                }
+                return null;
+            /*   for(int i = 0; i < 10000; i++){
                     System.out.println(i);
                 }
-                return null ;
+                */
             }
         };
         pForm.activateProgressBar(task);

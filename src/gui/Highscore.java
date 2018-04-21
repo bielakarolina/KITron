@@ -14,7 +14,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-=======
+
 import javafx.scene.Scene;
 
 import javafx.scene.canvas.Canvas;
@@ -42,8 +42,6 @@ public class Highscore {
 
 
     private String title = "HIGHSCORE";
-
-    private String title = "";
 
     private Scene scene;
     private VBox root;
@@ -168,13 +166,7 @@ public class Highscore {
         }
         return list;
     }
-}
 
-    public void showHighscore() {
-
-        root.getChildren().addAll();
-
-    }
 }
 
 

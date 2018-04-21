@@ -94,9 +94,5 @@ public class Instruction {
         hbox.setAlignment(Pos.BOTTOM_RIGHT);
         hbox.getChildren().addAll(returnButton);
         return hbox;
-
-
-        root.getChildren().addAll();
-
     }
 }
