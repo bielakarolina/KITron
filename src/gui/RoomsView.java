@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -23,7 +22,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
 public class RoomsView {
     private Stage owner;
@@ -141,7 +139,7 @@ public class RoomsView {
         pForm.Waiting();
         Task<Void> task = new Task<Void>() {
             @Override
-            public Void call() throws InterruptedException, IOException {
+            public Void call() {
                 for(int i = 0; i < 1000000; i++){
                     System.out.println(i);
                 }

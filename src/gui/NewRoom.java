@@ -5,11 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -45,7 +42,7 @@ public class NewRoom {
         owner.setTitle(title);
         owner.setWidth(widthStage);
         owner.setHeight(heightStage);
-        owner.toBack();
+        owner.initModality(Modality.WINDOW_MODAL);
         owner.show();
     }
 
@@ -56,20 +53,15 @@ public class NewRoom {
     }
 
     public void showNewRoom(){
-        final Canvas canvas = new Canvas(600,440);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-
-        gc.setFill(Color.BLACK);
-        gc.fillRect(10,10,600,440);
-
-        Button endGame = new Button("End Game");
-        endGame.setOnAction(new EventHandler<ActionEvent>() {
+        Button create = new Button("Create room");
+        create.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                GameOver gameOver = new GameOver();
-                gameOver.showGameOver();
+
                 owner.close();
             }
         });
-        root.getChildren().addAll(canvas, endGame);
+        root.getChildren().addAll(create);
     }
+
+
 }

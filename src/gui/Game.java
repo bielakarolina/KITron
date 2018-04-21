@@ -56,11 +56,7 @@ public class Game {
     }
 
     public void showActualGame(){
-        final Canvas canvas = new Canvas(600,440);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-
-        gc.setFill(Color.BLACK);
-        gc.fillRect(10,10,600,440);
+        final Canvas canvas = setCanvas();
 
         Button endGame = new Button("End Game");
         endGame.setOnAction(new EventHandler<ActionEvent>() {
@@ -71,5 +67,14 @@ public class Game {
             }
         });
         root.getChildren().addAll(canvas, endGame);
+    }
+
+    public Canvas setCanvas(){
+        final Canvas canvas = new Canvas(600,440);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+
+        gc.setFill(Color.BLACK);
+        gc.fillRect(10,10,600,440);
+        return  canvas;
     }
 }
