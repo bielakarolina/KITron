@@ -14,6 +14,7 @@ public class Player {
     private Path path;
     private PlayerState playerState;
     private Point position;
+    private int speed;
 
     Player(int id){
         this.id = id;
@@ -75,7 +76,34 @@ public class Player {
     }
 
     public String getParsedPath() {
-        return path.toString();
+        return path.toString()+";"+position.getX()+";"+position.getY();
+    }
+
+    public Point getPosition() {
+        return position;
+    }
+
+    public Point move() {
+        int oldX = position.getX();
+        int oldY = position.getY();
+        Point point = new Point(oldX,oldY,"curve");
+
+        switch(direction) {
+            case DOWN:
+                point = new Point(oldX,oldY+speed,"curve");
+                break;
+            case UP:
+                point = new Point(oldX,oldY-speed,"curve");
+                break;
+            case LEFT:
+                point = new Point(oldX-speed,oldY,"curve");
+                break;
+            case RIGHT:
+                point = new Point(oldX+speed,oldY,"curve");
+                break;
+        }
+        setPosition(point);
+        return point;
     }
 
     public Point getPosition() {

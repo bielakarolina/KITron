@@ -114,10 +114,10 @@ public class Room implements Runnable{
                 x = r.nextInt((550 - 50) + 1) + 50;
                 y = r.nextInt((400 - 50) + 1) + 50;
 
-            } while(startPoints.contains(new Point(x, y)));
+            } while(startPoints.contains(new Point(x, y, "start")));
 
 
-            Point point = new Point(x, y);
+            Point point = new Point(x, y, "start");
 
             player.setPosition(point);
             player.addToPath(point);
@@ -138,15 +138,14 @@ public class Room implements Runnable{
         @Override
         public void run() {
             System.out.println("Sending package");
-            printPlayersPaths();
-//            //TODO
-//            board.update();
-//            ByteBuffer buffer = ByteBuffer.wrap(parsePlayerList().getBytes());
-//            try {
-//                multicastChannel.send(buffer, serverAddress);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
+            //TODO
+            update();
+            ByteBuffer buffer = ByteBuffer.wrap(parsePlayerList().getBytes());
+            try {
+                multicastChannel.send(buffer, serverAddress);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             //process one step //BOARD
             //check collision //BOARD
             //send update //dostaje
@@ -164,5 +163,13 @@ public class Room implements Runnable{
 
     public boolean containsPlayer(Player player) {
         return players.contains(player);
+    }
+
+    private void update() {
+        for(Player p : players) {
+
+            board.setWall(p.move(),p.getId());
+
+        }
     }
 }

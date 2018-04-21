@@ -4,10 +4,12 @@ public class Point {
 
     private int x;
     private int y;
+    private String state;
 
-    Point(int x, int y){
+    public Point(int x, int y, String state){
         this.x = x;
         this.y = y;
+        this.state = state;
     }
 
     public int getY() {
@@ -26,5 +28,9 @@ public class Point {
             return false;
         }
         return (x == ((Point) o).x && y == ((Point) o).y);
+    }
+
+    public String getState() {
+        return state;
     }
 }
