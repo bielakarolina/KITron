@@ -1,62 +1,60 @@
+
 package game;
 
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
+import server.client.DummyClient;
+import server.client.DummyClientMulticastReceiver;
+
+import java.io.*;
+import java.net.*;
 import java.util.Arrays;
+import java.util.Scanner;
 
-public class MapReceiver extends Thread{
-//        @Override
-//        public void run() {
-//            System.out.println("JAVA UDP CLIENT");
-//            DatagramSocket socket = null;
-//            int portNumber = 9008;
-//
-//            try {
-//                socket = new DatagramSocket();
-//                InetAddress address = InetAddress.getByName("localhost");
-//                byte[] sendBuffer = "Ping Java Udp".getBytes();
-//
-//                DatagramPacket sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length, address, portNumber);
-//                socket.send(sendPacket);
-//            }
-//            catch(Exception e){
-//                e.printStackTrace();
-//            }
-//            finally {
-//                if (socket != null) {
-//                    socket.close();
-//                }
-//            }
+public class MapReceiver extends Thread {
+        public static int multicastPort = 12345;
+        public String host = "localhost";
+
+        private static PrintStream tcpOutput = null;
+        private static DataInputStream tcpInput = null;
+        private static BufferedReader inputReader = null;
+        private static int port = 12345;
 
 
+        //private static DataInputStream tcpInput = null;
 
-//            System.out.println("MapReceiver works");
-//            DatagramSocket socket = null;
-//            int portNumber = 9008;                  //do zmiany
-//
-//            try{
-//                socket = new DatagramSocket(portNumber);
-//                byte[] receiveBuffer = new byte[1024];
-//
-//                while(true) {
-//                    Arrays.fill(receiveBuffer, (byte)0);
-//                    DatagramPacket receivePacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
-//                    socket.receive(receivePacket);
-//                    String msg = new String(receivePacket.getData());
-//                    System.out.println("received msg: " + msg);
-//
-//                    //dostaje wiadomosc i wywoluje mape przekazujac do niej liste
-//                }
-//            }
-//            catch(Exception e){
-//                e.printStackTrace();
-//            }
-//            finally {
-//                if (socket != null) {
-//                    socket.close();
-//                }
-//            }
+        @Override
+        public void run() {
+                Socket clientSock = null;
+                try {
+                        clientSock = new Socket(host, port);
+
+
+                        tcpOutput = new PrintStream(clientSock.getOutputStream());
+                        tcpInput = new DataInputStream(clientSock.getInputStream());
+                        inputReader = new BufferedReader(new InputStreamReader(System.in));
+
+                        System.out.println("gownooooooooo");
+                        String receivedMessage;
+
+
+                        while ((receivedMessage = tcpInput.readLine()) != null) {
+                                if (receivedMessage.equals("Exit request."))
+                                        break;
+
+                                //wypisujemy odebrana wiadomosc (w wiadomosci wysylamy nazwe klienta
+                                System.out.println(receivedMessage);
+
+                                System.out.println("gownooooooooo odebrane");
+                                //to tutaj jak odbierze gowno to powinno sie wywolac cos co narysuje plansze 
+
+                        }
+
+
+                } catch (IOException e) {
+                        System.out.println("IOException.");
+                }
+
+
+
 
         }
-
+}

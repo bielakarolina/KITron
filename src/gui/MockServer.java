@@ -12,7 +12,7 @@ public class MockServer {
 
     public static void main(String[] args) throws IOException {
 
-        int portNumber = 12395;
+        int portNumber = 12345;
         ServerSocket serverSocket = null;
         String rooms = "lala,3,4;mama,1,2";
         String rooms1 = ";bumbum,3,4;nora,1,2;dupa,2,3";

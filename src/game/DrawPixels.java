@@ -13,11 +13,20 @@ public class DrawPixels {
     public Canvas setRoad(){
 
         GraphicsContext gc1 = canvas.getGraphicsContext2D();
-
-        drawShapes(gc1);
+         drawLines(gc1,Color.YELLOW);
+       // drawShapes(gc1);
         return  canvas;
     }
 
+    private void drawLines(GraphicsContext gc,Color c){
+        gc.setStroke(c);
+        gc.setLineWidth(3.0);
+        gc.beginPath();
+        gc.moveTo(200, 150);
+        gc.lineTo(230, 150);
+    }
+
+    //rysowanie shapów, przyda się przy bonusach
     private void drawShapes(GraphicsContext gc) {
         gc.setFill(Color.GREEN);
         gc.setStroke(Color.BLUE);
