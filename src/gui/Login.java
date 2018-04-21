@@ -4,13 +4,17 @@ import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.*;
 import java.net.Socket;
 
 
@@ -59,24 +63,48 @@ public class Login {
         root.setSpacing(rootSpacing);
     }
 
-    public void showActualGame(){
-        HBox canvas = setCanvas();
+    public void showActualGame() throws IOException {
+        VBox login = setLogin();
 
-        Button endGame = new Button("End Game");
-        endGame.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                GameOver gameOver = new GameOver();
-                gameOver.showGameOver();
-                owner.close();
-            }
-        });
-        root.getChildren().addAll(canvas, endGame);
+        root.getChildren().addAll(login);
 
     }
 
-    public HBox setCanvas(){
-        HBox hbox = new HBox();
+    public VBox setLogin() throws IOException {
+        // create socket
+        socket = new Socket(hostName, portNumber);
 
-        return  hbox;
+        // in & out streams
+        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+        //VBox
+        VBox vbox = new VBox(8);
+        Label tytul = new Label("Enter your name:");
+        tytul.setId("tytul");
+        TextField text = new TextField();
+        text.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
+        Button submit = new Button("Submit");
+
+
+        submit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                RoomsView pokoje = new RoomsView();
+                try {
+                    String imie = text.getText();
+                    out.println(imie);
+                    pokoje.showRoomsView();
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                owner.close();
+            }
+        });
+
+        vbox.getChildren().addAll(tytul,text, submit);
+        vbox.setAlignment(Pos.CENTER);
+        return vbox;
     }
 }

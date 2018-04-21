@@ -54,14 +54,35 @@ public class Menu {
         root.setSpacing(rootSpacing);
     }
 
-    public void showActualGame(){
-        HBox canvas = setCanvas();
+    public void showMenu(){
+        Button startBttn = new Button("End Game");
+        startBttn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+
+                owner.close();
+            }
+        });
 
         Button endGame = new Button("End Game");
         endGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                GameOver gameOver = new GameOver();
-                gameOver.showGameOver();
+
+                owner.close();
+            }
+        });
+
+        Button endGame = new Button("End Game");
+        endGame.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+
+                owner.close();
+            }
+        });
+
+        Button endGame = new Button("End Game");
+        endGame.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+
                 owner.close();
             }
         });
@@ -69,9 +90,5 @@ public class Menu {
 
     }
 
-    public HBox setCanvas(){
-        HBox hbox = new HBox();
 
-        return  hbox;
-    }
 }
