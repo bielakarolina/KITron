@@ -11,7 +11,7 @@ public class MockServer {
 
     public static void main(String[] args) throws IOException {
 
-        int portNumber = 12345;
+        int portNumber = 12395;
         ServerSocket serverSocket = null;
 
         try {
