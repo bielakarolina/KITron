@@ -16,13 +16,13 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 
-public class Game {
+public class Highscore {
     private Stage owner;
-    private int widthScene=650;
-    private int heightScene=850;
-    private int widthStage=650;
-    private int heightStage=850;
-    private String title = "KI TRON";
+    private int widthScene = 650;
+    private int heightScene = 850;
+    private int widthStage = 650;
+    private int heightStage = 850;
+    private String title = "";
     private Scene scene;
     private VBox root;
     private int topMarg = 15;
@@ -31,18 +31,18 @@ public class Game {
     private int leftMarg = 12;
     private int rootSpacing = 10;
 
-    public Game(){
+    public Highscore() {
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add
-                (Game.class.getResource("stylesheets/gameView.css").toExternalForm());
+                (Highscore.class.getResource("stylesheets/highscore.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();
     }
 
-    public void setStageProperty(){
+    public void setStageProperty() {
         owner.setScene(scene);
         owner.setTitle(title);
         owner.setWidth(widthStage);
@@ -56,26 +56,12 @@ public class Game {
         root.setSpacing(rootSpacing);
     }
 
-    public void showActualGame(){
-        VBox canvas = setCanvas();
+    public void showHighscore() {
 
-        Button endGame = new Button("End Game");
-        endGame.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                GameOver gameOver = new GameOver();
-                gameOver.showGameOver();
-                owner.close();
-            }
-        });
-        root.getChildren().addAll(canvas, endGame);
-
-    }
-
-
-    public VBox setCanvas(){
-        VBox vbox = new VBox();
-
-        return  vbox;
+        root.getChildren().addAll();
 
     }
 }
+
+
+

@@ -1,28 +1,22 @@
 package gui;
 
-import game.Map;
 import javafx.embed.swing.JFXPanel;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-
-import javafx.scene.canvas.Canvas;
-
-import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.*;
 
-public class Game {
+
+public class Instruction {
     private Stage owner;
     private int widthScene=650;
     private int heightScene=850;
     private int widthStage=650;
     private int heightStage=850;
-    private String title = "KI TRON";
+    private String title = "INSTRUCTIONS";
     private Scene scene;
     private VBox root;
     private int topMarg = 15;
@@ -31,13 +25,13 @@ public class Game {
     private int leftMarg = 12;
     private int rootSpacing = 10;
 
-    public Game(){
+    public Instruction(){
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add
-                (Game.class.getResource("stylesheets/gameView.css").toExternalForm());
+                (Instruction.class.getResource("stylesheets/instructions.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();
     }
@@ -56,26 +50,8 @@ public class Game {
         root.setSpacing(rootSpacing);
     }
 
-    public void showActualGame(){
-        VBox canvas = setCanvas();
+    public void showInstr() throws IOException {
 
-        Button endGame = new Button("End Game");
-        endGame.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                GameOver gameOver = new GameOver();
-                gameOver.showGameOver();
-                owner.close();
-            }
-        });
-        root.getChildren().addAll(canvas, endGame);
-
-    }
-
-
-    public VBox setCanvas(){
-        VBox vbox = new VBox();
-
-        return  vbox;
-
+        root.getChildren().addAll();
     }
 }
