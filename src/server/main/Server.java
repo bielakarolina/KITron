@@ -14,6 +14,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Server {
 
+
+    private static final int STANDARD_BOARD_WIDTH = 600;
+    private static final int STANDARD_BOARD_HEIGHT = 440;
     private int portNumber = 12345;
     private ServerSocket serverSocket;
 
@@ -65,17 +68,41 @@ public class Server {
 
 
     public synchronized void addRoom(String name, int maxPeople, Player player) {
-        //tutaj dodajemy pokoj i playera do pokoju wydaje mi sie ze pokoje powinny byc osobnymi watkami
+        rooms.add(new Room(STANDARD_BOARD_WIDTH,STANDARD_BOARD_HEIGHT,maxPeople,name));
+        Room room = getRoomByName(name);
+        room.join(player);
         System.out.println("Player " + player.getName() + " added new Room " + name + " " + maxPeople);
     }
 
+    private Room getRoomByName(String name) {
+        for(Room room : rooms) {
+            if(room.getName().equals(name)) {
+                return room;
+            }
+        }
+        return null;
+    }
+
+    public int getRoomId(String name) {
+        for(int i = 0; i < rooms.size(); i++){
+            if(rooms.get(i).getName().equals(name))
+                return i;
+        }
+        return -1;
+    }
+
+
     public synchronized void joinRoom(Player player, int roomID){
-        //tutaj dodajemy playera do pokoju trzeba napisac wyszukiwanie pokoju po ID
+        rooms.get(roomID).join(player);
         System.out.println("Player " + player.getName() + " joined Room " + roomID);
     }
 
     public synchronized void leaveRoom(Player player){
-        //albo przeszukamy wszystkie pokoje i znajdziemy playera albo playerom bedziemy przypisywac pokoje
+        for(Room room : rooms) {
+            if(room.containsPlayer(player)){
+                room.leave(player);
+            }
+        }
         System.out.println("Player " + player.getName() + " left the room");
     }
 }

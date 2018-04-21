@@ -12,19 +12,23 @@ public class Room implements Runnable{
     private boolean roomActive = false;
     private String name;
 
-    Room(int height, int width, int maxPlayers, String name){
+    public Room(int width, int height, int maxPlayers, String name){
         this.board = new Board(height, width);
         this.maxPlayers = maxPlayers;
         this.name = name;
 
     }
 
-    public synchronized void joinRoom(Player player){
+    public synchronized void join(Player player){
         players.add(player);
     }
 
     public boolean isRoomActive() {
         return roomActive;
+    }
+
+    public void leave(Player player){
+        players.remove(player);
     }
 
     public String getName() {
@@ -39,5 +43,9 @@ public class Room implements Runnable{
         //wyslanie wiadomosci do klienta ze gra sie zaczyna
 
 
+    }
+
+    public boolean containsPlayer(Player player) {
+        return players.contains(player);
     }
 }
