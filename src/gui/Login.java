@@ -108,19 +108,12 @@ public class Login {
                         owner.close();
                         String line = null;
                         line = setRooms();
-                        RoomsView pokoje = null;
-                        RoomsView pokoje = new RoomsView();
+                        RoomsView pokoje = new RoomsView(line, socket);
                         pokoje.showRoomsView();
                     }
                } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-                try {
-                    pokoje.showRoomsView();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-
             }
         });
 
