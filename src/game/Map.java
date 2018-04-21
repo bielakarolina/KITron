@@ -23,6 +23,7 @@ public class Map {
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         drawD17(gc);
+        System.out.println("gowno");
         return canvas;
     }
 
@@ -45,7 +46,8 @@ public class Map {
         gc.stroke();
         gc.applyEffect(new DropShadow(20, 0, -20, Color.WHITE));
         //gc.setFill(Color.BLUE);
-
+        System.out.println("gowno2");
+        System.out.println("gowno1");
     }
 
 

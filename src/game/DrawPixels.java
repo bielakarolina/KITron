@@ -12,10 +12,9 @@ public class DrawPixels {
 
     public Canvas setRoad(){
 
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.setFill(Color.BLACK);
-        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawShapes(gc);
+        GraphicsContext gc1 = canvas.getGraphicsContext2D();
+
+        drawShapes(gc1);
         return  canvas;
     }
 
