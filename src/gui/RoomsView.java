@@ -1,0 +1,186 @@
+package gui;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
+import javafx.embed.swing.JFXPanel;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class RoomsView {
+    private Stage owner;
+    private int widthScene=500;
+    private int heightScene=700;
+    private int widthStage=500;
+    private int heightStage=700;
+    private String title = "Rooms";
+    private Scene scene;
+    private VBox root;
+    private int topMarg = 15;
+    private int rightMarg = 12;
+    private int bottomMarg = 15;
+    private int leftMarg = 12;
+    private int rootSpacing = 10;
+
+    public String hostName = "localhost";
+    public int portNumber = 12345;
+    public Socket socket = null;
+    public PrintWriter out;
+    public BufferedReader in;
+
+    public RoomsView(){
+        new JFXPanel();
+        owner = new Stage(StageStyle.DECORATED);
+        root = new VBox();
+        scene = new Scene(root, widthScene, heightScene);
+        scene.getStylesheets().add
+                (RoomsView.class.getResource("stylesheets/roomsView.css").toExternalForm());
+        setStageProperty();
+        setVBoxProperty();
+    }
+
+    public void setStageProperty(){
+        owner.setScene(scene);
+        owner.setTitle(title);
+        owner.setWidth(widthStage);
+        owner.setHeight(heightStage);
+        owner.toBack();
+        owner.show();
+    }
+
+    public void setVBoxProperty() {
+        root.setPadding(new Insets(topMarg, rightMarg, bottomMarg, leftMarg));
+        root.setSpacing(rootSpacing);
+        root.setAlignment(Pos.CENTER);
+    }
+
+    public void showRoomsView() throws IOException {
+        // create socket
+//        socket = new Socket(hostName, portNumber);
+//
+//        // in & out streams
+//        out = new PrintWriter(socket.getOutputStream(), true);
+//        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+//
+
+        Label napis = new Label("Choose room: ");
+        napis.setId("tytul");
+
+
+        HBox hbox = setHbox();
+
+        ListView<String> list = setList();
+
+        Button acceptBttn= new Button("Choose");
+        acceptBttn.setId("accept");
+        acceptBttn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                String room = list.getSelectionModel().getSelectedItem();
+//                out.println(room);
+                ProgressMaking();
+            }
+        });
+
+        root.getChildren().addAll(napis, hbox, list, acceptBttn);
+    }
+
+    public HBox setHbox() throws FileNotFoundException {
+        HBox hbox = new HBox();
+
+        Button newRoomBttn = setNewButton();
+        VBox grupa = setGroup();
+
+        hbox.setAlignment(Pos.CENTER);
+        hbox.getChildren().addAll(newRoomBttn, grupa);
+        return hbox;
+    }
+
+    public Button setNewButton() throws FileNotFoundException {
+
+        Button newRoomBttn = new Button("+");
+        newRoomBttn.setId("newRoom");
+        newRoomBttn.setAlignment(Pos.CENTER_LEFT);
+
+        newRoomBttn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                NewRoom newRoom = new NewRoom();
+
+                newRoom.showNewRoom(getOwner());
+
+            }
+        });
+        return newRoomBttn;
+    }
+
+    public VBox setGroup(){
+        VBox grupa = new VBox();
+        grupa.setPadding(new Insets(topMarg, rightMarg, bottomMarg, leftMarg));
+
+        Text nazwa = new Text("Nazwa: ");
+        Text ilosc = new Text("Ilośc gości w pokoju: ");
+        Text maxIlosc = new Text("Oczekiwana ilość gości w pokoju: ");
+        maxIlosc.setWrappingWidth(300);
+
+        grupa.getChildren().addAll(nazwa, ilosc, maxIlosc);
+        return grupa;
+    }
+
+    public ListView<String> setList() throws IOException {
+        ListView<String> list = new ListView<String>();
+//        String line = in.readLine();
+//        String[] tmp = line.split(", ");
+        ObservableList<String> items =
+                FXCollections.observableArrayList ("dupa");
+        list.setItems(items);
+        return list;
+    }
+
+    public void ProgressMaking(){
+        Waiting pForm = new Waiting();
+        pForm.Waiting();
+        Task<Void> task = new Task<Void>() {
+            @Override
+            public Void call() {
+                for(int i = 0; i < 100000; i++){
+                    System.out.println(i);
+                }
+                return null ;
+            }
+        };
+        pForm.activateProgressBar(task);
+        task.setOnSucceeded(event -> {
+            pForm.getDialogStage().close();
+            owner.close();
+            Game actualGame = new Game();
+            actualGame.showActualGame();
+        });
+        pForm.getDialogStage().show();
+
+        Thread thread = new Thread(task);
+        thread.start();
+    }
+
+    public Stage getOwner() {
+        return owner;
+    }
+
+
+}
