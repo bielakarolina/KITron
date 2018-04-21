@@ -15,13 +15,15 @@ public class Player {
     private Path path;
     private PlayerState playerState;
     private Point position;
-    private int speed = 4;
-    private int size = 3;
+    private int speed = 1;
+    private int size = 1;
+    private boolean alive = true;
 
     Player(int id){
         this.id = id;
         this.path = new Path();
         this.playerState = PlayerState.IDLE;
+
     }
 
     public Direction getDirection() {
@@ -129,5 +131,14 @@ public class Player {
 
     public int getSpeed() {
         return speed;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+        System.out.println(this.alive);
     }
 }
