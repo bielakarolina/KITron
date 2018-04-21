@@ -140,7 +140,7 @@ public class RoomsView {
         Task<Void> task = new Task<Void>() {
             @Override
             public Void call() {
-                for(int i = 0; i < 1000000; i++){
+                for(int i = 0; i < 100000; i++){
                     System.out.println(i);
                 }
                 return null ;

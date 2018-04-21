@@ -7,7 +7,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -21,9 +24,9 @@ public class GameOver {
     private int heightScene=200;
     private int widthStage=400;
     private int heightStage=200;
-    private String title = "Wybierz pokój";
+    private String title = "Game Over";
     private Scene scene;
-    private HBox root;
+    private VBox root;
     private int topMarg = 15;
     private int rightMarg = 12;
     private int bottomMarg = 15;
@@ -34,7 +37,7 @@ public class GameOver {
     public GameOver(){
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
-        root = new HBox();
+        root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
         setStageProperty();
         setHBoxProperty();
@@ -58,12 +61,24 @@ public class GameOver {
     }
 
     public void showGameOver(){
+        Label tytul = new Label("Game Over");
+        tytul.setFont(new Font("Arial", 30));
+
+        HBox hbox = setHBox();
+
+        root.getChildren().addAll(tytul, hbox);
+    }
+
+    public HBox setHBox(){
+        HBox hbox = new HBox();
+
         Button playAgain = new Button("Play Again");
         playAgain.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 owner.close();
             }
         });
+
         Button backToRooms = new Button("Change room");
         backToRooms.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
@@ -76,7 +91,10 @@ public class GameOver {
                 owner.close();
             }
         });
-        root.getChildren().addAll(playAgain, backToRooms);
+
+        hbox.setAlignment(Pos.BASELINE_CENTER);
+        hbox.getChildren().addAll(playAgain, backToRooms);
+        return hbox;
     }
 
 
