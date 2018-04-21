@@ -105,4 +105,8 @@ public class Player {
         setPosition(point);
         return point;
     }
+
+    public Point getPosition() {
+        return position;
+    }
 }

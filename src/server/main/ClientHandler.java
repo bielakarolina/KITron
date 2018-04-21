@@ -86,6 +86,7 @@ public class ClientHandler implements Runnable {
                                 else response = "leaveRoom fail";
                                 break;
                             case "initPlayer":
+                                //check if there is player with this name
                                 if(messageList.length == 3){
                                     player.init(messageList[1], messageList[2]);
                                     response = "init OK";
