@@ -29,6 +29,7 @@ public class Highscore {
     private int heightScene = 850;
     private int widthStage = 650;
     private int heightStage = 850;
+
     private String title = "HIGHSCORE";
     private Scene scene;
     private VBox root;
@@ -150,3 +151,4 @@ public class Highscore {
         return list;
     }
 }
+

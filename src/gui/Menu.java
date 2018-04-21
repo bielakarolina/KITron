@@ -62,7 +62,13 @@ public class Menu {
         startBttn.setId("play");
         startBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                Login login = new Login();
+
+                Login login = null;
+                try {
+                    login = new Login();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 try {
                     login.showLogin();
                 } catch (IOException e1) {
@@ -96,7 +102,7 @@ public class Menu {
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-
+              
                 owner.close();
             }
         });

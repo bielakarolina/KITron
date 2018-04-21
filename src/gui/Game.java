@@ -1,19 +1,21 @@
 package gui;
 
-import game.Map;
+
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-
-import javafx.scene.canvas.Canvas;
-
 import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 
 public class Game {
@@ -30,8 +32,13 @@ public class Game {
     private int bottomMarg = 15;
     private int leftMarg = 12;
     private int rootSpacing = 10;
+    String hostName = "localhost";
+    int portNumber = 12345;
+    Socket socket = null;
+    public BufferedReader in;
+    public PrintWriter out;
 
-    public Game(){
+    public Game(Socket socket) throws IOException {
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
@@ -42,6 +49,13 @@ public class Game {
                 (Game.class.getResource("stylesheets/gameView.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();
+
+        // create socket
+        this.socket = socket;
+
+        // in & out streams
+        out = new PrintWriter(socket.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
     public void setStageProperty(){
@@ -64,16 +78,22 @@ public class Game {
         Button endGame = new Button("End Game");
         endGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                GameOver gameOver = new GameOver();
+                GameOver gameOver = null;
+                try {
+                    gameOver = new GameOver(socket);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 gameOver.showGameOver();
                 owner.close();
             }
         });
         root.getChildren().addAll(canvas, endGame);
     }
-
-    public VBox setCanvas(){
+  
+    public VBox setCanvas() {
         VBox vbox = new VBox();
-        return  vbox;
+        return vbox;
     }
+
 }

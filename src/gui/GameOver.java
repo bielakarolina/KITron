@@ -15,8 +15,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+import java.net.Socket;
 
 
 public class GameOver {
@@ -32,8 +32,14 @@ public class GameOver {
     private int bottomMarg = 15;
     private int leftMarg = 12;
     private int rootSpacing = 25;
+    String hostName = "localhost";
+    int portNumber = 12345;
+    Socket socket = null;
+    public BufferedReader in;
+    public PrintWriter out;
+    public String line= null;
 
-    public GameOver(){
+    public GameOver(Socket socket) throws IOException {
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
@@ -44,6 +50,13 @@ public class GameOver {
                 (GameOver.class.getResource("stylesheets/gameOver.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();
+
+        // create socket
+        this.socket = socket;
+
+        // in & out streams
+        out = new PrintWriter(socket.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
     public void setStageProperty(){
@@ -85,7 +98,18 @@ public class GameOver {
         backToRooms.setId("back");
         backToRooms.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                RoomsView pokoje = new RoomsView();
+                RoomsView pokoje = null;
+                out.println("Give me rooms");
+                try {
+                    line = in.readLine();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                try {
+                    pokoje = new RoomsView(line, socket);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 try {
                     pokoje.showRoomsView();
                 } catch (FileNotFoundException e1) {

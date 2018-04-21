@@ -17,9 +17,9 @@ public class MockServer {
         try {
             // create socket
             serverSocket = new ServerSocket(portNumber);
+            int i =0;
 
             while(true){
-
                 // accept client
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("client connected");
@@ -28,11 +28,27 @@ public class MockServer {
                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-                // read msg, send response
-
                 String msg = in.readLine();
-                System.out.println("received msg: " + msg);
-                out.println("Pong Java Tcp");
+
+                if(msg.equals("lalala")) {
+
+                    System.out.println("Imie: " + msg);
+                    msg = in.readLine();
+
+                    if (msg.contains("Giv")) {
+                        System.out.println(msg);
+                        out.println("lala, 123, 3, 4; mama, 134, 1, 2");
+                        System.out.println("lala, 123, 3, 4; mama, 134, 1, 2");
+                    }
+                }
+
+
+
+                if (msg.contains("mama")) {
+                            String room = in.readLine();
+                            System.out.println("Pokój: " + room);
+                }
+
 
             }
         } catch (IOException e) {
