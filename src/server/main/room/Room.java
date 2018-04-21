@@ -1,5 +1,6 @@
 package server.main.room;
 
+import server.main.Direction;
 import server.main.Player;
 import server.main.PlayerState;
 
@@ -28,7 +29,7 @@ public class Room implements Runnable{
     private InetSocketAddress serverAddress = new InetSocketAddress("239.1.1.1", 5000);
 
     public Room(int width, int height, int maxPlayers, String name){
-        this.board = new Board(height, width);
+        this.board = new Board(width, height);
         this.maxPlayers = maxPlayers;
         this.name = name;
         timer = new Timer();
@@ -111,16 +112,44 @@ public class Room implements Runnable{
 
             do{
 
-                x = r.nextInt((550 - 50) + 1) + 50;
-                y = r.nextInt((400 - 50) + 1) + 50;
+//                x = r.nextInt((550 - 50) + 1) + 50;
+//                y = r.nextInt((400 - 50) + 1) + 50;
+                x = r.nextInt((20 - 5) + 1) + 5;
+                y = r.nextInt((20 - 5) + 1) + 5;
 
             } while(startPoints.contains(new Point(x, y, "start")));
 
 
+
+
             Point point = new Point(x, y, "start");
+//            Point point = new Point(5, 5, "start");
 
             player.setPosition(point);
             player.addToPath(point);
+            Random rand = new Random();
+            int direction = rand.nextInt(4);
+
+            switch (direction){
+                case 0:
+                    player.setDirection(Direction.UP);
+                    break;
+                case 1:
+                    player.setDirection(Direction.DOWN);
+                    break;
+                case 2:
+                    player.setDirection(Direction.LEFT);
+                    break;
+                case 3:
+                    player.setDirection(Direction.RIGHT);
+                    break;
+
+            }
+
+            //player.setDirection(Direction.LEFT);
+
+            System.out.println(player.getName() + " x " + player.getPosition().getX() + " y " + player.getPosition().getY());
+            System.out.println(player.getPosition());
         }
     }
 
@@ -137,11 +166,11 @@ public class Room implements Runnable{
 
         @Override
         public void run() {
-            System.out.println("Sending package");
-            //TODO
 
             update();
 
+            board.printBoard();
+            System.out.println();
 
             sendUpdate();
 
@@ -175,8 +204,21 @@ public class Room implements Runnable{
     private void update() {
         for(Player player : players) {
 
-            Point newPosition;
-            newPosition = player.findNewPosition();
+            if(player.isAlive()){
+
+                System.out.println("tutaj");
+                Point newPosition;
+                newPosition = player.findNewPosition();
+
+                if(board.checkCollision(player.getPosition(), newPosition, player)){
+                    player.setPosition(newPosition);
+                }
+                else{
+                    player.setAlive(false);
+                }
+            }
+
+
 
 
             //board.setWall(p.move(),p.getId());

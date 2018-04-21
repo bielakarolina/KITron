@@ -15,8 +15,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Server {
 
 
-    private static final int STANDARD_BOARD_WIDTH = 600;
-    private static final int STANDARD_BOARD_HEIGHT = 440;
+    private static final int STANDARD_BOARD_WIDTH = 20;
+    private static final int STANDARD_BOARD_HEIGHT = 20;
     private int portNumber = 12345;
     private ServerSocket serverSocket;
 
