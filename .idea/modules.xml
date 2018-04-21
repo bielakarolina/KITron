@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/KITron.iml" filepath="$PROJECT_DIR$/.idea/KITron.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KITron.iml" filepath="$PROJECT_DIR$/KITron.iml" />
     </modules>
   </component>
 </project>
