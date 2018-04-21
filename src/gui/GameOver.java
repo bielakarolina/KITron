@@ -31,7 +31,7 @@ public class GameOver {
     private int rightMarg = 12;
     private int bottomMarg = 15;
     private int leftMarg = 12;
-    private int rootSpacing = 10;
+    private int rootSpacing = 25;
     private String rootStyle ="-fx-background-color: #FFFFFF;";
 
     public GameOver(){
@@ -39,6 +39,8 @@ public class GameOver {
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
+        scene.getStylesheets().add
+                (GameOver.class.getResource("stylesheets/gameOver.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();
     }
@@ -61,18 +63,19 @@ public class GameOver {
     }
 
     public void showGameOver(){
-        Label tytul = new Label("Game Over");
-        tytul.setFont(new Font("Arial", 30));
+        Label lost = new Label("GAME OVER");
+        Label won = new Label("YOU WON!");
 
         HBox hbox = setHBox();
 
-        root.getChildren().addAll(tytul, hbox);
+        root.getChildren().addAll(lost, hbox);
     }
 
     public HBox setHBox(){
         HBox hbox = new HBox();
 
         Button playAgain = new Button("Play Again");
+        playAgain.setId("playAgain");
         playAgain.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 owner.close();
@@ -80,6 +83,7 @@ public class GameOver {
         });
 
         Button backToRooms = new Button("Change room");
+        backToRooms.setId("back");
         backToRooms.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 RoomsView pokoje = new RoomsView();

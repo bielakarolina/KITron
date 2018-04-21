@@ -3,6 +3,7 @@ package gui;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -33,11 +34,13 @@ public class Main extends Application {
 
     public VBox confVBox(Stage primaryStage) throws IOException {
         VBox vbox = new VBox(8);
-        Label tytul = new Label("Podaj swoje imię:");
+        Label tytul = new Label("Enter your name:");
         tytul.setId("tytul");
-        TextField text = new TextField("name");
+        TextField text = new TextField();
         text.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
         Button submit = new Button("Submit");
+
+
         submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 RoomsView pokoje = new RoomsView();
@@ -50,7 +53,6 @@ public class Main extends Application {
                 primaryStage.close();
             }
         });
-
         vbox.getChildren().addAll(tytul,text, submit);
         vbox.setAlignment(Pos.CENTER);
         return vbox;
