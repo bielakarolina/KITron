@@ -60,4 +60,8 @@ public class Player {
     public void setPlayerState(PlayerState playerState) {
         this.playerState = playerState;
     }
+
+    public String getParsedPath() {
+        return path.toString();
+    }
 }
