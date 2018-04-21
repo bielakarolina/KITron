@@ -14,8 +14,13 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.net.Socket;
 
 public class Main extends Application {
+
+    String hostName = "localhost";
+    int portNumber = 12345;
+    Socket socket = null;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -33,6 +38,14 @@ public class Main extends Application {
     }
 
     public VBox confVBox(Stage primaryStage) throws IOException {
+        // create socket
+        socket = new Socket(hostName, portNumber);
+
+        // in & out streams
+        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+        //VBox
         VBox vbox = new VBox(8);
         Label tytul = new Label("Enter your name:");
         tytul.setId("tytul");
@@ -46,13 +59,17 @@ public class Main extends Application {
                 RoomsView pokoje = new RoomsView();
                 try {
                     String imie = text.getText();
+                    out.println(imie);
                     pokoje.showRoomsView();
                 } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                } catch (IOException e1) {
                     e1.printStackTrace();
                 }
                 primaryStage.close();
             }
         });
+
         vbox.getChildren().addAll(tytul,text, submit);
         vbox.setAlignment(Pos.CENTER);
         return vbox;

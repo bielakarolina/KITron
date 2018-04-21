@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 public class GameOver {
@@ -90,6 +91,8 @@ public class GameOver {
                 try {
                     pokoje.showRoomsView();
                 } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                } catch (IOException e1) {
                     e1.printStackTrace();
                 }
                 owner.close();
