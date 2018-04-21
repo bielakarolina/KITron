@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0e1ded90-56c9-4af1-a5dc-18ec01f76139" name="Default" comment="pupa">
+    <list default="true" id="0e1ded90-56c9-4af1-a5dc-18ec01f76139" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -464,7 +464,7 @@
       <option name="presentableId" value="Default" />
       <updated>1524236698492</updated>
       <workItem from="1524295617954" duration="1297000" />
-      <workItem from="1524296924473" duration="3030000" />
+      <workItem from="1524296924473" duration="3084000" />
     </task>
     <task id="LOCAL-00001" summary="pupa">
       <created>1524294658605</created>
@@ -501,11 +501,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524300473900</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="pupa">
+      <created>1524300502517</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1524300502517</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4518000" />
+    <option name="totallyTimeSpent" value="4572000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
@@ -550,9 +557,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pupa" />
     <MESSAGE value="rysowanie" />
-    <option name="LAST_COMMIT_MESSAGE" value="rysowanie" />
+    <MESSAGE value="pupa" />
+    <option name="LAST_COMMIT_MESSAGE" value="pupa" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
