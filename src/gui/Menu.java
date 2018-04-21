@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 
-public class Game {
+public class Menu {
     private Stage owner;
     private int widthScene=650;
     private int heightScene=850;
@@ -28,7 +28,7 @@ public class Game {
     private int rootSpacing = 10;
     private String rootStyle ="-fx-background-color: #FFFFFF;";
 
-    public Game(){
+    public Menu(){
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
@@ -55,7 +55,7 @@ public class Game {
     }
 
     public void showActualGame(){
-        VBox canvas = setCanvas();
+        HBox canvas = setCanvas();
 
         Button endGame = new Button("End Game");
         endGame.setOnAction(new EventHandler<ActionEvent>() {
@@ -69,9 +69,9 @@ public class Game {
 
     }
 
-    public VBox setCanvas(){
-        VBox vbox = new VBox();
+    public HBox setCanvas(){
+        HBox hbox = new HBox();
 
-        return  vbox;
+        return  hbox;
     }
 }
