@@ -24,56 +24,15 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        VBox vbox = confVBox(primaryStage);
-        primaryStage.setTitle("KI TRON");
-        Scene scene = new Scene(vbox, 300, 275);
-        primaryStage.setScene(scene);
-        scene.getStylesheets().add
-                (Main.class.getResource("stylesheets/main.css").toExternalForm());
-        primaryStage.show();
+        Menu menu = new Menu();
+        menu.showMenu();
     }
 
     public static void main(String[] args){
         launch(args);
     }
 
-    public VBox confVBox(Stage primaryStage) throws IOException {
-        // create socket
-        socket = new Socket(hostName, portNumber);
 
-        // in & out streams
-        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-        //VBox
-        VBox vbox = new VBox(8);
-        Label tytul = new Label("Enter your name:");
-        tytul.setId("tytul");
-        TextField text = new TextField();
-        text.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
-        Button submit = new Button("Submit");
-
-
-        submit.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                RoomsView pokoje = new RoomsView();
-                try {
-                    String imie = text.getText();
-                    out.println(imie);
-                    pokoje.showRoomsView();
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-                primaryStage.close();
-            }
-        });
-
-        vbox.getChildren().addAll(tytul,text, submit);
-        vbox.setAlignment(Pos.CENTER);
-        return vbox;
-    }
 
 
 }
