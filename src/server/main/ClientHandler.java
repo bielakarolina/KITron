@@ -42,20 +42,36 @@ public class ClientHandler implements Runnable {
                 if(messageList.length == 1 && player.getPlayerState() == PlayerState.PLAYING) {
                     switch (messageList[0]) {
                         case "left":
-                            player.setDirection(Direction.LEFT);
-                            System.out.println("left");
+                            if(player.getDirection() != Direction.LEFT && player.getDirection() != Direction.RIGHT){
+                                player.setDirection(Direction.LEFT);
+                                player.addToPath(player.getPosition());
+                                System.out.println("left");
+                            }
+
                             break;
                         case "right":
-                            player.setDirection(Direction.RIGHT);
-                            System.out.println("right");
+                            if(player.getDirection() != Direction.LEFT && player.getDirection() != Direction.RIGHT){
+                                player.setDirection(Direction.RIGHT);
+                                System.out.println("right");
+                                player.addToPath(player.getPosition());
+                            }
+
                             break;
                         case "down":
-                            player.setDirection(Direction.DOWN);
-                            System.out.println("down");
+                            if(player.getDirection() != Direction.DOWN && player.getDirection() != Direction.UP){
+                                player.setDirection(Direction.DOWN);
+                                System.out.println("down");
+                                player.addToPath(player.getPosition());
+                            }
+
                             break;
                         case "up":
-                            player.setDirection(Direction.UP);
-                            System.out.println("up");
+                            if(player.getDirection() != Direction.DOWN && player.getDirection() != Direction.UP){
+                                player.setDirection(Direction.UP);
+                                System.out.println("up");
+                                player.addToPath(player.getPosition());
+                            }
+
                             break;
                     }
                 }
