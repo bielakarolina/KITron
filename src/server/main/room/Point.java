@@ -10,13 +10,11 @@ public class Point {
         this.y = y;
     }
 
-    public boolean equals(Object o) {
-        if (o == null) {
-            return false;
-        }
-        if (!(o instanceof Point)) {
-            return false;
-        }
-        return (x == ((Point) o).x && y == ((Point) o).y);
+    public int getY() {
+        return y;
+    }
+
+    public int getX() {
+        return x;
     }
 }
