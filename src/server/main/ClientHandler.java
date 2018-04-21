@@ -38,7 +38,7 @@ public class ClientHandler implements Runnable {
 
                 System.out.println(message);
 
-                if(messageList.length == 1) {
+                if(messageList.length == 1 && player.getPlayerState() == PlayerState.PLAYING) {
                     switch (messageList[0]) {
                         case "left":
                             player.setDirection(Direction.LEFT);

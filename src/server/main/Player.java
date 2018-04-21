@@ -1,5 +1,8 @@
 package server.main;
 
+import server.main.room.Path;
+import server.main.room.Room;
+
 public class Player {
 
     private int id;
@@ -7,9 +10,13 @@ public class Player {
     private String name;
     private Direction direction;
     private boolean initialized = false;
+    private Path path;
+    private PlayerState playerState;
 
     Player(int id){
         this.id = id;
+        this.path = new Path();
+        this.playerState = PlayerState.IDLE;
     }
 
     public Direction getDirection() {
@@ -28,10 +35,6 @@ public class Player {
         return id;
     }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
-
     public String getName() {
         return name;
     }
@@ -48,5 +51,13 @@ public class Player {
             System.out.println("Initialized player: " + name);
         }
 
+    }
+
+    public PlayerState getPlayerState() {
+        return playerState;
+    }
+
+    public void setPlayerState(PlayerState playerState) {
+        this.playerState = playerState;
     }
 }
