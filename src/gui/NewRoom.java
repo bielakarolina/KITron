@@ -38,7 +38,6 @@ public class NewRoom {
     private int bottomMarg = 15;
     private int leftMarg = 12;
     private int rootSpacing = 10;
-    private String rootStyle ="-fx-background-color: #FFFFFF;";
     Socket socket = null;
     public BufferedReader in;
     public PrintWriter out;
@@ -129,7 +128,18 @@ public class NewRoom {
         create.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 out.println("hostRoom "+ nameField.getText() + " "+ cb.getSelectionModel().getSelectedItem());
-                ProgressMaking(rooms);
+                String msg = null;
+                try {
+                    msg = in.readLine();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                if(msg.contains("success")) {
+                    ProgressMaking(rooms);
+                }
+                else{
+                    AlertView alert = new AlertView(owner, "Something Broken. Try Again.");
+                }
                 owner.close();
             }
         });
