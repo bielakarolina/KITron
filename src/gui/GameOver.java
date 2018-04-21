@@ -39,6 +39,8 @@ public class GameOver {
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add
+                (Game.class.getResource("stylesheets/default.css").toExternalForm());
+        scene.getStylesheets().add
                 (GameOver.class.getResource("stylesheets/gameOver.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();

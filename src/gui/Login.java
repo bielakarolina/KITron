@@ -43,6 +43,8 @@ public class Login {
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add
+                (Game.class.getResource("stylesheets/default.css").toExternalForm());
+        scene.getStylesheets().add
                 (Login.class.getResource("stylesheets/login.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();

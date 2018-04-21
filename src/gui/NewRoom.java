@@ -39,6 +39,8 @@ public class NewRoom {
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add
+                (Game.class.getResource("stylesheets/default.css").toExternalForm());
+        scene.getStylesheets().add
                 (NewRoom.class.getResource("stylesheets/newRoom.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();

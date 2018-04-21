@@ -37,6 +37,8 @@ public class Game {
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add
+                (Game.class.getResource("stylesheets/default.css").toExternalForm());
+        scene.getStylesheets().add
                 (Game.class.getResource("stylesheets/gameView.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();

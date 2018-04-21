@@ -48,6 +48,8 @@ public class RoomsView {
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add
+                (Game.class.getResource("stylesheets/default.css").toExternalForm());
+        scene.getStylesheets().add
                 (RoomsView.class.getResource("stylesheets/roomsView.css").toExternalForm());
         setStageProperty();
         setVBoxProperty();

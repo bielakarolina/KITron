@@ -1,14 +1,4 @@
-.root{
-    -fx-background-color: #FFFFFF;
-}
-.text{
-    -fx-color: white;
-}
-#tytul{
-    -fx-font-family: Arial;
-    -fx-font-size: 30px;
-}
-
+/*
 #accept {
     -fx-background-color: #ddd;
     -fx-border: none;

@@ -36,6 +36,8 @@ public class Instruction {
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add
+                (Game.class.getResource("stylesheets/default.css").toExternalForm());
+        scene.getStylesheets().add
                 (Instruction.class.getResource("stylesheets/instructions.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();

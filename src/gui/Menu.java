@@ -18,9 +18,9 @@ import java.io.IOException;
 public class Menu {
     private Stage owner;
     private int widthScene=650;
-    private int heightScene=550;
+    private int heightScene=600;
     private int widthStage=650;
-    private int heightStage=550;
+    private int heightStage=600;
     private String title = "KI TRON";
     private Scene scene;
     private VBox root;
@@ -35,6 +35,8 @@ public class Menu {
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
+        scene.getStylesheets().add
+                (Menu.class.getResource("stylesheets/default.css").toExternalForm());
         scene.getStylesheets().add
                 (Menu.class.getResource("stylesheets/menu.css").toExternalForm());
         setStageProperty();
@@ -70,7 +72,8 @@ public class Menu {
             }
         });
 
-        Button instrBttn = new Button("Instruction");
+        Button instrBttn = new Button("INSTRUCTIONS");
+        instrBttn.setId("insrtuction");
         instrBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 Instruction instr = new Instruction();
@@ -83,7 +86,8 @@ public class Menu {
             }
         });
 
-        Button highBttn = new Button("Highscore");
+        Button highBttn = new Button("HIGHSCORE");
+        highBttn.setId("score");
         highBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 Highscore highscore = new Highscore();
@@ -97,7 +101,8 @@ public class Menu {
             }
         });
 
-        Button endGame = new Button("Quit");
+        Button endGame = new Button("QUIT");
+        endGame.setId("end");
         endGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 owner.close();

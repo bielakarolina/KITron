@@ -1,5 +1,6 @@
 package gui;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.JFXPanel;
@@ -14,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -43,6 +45,8 @@ public class Highscore {
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
+        scene.getStylesheets().add
+                (Game.class.getResource("stylesheets/default.css").toExternalForm());
         scene.getStylesheets().add
                 (Highscore.class.getResource("stylesheets/highscore.css").toExternalForm());
         setStageProperty();
@@ -85,6 +89,12 @@ public class Highscore {
         TableColumn<String[],String[]> score = new TableColumn<>("Score");
         score.setPrefWidth(150);
 
+        /*number.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<String[], Integer>, ObservableValue<Integer>>() {
+            @Override
+            public ObservableValue<Integer> call(TableColumn.CellDataFeatures<String[], Integer> integerCellDataFeatures) {
+                return Integer(integerCellDataFeatures.getValue();
+            }
+        });*/
         number.setCellValueFactory(new PropertyValueFactory<>("0"));
         name.setCellValueFactory(new PropertyValueFactory<>("1"));
         score.setCellValueFactory(new PropertyValueFactory<>("2"));
