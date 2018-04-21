@@ -39,6 +39,8 @@ public class Waiting {
         hb.getChildren().addAll(label, pin);
 
         Scene scene = new Scene(hb, 530, 230);
+        scene.getStylesheets().add
+                (Waiting.class.getResource("stylesheets/waiting.css").toExternalForm());
         dialogStage.setScene(scene);
     }
 

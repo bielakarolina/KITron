@@ -18,10 +18,10 @@ import javafx.stage.StageStyle;
 public class Game {
     private Stage owner;
     private int widthScene=650;
-    private int heightScene=550;
+    private int heightScene=850;
     private int widthStage=650;
-    private int heightStage=550;
-    private String title = "Wybierz pokój";
+    private int heightStage=850;
+    private String title = "KI TRON";
     private Scene scene;
     private VBox root;
     private int topMarg = 15;
@@ -36,6 +36,8 @@ public class Game {
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
+        scene.getStylesheets().add
+                (Game.class.getResource("stylesheets/gameView.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();
     }
@@ -67,6 +69,7 @@ public class Game {
             }
         });
         root.getChildren().addAll(canvas, endGame);
+
     }
 
     public Canvas setCanvas(){

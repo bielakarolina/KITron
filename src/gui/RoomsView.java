@@ -31,7 +31,7 @@ public class RoomsView {
     private int heightScene=700;
     private int widthStage=500;
     private int heightStage=700;
-    private String title = "Wybierz pokój";
+    private String title = "Rooms";
     private Scene scene;
     private VBox root;
     private int topMarg = 15;
@@ -39,8 +39,7 @@ public class RoomsView {
     private int bottomMarg = 15;
     private int leftMarg = 12;
     private int rootSpacing = 10;
-    private String rootStyle ="-fx-background-color: #FFFFFF;";
-    private String address = "plus.png";
+
     public String hostName = "localhost";
     public int portNumber = 12345;
     public Socket socket = null;
@@ -52,6 +51,8 @@ public class RoomsView {
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
+        scene.getStylesheets().add
+                (RoomsView.class.getResource("stylesheets/roomsView.css").toExternalForm());
         setStageProperty();
         setVBoxProperty();
     }
@@ -66,7 +67,6 @@ public class RoomsView {
     }
 
     public void setVBoxProperty() {
-        root.setStyle(rootStyle);
         root.setPadding(new Insets(topMarg, rightMarg, bottomMarg, leftMarg));
         root.setSpacing(rootSpacing);
         root.setAlignment(Pos.CENTER);
@@ -79,15 +79,18 @@ public class RoomsView {
         // in & out streams
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        
+  
+        Label napis = new Label("Choose room: ");
+        napis.setId("tytul");
 
-        Label napis = new Label("Wybierz pokój: ");
-        napis.setFont(new Font("Arial", 30));
 
         HBox hbox = setHbox();
 
         ListView<String> list = setList();
 
-        Button acceptBttn= new Button("Wybierz ten pokój");
+        Button acceptBttn= new Button("Choose");
+        acceptBttn.setId("accept");
         acceptBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 String room = list.getSelectionModel().getSelectedItem();
@@ -111,15 +114,17 @@ public class RoomsView {
     }
 
     public Button setNewButton() throws FileNotFoundException {
-        Image imageDecline = new Image(getClass().getResourceAsStream(address));
-        Button newRoomBttn = new Button();
-        newRoomBttn.setGraphic(new ImageView(imageDecline));
+
+        Button newRoomBttn = new Button("+");
+        newRoomBttn.setId("newRoom");
         newRoomBttn.setAlignment(Pos.CENTER_LEFT);
 
         newRoomBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 NewRoom newRoom = new NewRoom();
+
                 newRoom.showNewRoom(getOwner());
+
             }
         });
         return newRoomBttn;
