@@ -57,7 +57,7 @@ public class Game {
     }
 
     public void showActualGame(){
-        Canvas canvas = getCanvas();
+        VBox canvas = setCanvas();
 
         Button endGame = new Button("End Game");
         endGame.setOnAction(new EventHandler<ActionEvent>() {
@@ -74,13 +74,9 @@ public class Game {
 
     public Canvas getCanvas(){
 
-<<<<<<< .merge_file_a65584
         Map map = new Map();
         final Canvas canvas = map.setCanvas();
         return canvas;
-=======
-        return  vbox;
->>>>>>> .merge_file_a65248
 
     }
 }
