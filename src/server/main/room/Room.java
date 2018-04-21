@@ -139,17 +139,24 @@ public class Room implements Runnable{
         public void run() {
             System.out.println("Sending package");
             //TODO
+
             update();
-            ByteBuffer buffer = ByteBuffer.wrap(parsePlayerList().getBytes());
-            try {
-                multicastChannel.send(buffer, serverAddress);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            //process one step //BOARD
-            //check collision //BOARD
-            //send update //dostaje
+
+
+            sendUpdate();
+
         }
+    }
+
+    private void sendUpdate() {
+
+        ByteBuffer buffer = ByteBuffer.wrap(parsePlayerList().getBytes());
+        try {
+            multicastChannel.send(buffer, serverAddress);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public String parsePlayerList() {
@@ -168,8 +175,15 @@ public class Room implements Runnable{
     private void update() {
         for(Player p : players) {
 
-            board.setWall(p.move(),p.getId());
+            Point newPosition;
+            newPosition = p.findNewPosition();
 
+            //board.setWall(p.move(),p.getId());
+            //process one step //BOARD
+            //check collision //BOARD
+            //send update //dostaje
         }
     }
+
+
 }

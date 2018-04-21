@@ -10,11 +10,12 @@ public class Player {
     private String color;
     private String name;
     private Direction direction;
+    private Direction newDirection;
     private boolean initialized = false;
     private Path path;
     private PlayerState playerState;
     private Point position;
-    private int speed;
+    private int speed = 4;
 
     Player(int id){
         this.id = id;
@@ -59,6 +60,7 @@ public class Player {
     public PlayerState getPlayerState() {
         return playerState;
     }
+
     public void clearPath(){
         this.path = new Path();
     }
@@ -83,30 +85,36 @@ public class Player {
         return position;
     }
 
-    public Point move() {
+    public Point findNewPosition() {
+
         int oldX = position.getX();
         int oldY = position.getY();
-        Point point = new Point(oldX,oldY,"curve");
+
+        Point point = null;
 
         switch(direction) {
             case DOWN:
-                point = new Point(oldX,oldY+speed,"curve");
+                point = new Point(oldX,oldY+speed,"end");
                 break;
             case UP:
-                point = new Point(oldX,oldY-speed,"curve");
+                point = new Point(oldX,oldY-speed,"end");
                 break;
             case LEFT:
-                point = new Point(oldX-speed,oldY,"curve");
+                point = new Point(oldX-speed,oldY,"end");
                 break;
             case RIGHT:
-                point = new Point(oldX+speed,oldY,"curve");
+                point = new Point(oldX+speed,oldY,"end");
                 break;
         }
-        setPosition(point);
+
         return point;
     }
 
-    public Point getPosition() {
-        return position;
+    public Direction getNewDirection() {
+        return newDirection;
+    }
+
+    public void setNewDirection(Direction newDirection) {
+        this.newDirection = newDirection;
     }
 }
