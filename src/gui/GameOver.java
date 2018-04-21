@@ -100,14 +100,26 @@ public class GameOver {
         backToRooms.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 out.println("leaveRoom");
+                String msg = null;
                 try {
-                String line = null;
-                line = setRooms();
-                RoomsView pokoje = null;
-                pokoje = new RoomsView(line, socket);
-                pokoje.showRoomsView();
+                    msg = in.readLine();
                 } catch (IOException e1) {
                     e1.printStackTrace();
+                }
+
+                if(msg.contains("success")) {
+                    String line = null;
+                    line = setRooms();
+                    RoomsView pokoje = null;
+                    try {
+                        pokoje = new RoomsView(line, socket);
+                        pokoje.showRoomsView();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                else{
+                    AlertView alert = new AlertView(owner, "Something Broken. Try Again");
                 }
                 ownerFromGame.close();
                 owner.close();
