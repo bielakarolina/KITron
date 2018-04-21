@@ -9,4 +9,14 @@ public class Point {
         this.x = x;
         this.y = y;
     }
+
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (!(o instanceof Point)) {
+            return false;
+        }
+        return (x == ((Point) o).x && y == ((Point) o).y);
+    }
 }
