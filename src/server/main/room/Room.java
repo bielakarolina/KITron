@@ -1,0 +1,285 @@
+package server.main.room;
+
+import server.main.Direction;
+import server.main.Player;
+import server.main.PlayerState;
+
+import java.util.*;
+import java.io.IOException;
+import java.net.*;
+import java.nio.ByteBuffer;
+import java.nio.channels.DatagramChannel;
+import java.nio.channels.MembershipKey;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class Room implements Runnable{
+
+    public static int multicastPort = 4446;
+
+    List<Player> players = new ArrayList<>();
+    private Board board;
+    private int maxPlayers;
+    private boolean roomActive = false;
+    private String name;
+    private Timer timer;
+    private DatagramChannel channel;
+    private NetworkInterface multicastInterface = null;
+    private DatagramChannel multicastChannel = null;
+    private InetSocketAddress serverAddress = new InetSocketAddress("239.1.1.1", 5000);
+    private int alive;
+    MulticastSocket multicastSocket;
+    InetAddress group;
+
+    public Room(int width, int height, int maxPlayers, String name){
+        this.board = new Board(width, height);
+        this.maxPlayers = maxPlayers;
+        this.name = name;
+        timer = new Timer();
+
+        try {
+            multicastSocket = new MulticastSocket();
+            group = InetAddress.getByName("224.0.113.0");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    try {
+        multicastInterface = NetworkInterface.getNetworkInterfaces().nextElement();
+        multicastChannel = DatagramChannel.open(StandardProtocolFamily.INET)
+                .setOption(StandardSocketOptions.SO_REUSEADDR, true)
+                .bind(new InetSocketAddress(5000))
+                .setOption(StandardSocketOptions.IP_MULTICAST_IF, multicastInterface);
+        multicastChannel.configureBlocking(false);
+        MembershipKey groupKey = multicastChannel.join(Inet4Address.getByName("239.1.1.1"), multicastInterface);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    }
+
+    public synchronized void join(Player player){
+        players.add(player);
+        player.setPlayerState(PlayerState.WAITING);
+    }
+
+    public synchronized void leave(Player player){
+        //chyba trzeba bedzie synchronizowac zasob listy bo co jesli user opusci gre w momencie jak liczony jest jego stan??
+        players.remove(player);
+        player.setPlayerState(PlayerState.IDLE);
+    }
+
+    public boolean isRoomActive() {
+        return roomActive;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void run() {
+
+        try {
+            MulticastSocket multicastSocket = new MulticastSocket();
+            InetAddress group = InetAddress.getByName("224.0.113.0");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Room init");
+        this.timer = new Timer();
+        board.refreshBoard();
+
+        while(players.size() != maxPlayers){
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        System.out.println("Game started in: " + this.name);
+
+        startGame();
+        roomActive = true;
+
+        //wyslanie wiadomosci do klienta ze gra sie zaczyna
+
+        timer.schedule(new processTask(this), 0, 3000);
+
+        System.out.println("koniec room");
+    }
+
+
+    private void startGame() {
+        for(Player player : players){
+            player.setPlayerState(PlayerState.PLAYING);
+            player.setAlive(true);
+        }
+        alive = players.size();
+        putPlayersOnBoard();
+    }
+
+    private void putPlayersOnBoard() {
+        for(Player player: players){
+            player.clearPath();
+
+            List<Point> startPoints = new ArrayList<>();
+
+            int x;
+            int y;
+
+            Random r = new Random();
+
+            do{
+
+                x = r.nextInt((board.getWidth() - 15) + 1) + 8;
+                y = r.nextInt((board.getHeight() - 15) + 1) + 8;
+
+            } while(startPoints.contains(new Point(x, y, "start")));
+
+
+
+
+           Point point = new Point(x, y, "start");
+            //Point point = new Point(5, 5, "start");
+
+            player.setPosition(point);
+            player.addToPath(point);
+            Random rand = new Random();
+            int direction = rand.nextInt(4);
+
+
+
+            switch (direction){
+                case 0:
+                    player.setDirection(Direction.UP);
+                    break;
+                case 1:
+                    player.setDirection(Direction.DOWN);
+                    break;
+                case 2:
+                    player.setDirection(Direction.LEFT);
+                    break;
+                case 3:
+                    player.setDirection(Direction.RIGHT);
+                    break;
+
+            }
+
+            //player.setDirection(Direction.LEFT);
+
+            System.out.println(player.getName() + " x " + player.getPosition().getX() + " y " + player.getPosition().getY());
+            System.out.println(player.getPosition());
+        }
+    }
+
+    public void printPlayersPaths(){
+        for(Player player: players){
+            System.out.println(player.getName());
+            System.out.println(player.getParsedPath());
+        }
+        System.out.println();
+    }
+
+    private class processTask extends TimerTask{
+
+        Room room;
+
+        processTask(Room room){
+            this.room = room;
+        }
+
+        @Override
+        public void run() {
+
+            update();
+
+            board.printBoard();
+            System.out.println();
+
+            sendUpdate();
+
+            if(alive == 1){
+                timer.cancel();
+                timer.purge();
+                System.out.println("Player winner: " + findWinner().getName());
+                new Thread(room).start();
+            }
+
+        }
+    }
+
+    private void sendUpdate() {
+
+        System.out.println("Sending Package UDP");
+        DatagramPacket sendPacket;
+
+        //buffer = ByteBuffer.wrap(parsePlayerList().getBytes();
+
+        //ByteBuffer buffer = ByteBuffer.wrap(parsePlayerList().getBytes());
+        byte[] buffer = parsePlayerList().getBytes();
+        try {
+
+            sendPacket = new DatagramPacket(buffer, buffer.length, group, Room.multicastPort);
+            multicastSocket.send(sendPacket);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public String parsePlayerList() {
+        String s = "";
+        for(Player p : players) {
+            s = p.getId() + ";" + p.getName()+";" + p.getColor();
+            s += ";" + p.getParsedPath();
+        }
+        return s;
+    }
+
+    public boolean containsPlayer(Player player) {
+        return players.contains(player);
+    }
+
+    private void update() {
+        for(Player player : players) {
+
+            if(player.isAlive()){
+
+                Point newPosition;
+                newPosition = player.findNewPosition();
+
+                if(board.checkCollision(player.getPosition(), newPosition, player)){
+                    player.setPosition(newPosition);
+                }
+                else{
+                    player.setAlive(false);
+                    alive--;
+                }
+            }
+        }
+    }
+
+    public Player findWinner(){
+        for(Player player: players){
+            if(player.isAlive())
+                return player;
+        }
+        return null;
+    }
+
+    public int getUserNumber(){
+        return players.size();
+    }
+
+    public int getMaxPlayers(){
+        return maxPlayers;
+    }
+
+
+}

@@ -6,60 +6,49 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 import javafx.stage.Stage;
 
-public class Map extends Application {
+public class Map {
 
+    public Map(){}
 
-    //    public static void main(String[] args) {
-//        launch(args);
-//    }
-    public Map(){
-
-    }
-//
-//    @Override
-//    public void start(Stage stage) throws Exception {
-//
-//    }
-
-
-    public VBox setCanvas(){
-        Canvas blurryCanvas = createCanvasGrid(600, 300);
-        VBox vbox = new VBox(5, blurryCanvas);
-           return vbox;
+    public Canvas setCanvas(){
+        Canvas canvas = new Canvas(600, 440);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawD17(gc);
+        System.out.println("gowno");
+        return canvas;
     }
 
-    private Canvas createCanvasGrid(int width, int height) {
-        Canvas canvas = new Canvas(width, height);
-        GraphicsContext gc = canvas.getGraphicsContext2D() ;
-        gc.setLineWidth(1.0);
-        for (int x = 0; x < width; x+=10) {
-            double x1 ;
-            x1 = x + 0.5 ;
-            gc.moveTo(x1, 0);
-            gc.lineTo(x1, height);
-            gc.stroke();
-        }
+    private void drawD17(GraphicsContext gc) {
 
-        for (int y = 0; y < height; y+=10) {
-            double y1 ;
-            y1 = y + 0.5 ;
-            gc.moveTo(0, y1);
-            gc.lineTo(width, y1);
-            gc.stroke();
-        }
-        return canvas ;
+        gc.setStroke(Color.WHITE);
+        gc.setLineWidth(5.0);
+        gc.beginPath();
+        gc.lineTo(260, 310);
+        gc.lineTo(60, 250);
+        gc.lineTo(60,40);
+        gc.lineTo(260,60);
+        gc.lineTo(260,200);
+        gc.moveTo(300, 210);
+        gc.lineTo(300, 90);
+        gc.lineTo(530, 110);
+        gc.lineTo(550, 380);
+        gc.lineTo(300, 315);
+        //gc.lineTo();
+        gc.stroke();
+        gc.applyEffect(new DropShadow(20, 0, -20, Color.WHITE));
+        //gc.setFill(Color.BLUE);
+        System.out.println("gowno2");
+        System.out.println("gowno1");
     }
 
-    @Override
-    public void start(Stage primaryStage) {
-        Canvas blurryCanvas = createCanvasGrid(600, 300);
-        VBox root = new VBox(5, blurryCanvas);
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-    }
+
 }

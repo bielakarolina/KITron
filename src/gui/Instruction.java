@@ -1,6 +1,7 @@
 package gui;
 
 import javafx.embed.swing.JFXPanel;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -8,6 +9,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -36,8 +41,10 @@ public class Instruction {
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add
+
                 (Game.class.getResource("stylesheets/default.css").toExternalForm());
         scene.getStylesheets().add
+
                 (Instruction.class.getResource("stylesheets/instructions.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();
@@ -87,5 +94,9 @@ public class Instruction {
         hbox.setAlignment(Pos.BOTTOM_RIGHT);
         hbox.getChildren().addAll(returnButton);
         return hbox;
+
+
+        root.getChildren().addAll();
+
     }
 }

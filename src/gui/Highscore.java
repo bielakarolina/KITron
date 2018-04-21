@@ -3,6 +3,9 @@ package gui;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import game.Map;
+
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,6 +14,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+=======
+import javafx.scene.Scene;
+
+import javafx.scene.canvas.Canvas;
+
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -23,6 +32,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
+
 public class Highscore {
     private Stage owner;
     private int widthScene = 650;
@@ -30,7 +40,11 @@ public class Highscore {
     private int widthStage = 650;
     private int heightStage = 850;
 
+
     private String title = "HIGHSCORE";
+
+    private String title = "";
+
     private Scene scene;
     private VBox root;
     private int topMarg = 15;
@@ -38,8 +52,9 @@ public class Highscore {
     private int bottomMarg = 15;
     private int leftMarg = 12;
     private int rootSpacing = 10;
-    public BufferedReader in;
+   public BufferedReader in;
     public PrintWriter out;
+
 
     public Highscore() {
         new JFXPanel();
@@ -47,8 +62,10 @@ public class Highscore {
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add
+
                 (Game.class.getResource("stylesheets/default.css").toExternalForm());
         scene.getStylesheets().add
+
                 (Highscore.class.getResource("stylesheets/highscore.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();
@@ -67,6 +84,7 @@ public class Highscore {
         root.setPadding(new Insets(topMarg, rightMarg, bottomMarg, leftMarg));
         root.setSpacing(rootSpacing);
     }
+
 
     public void showHighscore()throws IOException {
 
@@ -151,4 +169,14 @@ public class Highscore {
         return list;
     }
 }
+
+    public void showHighscore() {
+
+        root.getChildren().addAll();
+
+    }
+}
+
+
+
 

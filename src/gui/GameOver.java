@@ -25,6 +25,7 @@ public class GameOver {
     private int heightScene=200;
     private int widthStage=400;
     private int heightStage=200;
+
     private Scene scene;
     private VBox root;
     private int topMarg = 15;
@@ -60,6 +61,7 @@ public class GameOver {
 
     public void setStageProperty(){
         owner.setScene(scene);
+
         owner.setWidth(widthStage);
         owner.setHeight(heightStage);
         owner.initModality(Modality.WINDOW_MODAL);

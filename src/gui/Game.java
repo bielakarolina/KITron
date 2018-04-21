@@ -1,11 +1,18 @@
 package gui;
 
+import game.DrawPixels;
+import game.Map;
+import game.MapReceiver;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+
+import javafx.scene.canvas.Canvas;
+
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -66,12 +73,15 @@ public class Game {
     }
 
     public void setHBoxProperty() {
+        //root.setStyle(rootStyle);
         root.setPadding(new Insets(topMarg, rightMarg, bottomMarg, leftMarg));
         root.setSpacing(rootSpacing);
     }
 
     public void showActualGame(){
-        VBox canvas = setCanvas();
+
+
+        Canvas canvas = getCanvas();
 
         Button endGame = new Button("End Game");
         endGame.setOnAction(new EventHandler<ActionEvent>() {
@@ -86,13 +96,17 @@ public class Game {
             }
         });
         root.getChildren().addAll(canvas, endGame);
-    }
-  
-    public VBox setCanvas() {
-        VBox vbox = new VBox();
-        return vbox;
+
     }
 
+
+    public Canvas getCanvas(){
+
+
+        DrawPixels drawPixels = new DrawPixels();
+        final Canvas canvas = drawPixels.setRoad();
+        return  canvas;
+    }
     public Stage getOwner() {
         return owner;
     }
