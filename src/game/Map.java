@@ -22,13 +22,11 @@ public class Map {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawLines(gc);
-
-
+        drawD17(gc);
         return canvas;
     }
 
-    private void drawLines(GraphicsContext gc) {
+    private void drawD17(GraphicsContext gc) {
 
         gc.setStroke(Color.WHITE);
         gc.setLineWidth(5.0);

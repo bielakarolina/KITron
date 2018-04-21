@@ -1,5 +1,6 @@
 package gui;
 
+import game.DrawPixels;
 import game.Map;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
@@ -75,8 +76,10 @@ public class Game {
 
 
     public Canvas getCanvas(){
-        Map map = new Map();
-        final Canvas canvas = map.setCanvas();
+
+
+        DrawPixels drawPixels = new DrawPixels();
+        final Canvas canvas = drawPixels.setRoad();
         return  canvas;
 
     }

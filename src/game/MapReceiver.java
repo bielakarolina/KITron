@@ -20,6 +20,8 @@ public class MapReceiver extends Thread{
                     socket.receive(receivePacket);
                     String msg = new String(receivePacket.getData());
                     System.out.println("received msg: " + msg);
+
+                    //dostaje wiadomosc i wywoluje mape przekazujac do niej liste
                 }
             }
             catch(Exception e){
