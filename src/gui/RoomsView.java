@@ -50,6 +50,8 @@ public class RoomsView {
     public Text nazwa;
     public Text ilosc;
     public String line;
+    public ObservableList<String[]> items;
+    public ListView<String[]> list;
 
     public RoomsView(String line, Socket socket) throws IOException {
         new JFXPanel();
@@ -95,7 +97,7 @@ public class RoomsView {
 
         HBox hbox = setHbox();
 
-        ListView<String[]> list = setList();
+        list = setList();
 
         Button acceptBttn= new Button("Choose");
         acceptBttn.setId("accept");
@@ -124,15 +126,34 @@ public class RoomsView {
     public HBox setHbox() throws FileNotFoundException {
         HBox hbox = new HBox();
 
+        Button refresh = new Button("refresh");
+        refresh.setAlignment(Pos.CENTER_LEFT);
+
+        refresh.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+
+                owner.close();
+                line = setRooms();
+                System.out.println(line);
+                try {
+                    items = createList(items);
+                    //list.setItems(items);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+        });
+
         Button newRoomBttn = setNewButton();
         VBox grupa = setGroup();
 
         hbox.setAlignment(Pos.CENTER);
-        hbox.getChildren().addAll(newRoomBttn, grupa);
+        hbox.getChildren().addAll(refresh, newRoomBttn, grupa);
         return hbox;
     }
 
-    public Button setNewButton() throws FileNotFoundException {
+    public Button setNewButton(){
 
         Button newRoomBttn = new Button("+");
         newRoomBttn.setId("newRoom");
@@ -166,9 +187,9 @@ public class RoomsView {
     }
 
     public ListView<String[]> setList() throws IOException {
-        ListView<String[]> list = new ListView<String[]>();
+        ListView<String[]> list = new ListView<>();
 
-        ObservableList<String[]> items = FXCollections.observableArrayList ();
+        items = FXCollections.observableArrayList();
         items = createList(items);
         list.setItems(items);
 
@@ -206,9 +227,7 @@ public class RoomsView {
     }
 
     public ObservableList<String[]> createList(ObservableList<String[]> items) throws IOException {
-        //out.println("Give me rooms");
-        //String line = in.readLine();
-        //String line = "lala, 123, 3, 4; mama, 134, 1, 2";
+
         String[] rooms = line.split(";");
         int i = rooms.length, m = 0;
         String[][] roomsInfo = new String[i][3];
@@ -219,7 +238,6 @@ public class RoomsView {
         }
 
         for(String[] room: roomsInfo){
-            System.out.println(room[0] + "   " + room[1]+ "    "+ room[2]+"\n");
             items.add(room);
         }
 
@@ -277,6 +295,20 @@ public class RoomsView {
 
     public Stage getOwner() {
         return owner;
+    }
+
+    public String setRooms(){
+        out.println("refresh");
+        String line = null;
+        while(line == null) {
+            try {
+                line = in.readLine();
+            } catch (IOException e1) {
+
+            }
+        }
+        //System.out.println(line);
+        return line;
     }
 
 

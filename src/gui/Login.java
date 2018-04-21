@@ -7,7 +7,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -83,43 +84,54 @@ public class Login {
     public VBox setLogin() throws IOException {
         //VBox
         VBox vbox = new VBox(8);
+
         Label tytul = new Label("Enter your name:");
         tytul.setId("tytul");
+
         TextField text = new TextField();
         text.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
+        text.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent ke) {
+                if (ke.getCode().equals(KeyCode.ENTER)) {
+                    sendName(text);
+                }
+            }
+        });
+
         Button submit = new Button("Submit");
-
-
         submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-
-
-                try {
-                    String imie = "initPlayer " + text.getText();
-                    out.println(imie);
-                    
-                  if (imie.equals("")) {
-
-                        Alert alert = showAlert();
-                        owner.close();
-                        Login login = new Login();
-                        login.showLogin();
-                    } else {
-                        owner.close();
-                        String line = null;
-                        line = setRooms();
-                        RoomsView pokoje = new RoomsView(line, socket);
-                        pokoje.showRoomsView();
-                    }
-               } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
+                sendName(text);
             }
         });
 
         vbox.getChildren().addAll(tytul,text, submit);
         vbox.setAlignment(Pos.CENTER);
         return vbox;
+    }
+
+    public void sendName(TextField text){
+        try {
+            String imie = text.getText();
+            String msg = "initPlayer ".concat(imie);
+
+            if (imie.equals("")) {
+                showAlert();
+                Login login = new Login();
+                login.showLogin();
+                owner.close();
+            } else {
+                out.println(msg);
+                owner.close();
+                String line = null;
+                line = setRooms();
+                RoomsView pokoje = new RoomsView(line, socket);
+                pokoje.showRoomsView();
+            }
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
     }
 
 
