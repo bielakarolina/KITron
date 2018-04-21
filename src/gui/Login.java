@@ -1,22 +1,20 @@
 package gui;
 
-import game.Map;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-
-import javafx.scene.canvas.Canvas;
-
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.net.Socket;
 
-public class Game {
+
+public class Login {
     private Stage owner;
     private int widthScene=650;
     private int heightScene=850;
@@ -31,8 +29,11 @@ public class Game {
     private int leftMarg = 12;
     private int rootSpacing = 10;
     private String rootStyle ="-fx-background-color: #FFFFFF;";
+    String hostName = "localhost";
+    int portNumber = 12345;
+    Socket socket = null;
 
-    public Game(){
+    public Login(){
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
@@ -59,7 +60,7 @@ public class Game {
     }
 
     public void showActualGame(){
-        VBox canvas = setCanvas();
+        HBox canvas = setCanvas();
 
         Button endGame = new Button("End Game");
         endGame.setOnAction(new EventHandler<ActionEvent>() {
@@ -73,22 +74,9 @@ public class Game {
 
     }
 
+    public HBox setCanvas(){
+        HBox hbox = new HBox();
 
-    public VBox setCanvas(){
-        VBox vbox = new VBox();
-
-        return  vbox;
-    public Canvas setCanvas(){
-        Map map = new Map();
-        final Canvas canvas = map.setCanvas();
-//        GraphicsContext gc = canvas.getGraphicsContext2D();
-//
-//        gc.setFill(Color.BLACK);
-//        gc.fillRect(10,10,600,440);
-
-
-
-        return  canvas;
- master
+        return  hbox;
     }
 }

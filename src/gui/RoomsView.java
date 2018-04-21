@@ -21,7 +21,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 public class RoomsView {
     private Stage owner;
@@ -29,7 +31,7 @@ public class RoomsView {
     private int heightScene=700;
     private int widthStage=500;
     private int heightStage=700;
-    private String title = "Wybierz pokój";
+    private String title = "Rooms";
     private Scene scene;
     private VBox root;
     private int topMarg = 15;
@@ -37,14 +39,20 @@ public class RoomsView {
     private int bottomMarg = 15;
     private int leftMarg = 12;
     private int rootSpacing = 10;
-    private String rootStyle ="-fx-background-color: #FFFFFF;";
-    private String address = "plus.png";
+
+    public String hostName = "localhost";
+    public int portNumber = 12345;
+    public Socket socket = null;
+    public PrintWriter out;
+    public BufferedReader in;
 
     public RoomsView(){
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
+        scene.getStylesheets().add
+                (RoomsView.class.getResource("stylesheets/roomsView.css").toExternalForm());
         setStageProperty();
         setVBoxProperty();
     }
@@ -59,24 +67,34 @@ public class RoomsView {
     }
 
     public void setVBoxProperty() {
-        root.setStyle(rootStyle);
         root.setPadding(new Insets(topMarg, rightMarg, bottomMarg, leftMarg));
         root.setSpacing(rootSpacing);
         root.setAlignment(Pos.CENTER);
     }
 
-    public void showRoomsView() throws FileNotFoundException {
-        Label napis = new Label("Wybierz pokój: ");
-        napis.setFont(new Font("Arial", 30));
+    public void showRoomsView() throws IOException {
+        // create socket
+        socket = new Socket(hostName, portNumber);
+
+        // in & out streams
+        out = new PrintWriter(socket.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        
+  
+        Label napis = new Label("Choose room: ");
+        napis.setId("tytul");
+
 
         HBox hbox = setHbox();
 
         ListView<String> list = setList();
 
-        Button acceptBttn= new Button("Wybierz ten pokój");
+        Button acceptBttn= new Button("Choose");
+        acceptBttn.setId("accept");
         acceptBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 String room = list.getSelectionModel().getSelectedItem();
+                out.println(room);
                 ProgressMaking();
             }
         });
@@ -96,17 +114,16 @@ public class RoomsView {
     }
 
     public Button setNewButton() throws FileNotFoundException {
-        Image imageDecline = new Image(getClass().getResourceAsStream(address));
-        Button newRoomBttn = new Button();
-        newRoomBttn.setGraphic(new ImageView(imageDecline));
+
+        Button newRoomBttn = new Button("+");
+        newRoomBttn.setId("newRoom");
         newRoomBttn.setAlignment(Pos.CENTER_LEFT);
 
         newRoomBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 NewRoom newRoom = new NewRoom();
-                newRoom.showNewRoom();
-                owner.close();
-                ProgressMaking();
+
+                newRoom.showNewRoom(getOwner());
 
             }
         });
@@ -126,10 +143,12 @@ public class RoomsView {
         return grupa;
     }
 
-    public ListView<String> setList(){
+    public ListView<String> setList() throws IOException {
         ListView<String> list = new ListView<String>();
-        ObservableList<String> items = FXCollections.observableArrayList (
-                "Single", "Double", "Suite", "Family App");
+        String line = in.readLine();
+        String[] tmp = line.split(", ");
+        ObservableList<String> items =
+                FXCollections.observableArrayList (tmp);
         list.setItems(items);
         return list;
     }
@@ -157,6 +176,10 @@ public class RoomsView {
 
         Thread thread = new Thread(task);
         thread.start();
+    }
+
+    public Stage getOwner() {
+        return owner;
     }
 
 
