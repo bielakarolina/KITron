@@ -4,6 +4,15 @@ import server.main.Player;
 import server.main.PlayerState;
 
 import java.util.*;
+import java.io.IOException;
+import java.net.*;
+import java.nio.ByteBuffer;
+import java.nio.channels.DatagramChannel;
+import java.nio.channels.MembershipKey;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Room implements Runnable{
 
@@ -13,6 +22,10 @@ public class Room implements Runnable{
     private boolean roomActive = false;
     private String name;
     private Timer timer;
+    private DatagramChannel channel;
+    private NetworkInterface multicastInterface = null;
+    private DatagramChannel multicastChannel = null;
+    private InetSocketAddress serverAddress = new InetSocketAddress("239.1.1.1", 5000);
 
     public Room(int width, int height, int maxPlayers, String name){
         this.board = new Board(height, width);
@@ -20,6 +33,17 @@ public class Room implements Runnable{
         this.name = name;
         timer = new Timer();
 
+    try {
+        multicastInterface = NetworkInterface.getNetworkInterfaces().nextElement();
+        multicastChannel = DatagramChannel.open(StandardProtocolFamily.INET)
+                .setOption(StandardSocketOptions.SO_REUSEADDR, true)
+                .bind(new InetSocketAddress(5000))
+                .setOption(StandardSocketOptions.IP_MULTICAST_IF, multicastInterface);
+        multicastChannel.configureBlocking(false);
+        MembershipKey groupKey = multicastChannel.join(Inet4Address.getByName("239.1.1.1"), multicastInterface);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
     }
 
     public synchronized void join(Player player){
@@ -90,14 +114,22 @@ public class Room implements Runnable{
                 x = r.nextInt((550 - 50) + 1) + 50;
                 y = r.nextInt((400 - 50) + 1) + 50;
 
-            } while(startPoints.contains(new Point(x, y)));
+            } while(startPoints.contains(new Point(x, y, "start")));
 
 
-            Point point = new Point(x, y);
+            Point point = new Point(x, y, "start");
 
             player.setPosition(point);
             player.addToPath(point);
         }
+    }
+
+    public void printPlayersPaths(){
+        for(Player player: players){
+            System.out.println(player.getName());
+            System.out.println(player.getParsedPath());
+        }
+        System.out.println();
     }
 
     private class processTask extends TimerTask{
@@ -107,13 +139,37 @@ public class Room implements Runnable{
         public void run() {
             System.out.println("Sending package");
             //TODO
+            board.update();
+            ByteBuffer buffer = ByteBuffer.wrap(parsePlayerList().getBytes());
+            try {
+                multicastChannel.send(buffer, serverAddress);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             //process one step //BOARD
             //check collision //BOARD
             //send update //dostaje
         }
     }
 
+    public String parsePlayerList() {
+        String s = "";
+        for(Player p : players) {
+            s = p.getId() + ";" + p.getName()+";" + p.getColor();
+            s += ";" + p.getParsedPath();
+        }
+        return s;
+    }
+
     public boolean containsPlayer(Player player) {
         return players.contains(player);
+    }
+
+    private void update() {
+        for(Player p : players) {
+
+            board.setWall(p.move(),p.getId());
+
+        }
     }
 }
