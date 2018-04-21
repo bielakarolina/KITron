@@ -38,10 +38,6 @@ public class Room implements Runnable{
         return roomActive;
     }
 
-    public void leave(Player player){
-        players.remove(player);
-    }
-
     public String getName() {
         return name;
     }
@@ -74,9 +70,9 @@ public class Room implements Runnable{
         @Override
         public void run() {
             //TODO
-            //process one step
-            //check collision
-            //send update
+            //process one step //BOARD
+            //check collision //BOARD
+            //send update //dostaje
         }
     }
 
