@@ -32,7 +32,6 @@ public class Game {
     private int bottomMarg = 15;
     private int leftMarg = 12;
     private int rootSpacing = 10;
-    private String rootStyle ="-fx-background-color: #FFFFFF;";
     String hostName = "localhost";
     int portNumber = 12345;
     Socket socket = null;
@@ -44,6 +43,8 @@ public class Game {
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
+        scene.getStylesheets().add
+                (Game.class.getResource("stylesheets/default.css").toExternalForm());
         scene.getStylesheets().add
                 (Game.class.getResource("stylesheets/gameView.css").toExternalForm());
         setStageProperty();
@@ -67,7 +68,6 @@ public class Game {
     }
 
     public void setHBoxProperty() {
-        root.setStyle(rootStyle);
         root.setPadding(new Insets(topMarg, rightMarg, bottomMarg, leftMarg));
         root.setSpacing(rootSpacing);
     }
@@ -89,11 +89,10 @@ public class Game {
             }
         });
         root.getChildren().addAll(canvas, endGame);
-
     }
+  
     public VBox setCanvas() {
         VBox vbox = new VBox();
-
         return vbox;
     }
 

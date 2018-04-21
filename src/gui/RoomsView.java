@@ -20,14 +20,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 public class RoomsView {
@@ -60,6 +58,8 @@ public class RoomsView {
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
+        scene.getStylesheets().add
+                (Game.class.getResource("stylesheets/default.css").toExternalForm());
         scene.getStylesheets().add
                 (RoomsView.class.getResource("stylesheets/roomsView.css").toExternalForm());
         setStageProperty();

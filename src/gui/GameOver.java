@@ -25,7 +25,6 @@ public class GameOver {
     private int heightScene=200;
     private int widthStage=400;
     private int heightStage=200;
-    private String title = "Game Over";
     private Scene scene;
     private VBox root;
     private int topMarg = 15;
@@ -33,7 +32,6 @@ public class GameOver {
     private int bottomMarg = 15;
     private int leftMarg = 12;
     private int rootSpacing = 25;
-    private String rootStyle ="-fx-background-color: #FFFFFF;";
     String hostName = "localhost";
     int portNumber = 12345;
     Socket socket = null;
@@ -46,6 +44,8 @@ public class GameOver {
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
+        scene.getStylesheets().add
+                (Game.class.getResource("stylesheets/default.css").toExternalForm());
         scene.getStylesheets().add
                 (GameOver.class.getResource("stylesheets/gameOver.css").toExternalForm());
         setStageProperty();
@@ -61,7 +61,6 @@ public class GameOver {
 
     public void setStageProperty(){
         owner.setScene(scene);
-        owner.setTitle(title);
         owner.setWidth(widthStage);
         owner.setHeight(heightStage);
         owner.initModality(Modality.WINDOW_MODAL);
@@ -70,7 +69,6 @@ public class GameOver {
     }
 
     public void setHBoxProperty() {
-        root.setStyle(rootStyle);
         root.setPadding(new Insets(topMarg, rightMarg, bottomMarg, leftMarg));
         root.setSpacing(rootSpacing);
         root.setAlignment(Pos.CENTER);
@@ -127,6 +125,4 @@ public class GameOver {
         hbox.getChildren().addAll(playAgain, backToRooms);
         return hbox;
     }
-
-
 }

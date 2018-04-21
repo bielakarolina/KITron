@@ -30,7 +30,7 @@ public class NewRoom {
     private int heightScene=200;
     private int widthStage=400;
     private int heightStage=200;
-    private String title = "Nowy Pokój";
+    private String title = "New Room";
     private Scene scene;
     private VBox root;
     private int topMarg = 15;
@@ -50,6 +50,10 @@ public class NewRoom {
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
+        scene.getStylesheets().add
+                (Game.class.getResource("stylesheets/default.css").toExternalForm());
+        scene.getStylesheets().add
+                (NewRoom.class.getResource("stylesheets/newRoom.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();
 
@@ -71,7 +75,6 @@ public class NewRoom {
     }
 
     public void setHBoxProperty() {
-        root.setStyle(rootStyle);
         root.setPadding(new Insets(topMarg, rightMarg, bottomMarg, leftMarg));
         root.setSpacing(rootSpacing);
     }
@@ -88,7 +91,7 @@ public class NewRoom {
     public HBox setNameHBox(){
         HBox nameHBox = new HBox();
 
-        Label name = new Label("Name  ");
+        Label name = new Label("Room name  ");
 
         TextField nameField = new TextField();
         nameField.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
@@ -101,7 +104,7 @@ public class NewRoom {
     public HBox setGamerHBox(){
         HBox gamerHBox = new HBox();
 
-        Label gamer = new Label("Ilość graczy  ");
+        Label gamer = new Label("Players  ");
 
         ChoiceBox cb = setChoice();
 

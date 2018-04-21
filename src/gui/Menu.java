@@ -4,6 +4,7 @@ import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
@@ -17,9 +18,9 @@ import java.io.IOException;
 public class Menu {
     private Stage owner;
     private int widthScene=650;
-    private int heightScene=850;
+    private int heightScene=600;
     private int widthStage=650;
-    private int heightStage=850;
+    private int heightStage=600;
     private String title = "KI TRON";
     private Scene scene;
     private VBox root;
@@ -28,7 +29,6 @@ public class Menu {
     private int bottomMarg = 15;
     private int leftMarg = 12;
     private int rootSpacing = 10;
-    private String rootStyle ="-fx-background-color: #FFFFFF;";
 
     public Menu(){
         new JFXPanel();
@@ -36,7 +36,9 @@ public class Menu {
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add
-                (Game.class.getResource("stylesheets/gameView.css").toExternalForm());
+                (Menu.class.getResource("stylesheets/default.css").toExternalForm());
+        scene.getStylesheets().add
+                (Menu.class.getResource("stylesheets/menu.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();
     }
@@ -51,15 +53,16 @@ public class Menu {
     }
 
     public void setHBoxProperty() {
-        root.setStyle(rootStyle);
         root.setPadding(new Insets(topMarg, rightMarg, bottomMarg, leftMarg));
         root.setSpacing(rootSpacing);
     }
 
     public void showMenu(){
-        Button startBttn = new Button("End Game");
+        Button startBttn = new Button("PLAY");
+        startBttn.setId("play");
         startBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
+
                 Login login = null;
                 try {
                     login = new Login();
@@ -75,7 +78,8 @@ public class Menu {
             }
         });
 
-        Button instrBttn = new Button("Instruction");
+        Button instrBttn = new Button("INSTRUCTIONS");
+        instrBttn.setId("insrtuction");
         instrBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 Instruction instr = new Instruction();
@@ -88,23 +92,30 @@ public class Menu {
             }
         });
 
-        Button highBttn = new Button("Highccore");
+        Button highBttn = new Button("HIGHSCORE");
+        highBttn.setId("score");
         highBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 Highscore highscore = new Highscore();
-                highscore.showHighscore();
+                try {
+                    highscore.showHighscore();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+              
                 owner.close();
             }
         });
 
-        Button endGame = new Button("End Game");
+        Button endGame = new Button("QUIT");
+        endGame.setId("end");
         endGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 owner.close();
             }
         });
         root.getChildren().addAll(startBttn, instrBttn, highBttn, endGame);
-
+        root.setAlignment(Pos.CENTER);
     }
 
 
