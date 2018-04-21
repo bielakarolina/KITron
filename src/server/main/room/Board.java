@@ -14,8 +14,15 @@ public class Board {
         this.board = new int[width][height];
         this.width = width;
         this.height = height;
+    }
 
-        refreshBoard();
+
+    public int getWidth(){
+        return  width;
+    }
+
+    public int getHeight(){
+        return height;
     }
 
     public boolean checkCollision(Point oldPosition, Point newPosition, Player player){
@@ -24,6 +31,9 @@ public class Board {
 
         Point leftTop = null;
         Point rightBottom = null;
+
+        System.out.println("oldPosition: x " + oldPosition.getX() + " y: " + oldPosition.getY());
+        System.out.println("newPosition: x " + newPosition.getX() + " y: " + newPosition.getY());
 
         switch(direction){
 
@@ -38,9 +48,9 @@ public class Board {
                 break;
 
             case DOWN:
-                leftTop = new Point(oldPosition.getX()+player.getSize(), oldPosition.getY(), "collision");
+                leftTop = new Point(oldPosition.getX(), oldPosition.getY()+player.getSize(), "collision");
                 rightBottom = new Point(newPosition.getX()+player.getSize()-1, newPosition.getY()+player.getSize()-1, "collision");
-                if(rightBottom.getY() > height){
+                if(rightBottom.getY() >= height){
                     rightBottom = new Point(newPosition.getX()+player.getSize()-1, height-1, "collision");
                     player.setAlive(false);
                     System.out.println("down");
@@ -60,7 +70,7 @@ public class Board {
             case RIGHT:
                 leftTop = new Point(oldPosition.getX()+player.getSize(), oldPosition.getY(), "collision");
                 rightBottom = new Point(newPosition.getX()+player.getSize()-1, oldPosition.getY()+player.getSize()-1 , "collision");
-                if(rightBottom.getX() > width){
+                if(rightBottom.getX() >= width){
                     rightBottom = new Point(width-1, oldPosition.getY()+player.getSize()-1 , "collision");
                     player.setAlive(false);
                     System.out.println("right");
@@ -70,13 +80,14 @@ public class Board {
         }
 
 
-        markSection(leftTop, rightBottom, player);
 
-        if (checkArrayMarkedSections(leftTop, rightBottom) && player.isAlive()){
 
+        if (player.isAlive() && checkArrayMarkedSections(leftTop, rightBottom)){
+            markSection(leftTop, rightBottom, player);
             return true;
         }
         else {
+            markSection(leftTop, rightBottom, player);
             return false;
         }
 
@@ -90,6 +101,7 @@ public class Board {
             for(int j=leftTop.getY(); j< rightBottom.getY(); j++){
                 if(board[i][j] != 0){
                     collisionPoint = new Point(i, j, "collision");
+                    System.out.println("collision");
                     return false;
                 }
 
@@ -144,7 +156,7 @@ public class Board {
 
         for(int i = 0 ;i<width;i++){
             for(int j = 0; j<height; j++){
-                System.out.print(board[i][j] + " ");
+                System.out.print(board[j][i] + " ");
             }
             System.out.println();
         }

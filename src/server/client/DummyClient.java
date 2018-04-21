@@ -4,17 +4,30 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.MulticastSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
 public class DummyClient {
 
+    public static int multicastPort = 4446;
+
     public static void main(String[] args) throws IOException {
 
-        System.out.println("JAVA TCP CLIENT");
+        System.out.println("JAVA TCP UDP CLIENT");
         String hostName = "localhost";
         int portNumber = 12345;
         Socket socket = null;
+
+
+        DatagramSocket datagramSocket = null;
+        byte[] sendBuffer = new byte[1024];
+        MulticastSocket multicastSocket = new MulticastSocket();
+        InetAddress group = InetAddress.getByName("239.1.1.1");
+
+        new Thread(new DummyClientMulticastReceiver()).start();
 
         try {
             // create socket

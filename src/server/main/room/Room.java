@@ -17,6 +17,8 @@ import java.util.TimerTask;
 
 public class Room implements Runnable{
 
+    public static int multicastPort = 4446;
+
     List<Player> players = new ArrayList<>();
     private Board board;
     private int maxPlayers;
@@ -27,12 +29,23 @@ public class Room implements Runnable{
     private NetworkInterface multicastInterface = null;
     private DatagramChannel multicastChannel = null;
     private InetSocketAddress serverAddress = new InetSocketAddress("239.1.1.1", 5000);
+    private int alive;
+    MulticastSocket multicastSocket;
+    InetAddress group;
 
     public Room(int width, int height, int maxPlayers, String name){
         this.board = new Board(width, height);
         this.maxPlayers = maxPlayers;
         this.name = name;
         timer = new Timer();
+
+        try {
+            multicastSocket = new MulticastSocket();
+            group = InetAddress.getByName("224.0.113.0");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     try {
         multicastInterface = NetworkInterface.getNetworkInterfaces().nextElement();
@@ -53,6 +66,7 @@ public class Room implements Runnable{
     }
 
     public synchronized void leave(Player player){
+        //chyba trzeba bedzie synchronizowac zasob listy bo co jesli user opusci gre w momencie jak liczony jest jego stan??
         players.remove(player);
         player.setPlayerState(PlayerState.IDLE);
     }
@@ -68,7 +82,16 @@ public class Room implements Runnable{
     @Override
     public void run() {
 
+        try {
+            MulticastSocket multicastSocket = new MulticastSocket();
+            InetAddress group = InetAddress.getByName("224.0.113.0");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         System.out.println("Room init");
+        this.timer = new Timer();
+        board.refreshBoard();
 
         while(players.size() != maxPlayers){
             try {
@@ -86,16 +109,18 @@ public class Room implements Runnable{
 
         //wyslanie wiadomosci do klienta ze gra sie zaczyna
 
-        timer.schedule(new processTask(), 0, 1000);
+        timer.schedule(new processTask(this), 0, 3000);
 
-
+        System.out.println("koniec room");
     }
 
 
     private void startGame() {
         for(Player player : players){
             player.setPlayerState(PlayerState.PLAYING);
+            player.setAlive(true);
         }
+        alive = players.size();
         putPlayersOnBoard();
     }
 
@@ -112,23 +137,23 @@ public class Room implements Runnable{
 
             do{
 
-//                x = r.nextInt((550 - 50) + 1) + 50;
-//                y = r.nextInt((400 - 50) + 1) + 50;
-                x = r.nextInt((20 - 5) + 1) + 5;
-                y = r.nextInt((20 - 5) + 1) + 5;
+                x = r.nextInt((board.getWidth() - 15) + 1) + 8;
+                y = r.nextInt((board.getHeight() - 15) + 1) + 8;
 
             } while(startPoints.contains(new Point(x, y, "start")));
 
 
 
 
-            Point point = new Point(x, y, "start");
-//            Point point = new Point(5, 5, "start");
+           Point point = new Point(x, y, "start");
+            //Point point = new Point(5, 5, "start");
 
             player.setPosition(point);
             player.addToPath(point);
             Random rand = new Random();
             int direction = rand.nextInt(4);
+
+
 
             switch (direction){
                 case 0:
@@ -163,6 +188,11 @@ public class Room implements Runnable{
 
     private class processTask extends TimerTask{
 
+        Room room;
+
+        processTask(Room room){
+            this.room = room;
+        }
 
         @Override
         public void run() {
@@ -174,14 +204,29 @@ public class Room implements Runnable{
 
             sendUpdate();
 
+            if(alive == 1){
+                timer.cancel();
+                timer.purge();
+                System.out.println("Player winner: " + findWinner().getName());
+                new Thread(room).start();
+            }
+
         }
     }
 
     private void sendUpdate() {
 
-        ByteBuffer buffer = ByteBuffer.wrap(parsePlayerList().getBytes());
+        System.out.println("Sending Package UDP");
+        DatagramPacket sendPacket;
+
+        //buffer = ByteBuffer.wrap(parsePlayerList().getBytes();
+
+        //ByteBuffer buffer = ByteBuffer.wrap(parsePlayerList().getBytes());
+        byte[] buffer = parsePlayerList().getBytes();
         try {
-            multicastChannel.send(buffer, serverAddress);
+
+            sendPacket = new DatagramPacket(buffer, buffer.length, group, Room.multicastPort);
+            multicastSocket.send(sendPacket);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -206,7 +251,6 @@ public class Room implements Runnable{
 
             if(player.isAlive()){
 
-                System.out.println("tutaj");
                 Point newPosition;
                 newPosition = player.findNewPosition();
 
@@ -215,17 +259,26 @@ public class Room implements Runnable{
                 }
                 else{
                     player.setAlive(false);
+                    alive--;
                 }
             }
-
-
-
-
-            //board.setWall(p.move(),p.getId());
-            //process one step //BOARD
-            //check collision //BOARD
-            //send update //dostaje
         }
+    }
+
+    public Player findWinner(){
+        for(Player player: players){
+            if(player.isAlive())
+                return player;
+        }
+        return null;
+    }
+
+    public int getUserNumber(){
+        return players.size();
+    }
+
+    public int getMaxPlayers(){
+        return maxPlayers;
     }
 
 
