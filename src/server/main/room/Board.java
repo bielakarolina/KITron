@@ -9,7 +9,7 @@ public class Board {
     }
 
 
-    public void update() {
-
+    public void setWall(Point position, int id) {
+        this.board[position.getX()][position.getY()] = id;
     }
 }
