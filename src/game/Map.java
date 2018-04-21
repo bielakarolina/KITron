@@ -1,14 +1,10 @@
 package game;
 
 import javafx.application.Application;
-import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.ArcType;
 import javafx.stage.Stage;
 
 public class Map extends Application {
@@ -27,7 +23,7 @@ public class Map extends Application {
 //    }
 
 
-    public VBox setCanvas(){
+    public Canvas setCanvas(){
         Canvas blurryCanvas = createCanvasGrid(600, 300);
         VBox vbox = new VBox(5, blurryCanvas);
            return vbox;
