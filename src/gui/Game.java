@@ -2,6 +2,7 @@ package gui;
 
 import game.DrawPixels;
 import game.Map;
+import game.MapReceiver;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -72,7 +73,8 @@ public class Game {
                 owner.close();
             }
         });
-
+//        MapReceiver mapReceiver = new MapReceiver();
+//        new Thread(mapReceiver).start();
 
         root.getChildren().addAll(canvas, endGame);
 
