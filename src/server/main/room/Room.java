@@ -173,10 +173,11 @@ public class Room implements Runnable{
     }
 
     private void update() {
-        for(Player p : players) {
+        for(Player player : players) {
 
             Point newPosition;
-            newPosition = p.findNewPosition();
+            newPosition = player.findNewPosition();
+
 
             //board.setWall(p.move(),p.getId());
             //process one step //BOARD

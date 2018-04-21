@@ -16,6 +16,7 @@ public class Player {
     private PlayerState playerState;
     private Point position;
     private int speed = 4;
+    private int size = 3;
 
     Player(int id){
         this.id = id;
@@ -116,5 +117,17 @@ public class Player {
 
     public void setNewDirection(Direction newDirection) {
         this.newDirection = newDirection;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public int getSpeed() {
+        return speed;
     }
 }
