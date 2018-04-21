@@ -21,7 +21,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 public class RoomsView {
     private Stage owner;
@@ -39,6 +41,11 @@ public class RoomsView {
     private int rootSpacing = 10;
     private String rootStyle ="-fx-background-color: #FFFFFF;";
     private String address = "plus.png";
+    public String hostName = "localhost";
+    public int portNumber = 12345;
+    public Socket socket = null;
+    public PrintWriter out;
+    public BufferedReader in;
 
     public RoomsView(){
         new JFXPanel();
@@ -65,7 +72,14 @@ public class RoomsView {
         root.setAlignment(Pos.CENTER);
     }
 
-    public void showRoomsView() throws FileNotFoundException {
+    public void showRoomsView() throws IOException {
+        // create socket
+        socket = new Socket(hostName, portNumber);
+
+        // in & out streams
+        out = new PrintWriter(socket.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
         Label napis = new Label("Wybierz pokój: ");
         napis.setFont(new Font("Arial", 30));
 
@@ -77,6 +91,7 @@ public class RoomsView {
         acceptBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 String room = list.getSelectionModel().getSelectedItem();
+                out.println(room);
                 ProgressMaking();
             }
         });
@@ -123,10 +138,12 @@ public class RoomsView {
         return grupa;
     }
 
-    public ListView<String> setList(){
+    public ListView<String> setList() throws IOException {
         ListView<String> list = new ListView<String>();
-        ObservableList<String> items = FXCollections.observableArrayList (
-                "Single", "Double", "Suite", "Family App");
+        String line = in.readLine();
+        String[] tmp = line.split(", ");
+        ObservableList<String> items =
+                FXCollections.observableArrayList (tmp);
         list.setItems(items);
         return list;
     }
