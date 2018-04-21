@@ -139,7 +139,7 @@ public class Room implements Runnable{
         public void run() {
             System.out.println("Sending package");
             //TODO
-            board.update();
+            update();
             ByteBuffer buffer = ByteBuffer.wrap(parsePlayerList().getBytes());
             try {
                 multicastChannel.send(buffer, serverAddress);
