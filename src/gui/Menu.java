@@ -57,6 +57,7 @@ public class Menu {
 
     public void showMenu(){
         Button startBttn = new Button("PLAY");
+        startBttn.setId("play");
         startBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 Login login = new Login();
@@ -86,7 +87,12 @@ public class Menu {
         highBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 Highscore highscore = new Highscore();
-                highscore.showHighscore();
+                try {
+                    highscore.showHighscore();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
                 owner.close();
             }
         });

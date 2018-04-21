@@ -25,7 +25,6 @@ public class GameOver {
     private int heightScene=200;
     private int widthStage=400;
     private int heightStage=200;
-    //private String title = "Game Over";
     private Scene scene;
     private VBox root;
     private int topMarg = 15;
@@ -33,7 +32,6 @@ public class GameOver {
     private int bottomMarg = 15;
     private int leftMarg = 12;
     private int rootSpacing = 25;
-    private String rootStyle ="-fx-background-color: #FFFFFF;";
 
     public GameOver(){
         new JFXPanel();
@@ -48,7 +46,6 @@ public class GameOver {
 
     public void setStageProperty(){
         owner.setScene(scene);
-        //owner.setTitle(title);
         owner.setWidth(widthStage);
         owner.setHeight(heightStage);
         owner.initModality(Modality.WINDOW_MODAL);
@@ -57,7 +54,6 @@ public class GameOver {
     }
 
     public void setHBoxProperty() {
-        root.setStyle(rootStyle);
         root.setPadding(new Insets(topMarg, rightMarg, bottomMarg, leftMarg));
         root.setSpacing(rootSpacing);
         root.setAlignment(Pos.CENTER);
@@ -103,6 +99,4 @@ public class GameOver {
         hbox.getChildren().addAll(playAgain, backToRooms);
         return hbox;
     }
-
-
 }

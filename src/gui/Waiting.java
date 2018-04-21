@@ -23,13 +23,12 @@ public class Waiting {
         dialogStage.setMaxWidth(530);
         dialogStage.setResizable(false);
         dialogStage.setAlwaysOnTop(true);
-        dialogStage.setTitle("Wczytywanie");
+        dialogStage.setTitle("Loading");
         dialogStage.initModality(Modality.WINDOW_MODAL);
 
         // PROGRESS BAR
         final Text label = new Text();
-        label.setText("Proszę czekać na pozostałych graczy");
-        label.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+        label.setText("Waiting for other players");
 
         pin.setProgress(-1F);
 

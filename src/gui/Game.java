@@ -68,14 +68,10 @@ public class Game {
             }
         });
         root.getChildren().addAll(canvas, endGame);
-
     }
-
 
     public VBox setCanvas(){
         VBox vbox = new VBox();
-
         return  vbox;
-
     }
 }
