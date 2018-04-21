@@ -11,16 +11,14 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
@@ -104,8 +102,19 @@ public class RoomsView {
         acceptBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 String[] room = list.getSelectionModel().getSelectedItem();
-                out.println(room[0] + "  "+ room[1]+"   "+ room[2]+"   "+room[3]);
-                ProgressMaking();
+                out.println("joinRoom " + room[0]);
+                String msg = null;
+                try {
+                    msg = in.readLine();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                if(msg.contains("success")) {
+                    ProgressMaking();
+                }
+                else{
+                    showAlert();
+                }
             }
         });
 
@@ -191,7 +200,7 @@ public class RoomsView {
 
     public void printRow(String[] row){
         nazwa.setText("Nazwa: "+ row[0]);
-        ilosc.setText("Ilośc gości w pokoju: " + row[2] + "/" + row[3] );
+        ilosc.setText("Ilośc gości w pokoju: " + row[1] + "/" + row[2] );
 
 
     }
@@ -200,20 +209,20 @@ public class RoomsView {
         //out.println("Give me rooms");
         //String line = in.readLine();
         //String line = "lala, 123, 3, 4; mama, 134, 1, 2";
-        String[] rooms = line.split("; ");
+        String[] rooms = line.split(";");
         int i = rooms.length, m = 0;
-        String[][] roomsInfo = new String[i][4];
+        String[][] roomsInfo = new String[i][3];
         for(String x: rooms){
-            String[] tmp = x.split(", ");
+            String[] tmp = x.split(",");
             roomsInfo[m] = tmp;
             m++;
         }
 
-
         for(String[] room: roomsInfo){
-            System.out.println(room[0] + "   " + room[1]+ "    "+ room[2]+ "    "+ room[3]+"\n");
+            System.out.println(room[0] + "   " + room[1]+ "    "+ room[2]+"\n");
             items.add(room);
         }
+
         return items;
     }
 
@@ -225,11 +234,11 @@ public class RoomsView {
             public Void call() throws IOException {
  /*               while(response.equals(null)) {
                     String response = in.readLine();
-                    if (response.equals("Game started")) {
+                    if (response.contains("gameStarted")) {
                         return null;
                     }
                 }
-   */             for(int i = 0; i < 100000; i++){
+   */             for(int i = 0; i < 10000; i++){
                     System.out.println(i);
                 }
                 return null ;
@@ -253,9 +262,23 @@ public class RoomsView {
         thread.start();
     }
 
+    public Alert showAlert(){
+        Alert.AlertType type  = Alert.AlertType.INFORMATION;
+        Alert alert = new Alert(type, "");
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.initOwner(owner);
+        alert.getDialogPane().setContentText("Sorry. Room full.");
+        alert.getDialogPane().setHeaderText(null);
+        alert.showAndWait()
+                .filter(response -> response == ButtonType.OK)
+                .ifPresent(response -> System.out.println("The alert was approved"));
+        return alert;
+    }
+
     public Stage getOwner() {
         return owner;
     }
+
 
 
 }

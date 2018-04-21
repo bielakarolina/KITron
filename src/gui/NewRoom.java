@@ -27,9 +27,9 @@ import java.net.Socket;
 public class NewRoom {
     private Stage owner;
     private int widthScene=400;
-    private int heightScene=200;
+    private int heightScene=400;
     private int widthStage=400;
-    private int heightStage=200;
+    private int heightStage=400;
     private String title = "New Room";
     private Scene scene;
     private VBox root;
@@ -44,6 +44,8 @@ public class NewRoom {
     Socket socket = null;
     public BufferedReader in;
     public PrintWriter out;
+    public TextField nameField;
+    public ChoiceBox cb;
 
     public NewRoom(Socket socket) throws IOException {
         new JFXPanel();
@@ -93,7 +95,7 @@ public class NewRoom {
 
         Label name = new Label("Room name  ");
 
-        TextField nameField = new TextField();
+        nameField = new TextField();
         nameField.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
 
         nameHBox.setAlignment(Pos.CENTER);
@@ -115,7 +117,7 @@ public class NewRoom {
     }
 
     public ChoiceBox setChoice(){
-        ChoiceBox cb = new ChoiceBox();
+        cb = new ChoiceBox();
         cb.getItems().addAll("2", "3", "4");
         cb.getSelectionModel().selectFirst();
         return cb;
@@ -127,6 +129,7 @@ public class NewRoom {
         Button create = new Button("Create room");
         create.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
+                out.println("hostRoom "+ nameField.getText() + " "+ cb.getSelectionModel().getSelectedItem());
                 ProgressMaking(rooms);
                 owner.close();
             }
@@ -143,7 +146,7 @@ public class NewRoom {
         Task<Void> task = new Task<Void>() {
             @Override
             public Void call() {
-                for(int i = 0; i < 100000; i++){
+                for(int i = 0; i < 10000; i++){
                     System.out.println(i);
                 }
                 return null ;
@@ -153,7 +156,6 @@ public class NewRoom {
         task.setOnSucceeded(event -> {
             pForm.getDialogStage().close();
             rooms.close();
-
             Game actualGame = null;
             try {
                 actualGame = new Game(socket);

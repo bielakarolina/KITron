@@ -1,6 +1,5 @@
 package gui;
 
-
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,7 +15,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-
 
 public class Game {
     private Stage owner;
@@ -84,8 +82,7 @@ public class Game {
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-                gameOver.showGameOver();
-                owner.close();
+                gameOver.showGameOver(getOwner());
             }
         });
         root.getChildren().addAll(canvas, endGame);
@@ -96,4 +93,7 @@ public class Game {
         return vbox;
     }
 
+    public Stage getOwner() {
+        return owner;
+    }
 }

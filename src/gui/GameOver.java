@@ -74,22 +74,23 @@ public class GameOver {
         root.setAlignment(Pos.CENTER);
     }
 
-    public void showGameOver(){
+    public void showGameOver(Stage ownerFromGame){
         Label lost = new Label("GAME OVER");
         Label won = new Label("YOU WON!");
 
-        HBox hbox = setHBox();
+        HBox hbox = setHBox(ownerFromGame);
 
         root.getChildren().addAll(lost, hbox);
     }
 
-    public HBox setHBox(){
+    public HBox setHBox(Stage ownerFromGame){
         HBox hbox = new HBox();
 
         Button playAgain = new Button("Play Again");
         playAgain.setId("playAgain");
         playAgain.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
+                out.println("Zostań");
                 owner.close();
             }
         });
@@ -98,25 +99,17 @@ public class GameOver {
         backToRooms.setId("back");
         backToRooms.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
+                //out.println("lalala");
+                try {
+                String line = null;
+                line = setRooms();
                 RoomsView pokoje = null;
-                out.println("Give me rooms");
-                try {
-                    line = in.readLine();
+                pokoje = new RoomsView(line, socket);
+                pokoje.showRoomsView();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-                try {
-                    pokoje = new RoomsView(line, socket);
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-                try {
-                    pokoje.showRoomsView();
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
+                ownerFromGame.close();
                 owner.close();
             }
         });
@@ -124,5 +117,19 @@ public class GameOver {
         hbox.setAlignment(Pos.BASELINE_CENTER);
         hbox.getChildren().addAll(playAgain, backToRooms);
         return hbox;
+    }
+
+    public String setRooms(){
+        out.println("roomList");
+        String line = null;
+        while(line == null) {
+            try {
+                line = in.readLine();
+            } catch (IOException e1) {
+
+            }
+        }
+        System.out.println(line);
+        return line;
     }
 }

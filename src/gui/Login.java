@@ -95,7 +95,7 @@ public class Login {
 
 
                 try {
-                    String imie = text.getText();
+                    String imie = "initPlayer " + text.getText();
                     out.println(imie);
                     
                   if (imie.equals("")) {
@@ -137,7 +137,7 @@ public class Login {
 
 
     public String setRooms(){
-        out.println("Giv");
+        out.println("roomList");
         String line = null;
         while(line == null) {
             try {
