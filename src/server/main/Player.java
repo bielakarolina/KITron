@@ -15,8 +15,8 @@ public class Player {
     private Path path;
     private PlayerState playerState;
     private Point position;
-    private int speed = 1;
-    private int size = 1;
+    private int speed = 2;
+    private int size = 3;
     private boolean alive = true;
 
     Player(int id){
