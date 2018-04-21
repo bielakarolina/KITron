@@ -39,8 +39,6 @@ public class NewRoom {
     private int leftMarg = 12;
     private int rootSpacing = 10;
     private String rootStyle ="-fx-background-color: #FFFFFF;";
-    String hostName = "localhost";
-    int portNumber = 12345;
     Socket socket = null;
     public BufferedReader in;
     public PrintWriter out;

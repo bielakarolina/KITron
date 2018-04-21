@@ -15,7 +15,7 @@ public class MockServer {
         int portNumber = 12345;
         ServerSocket serverSocket = null;
         String rooms = "lala,3,4;mama,1,2";
-        String rooms1 = "lala,3,4;mama,1,2,dupa,2,3";
+        String rooms1 = "lala,3,4;mama,1,2;dupa,2,3";
 
         try {
             // create socket

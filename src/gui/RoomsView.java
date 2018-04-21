@@ -41,8 +41,6 @@ public class RoomsView {
     private int leftMarg = 12;
     private int rootSpacing = 10;
 
-    public String hostName = "localhost";
-    public int portNumber = 12345;
     public Socket socket = null;
     public PrintWriter out;
     public BufferedReader in;
@@ -132,12 +130,13 @@ public class RoomsView {
         refresh.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
 
-                owner.close();
                 line = setRooms();
                 System.out.println(line);
                 try {
+                    items = FXCollections.observableArrayList();
                     items = createList(items);
-                    //list.setItems(items);
+                    //setList();
+                    list.setItems(items);
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
@@ -211,7 +210,6 @@ public class RoomsView {
                     @Override
                     public void changed(ObservableValue<? extends String[]> observable,
                                         String[] oldValue, String[] newValue) {
-
                         printRow(newValue);
                     }
                 });
