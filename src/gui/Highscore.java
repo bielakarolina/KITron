@@ -1,25 +1,27 @@
 package gui;
 
-
+import game.Map;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+
+import javafx.scene.canvas.Canvas;
+
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
 
-
-public class Game {
+public class Highscore {
     private Stage owner;
-    private int widthScene=650;
-    private int heightScene=850;
-    private int widthStage=650;
-    private int heightStage=850;
+    private int widthScene = 650;
+    private int heightScene = 850;
+    private int widthStage = 650;
+    private int heightStage = 850;
     private String title = "KI TRON";
     private Scene scene;
     private VBox root;
@@ -28,9 +30,9 @@ public class Game {
     private int bottomMarg = 15;
     private int leftMarg = 12;
     private int rootSpacing = 10;
-    private String rootStyle ="-fx-background-color: #FFFFFF;";
+    private String rootStyle = "-fx-background-color: #FFFFFF;";
 
-    public Game(){
+    public Highscore() {
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
@@ -41,7 +43,7 @@ public class Game {
         setHBoxProperty();
     }
 
-    public void setStageProperty(){
+    public void setStageProperty() {
         owner.setScene(scene);
         owner.setTitle(title);
         owner.setWidth(widthStage);
@@ -56,29 +58,12 @@ public class Game {
         root.setSpacing(rootSpacing);
     }
 
-    public void showActualGame(){
-        VBox canvas = setCanvas();
+    public void showHighscore() {
 
-        Button endGame = new Button("End Game");
-        endGame.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                GameOver gameOver = null;
-                try {
-                    gameOver = new GameOver();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-                gameOver.showGameOver();
-                owner.close();
-            }
-        });
-        root.getChildren().addAll(canvas, endGame);
+        root.getChildren().addAll();
 
     }
-    public VBox setCanvas() {
-        VBox vbox = new VBox();
-
-        return vbox;
-    }
-
 }
+
+
+

@@ -11,6 +11,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
+
 
 public class Menu {
     private Stage owner;
@@ -58,7 +60,34 @@ public class Menu {
         Button startBttn = new Button("End Game");
         startBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
+                Login login = new Login();
+                try {
+                    login.showLogin();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                owner.close();
+            }
+        });
 
+        Button instrBttn = new Button("Instruction");
+        instrBttn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                Instruction instr = new Instruction();
+                try {
+                    instr.showInstr();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                owner.close();
+            }
+        });
+
+        Button highBttn = new Button("Highccore");
+        highBttn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                Highscore highscore = new Highscore();
+                highscore.showHighscore();
                 owner.close();
             }
         });
@@ -66,27 +95,10 @@ public class Menu {
         Button endGame = new Button("End Game");
         endGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-
                 owner.close();
             }
         });
-
-        Button endGame = new Button("End Game");
-        endGame.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-
-                owner.close();
-            }
-        });
-
-        Button endGame = new Button("End Game");
-        endGame.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-
-                owner.close();
-            }
-        });
-        root.getChildren().addAll(canvas, endGame);
+        root.getChildren().addAll(startBttn, instrBttn, highBttn, endGame);
 
     }
 

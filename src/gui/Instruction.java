@@ -1,20 +1,16 @@
 package gui;
 
-
 import javafx.embed.swing.JFXPanel;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
+import java.io.*;
 
 
-public class Game {
+public class Instruction {
     private Stage owner;
     private int widthScene=650;
     private int heightScene=850;
@@ -30,7 +26,7 @@ public class Game {
     private int rootSpacing = 10;
     private String rootStyle ="-fx-background-color: #FFFFFF;";
 
-    public Game(){
+    public Instruction(){
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
@@ -56,29 +52,12 @@ public class Game {
         root.setSpacing(rootSpacing);
     }
 
-    public void showActualGame(){
-        VBox canvas = setCanvas();
+    public void showInstr() throws IOException {
 
-        Button endGame = new Button("End Game");
-        endGame.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                GameOver gameOver = null;
-                try {
-                    gameOver = new GameOver();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-                gameOver.showGameOver();
-                owner.close();
-            }
-        });
-        root.getChildren().addAll(canvas, endGame);
+
+        root.getChildren().addAll();
 
     }
-    public VBox setCanvas() {
-        VBox vbox = new VBox();
 
-        return vbox;
-    }
 
 }

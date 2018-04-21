@@ -20,7 +20,7 @@ import java.net.Socket;
 
 public class Login {
     private Stage owner;
-    private int widthScene=650;
+    private int widthScene=450;
     private int heightScene=850;
     private int widthStage=650;
     private int heightStage=850;
@@ -36,6 +36,8 @@ public class Login {
     String hostName = "localhost";
     int portNumber = 12345;
     Socket socket = null;
+    public PrintWriter out;
+    public BufferedReader in;
 
     public Login(){
         new JFXPanel();
@@ -63,7 +65,7 @@ public class Login {
         root.setSpacing(rootSpacing);
     }
 
-    public void showActualGame() throws IOException {
+    public void showLogin() throws IOException {
         VBox login = setLogin();
 
         root.getChildren().addAll(login);
@@ -75,8 +77,8 @@ public class Login {
         socket = new Socket(hostName, portNumber);
 
         // in & out streams
-        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        out = new PrintWriter(socket.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
         //VBox
         VBox vbox = new VBox(8);
@@ -89,13 +91,18 @@ public class Login {
 
         submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                RoomsView pokoje = new RoomsView();
+                String imie = text.getText();
+                out.println(imie);
+                String line = null;
+                //line = setRooms();
+                RoomsView pokoje = null;
                 try {
-                    String imie = text.getText();
-                    out.println(imie);
-                    pokoje.showRoomsView();
-                } catch (FileNotFoundException e1) {
+                    pokoje = new RoomsView(line);
+                } catch (IOException e1) {
                     e1.printStackTrace();
+                }
+                try {
+                    pokoje.showRoomsView();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
@@ -106,5 +113,19 @@ public class Login {
         vbox.getChildren().addAll(tytul,text, submit);
         vbox.setAlignment(Pos.CENTER);
         return vbox;
+    }
+
+    public String setRooms(){
+        out.println("Giv");
+        String line = null;
+        while(line == null) {
+            try {
+                line = in.readLine();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+        System.out.println(line);
+        return line;
     }
 }
