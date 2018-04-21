@@ -77,4 +77,8 @@ public class Player {
     public String getParsedPath() {
         return path.toString();
     }
+
+    public Point getPosition() {
+        return position;
+    }
 }

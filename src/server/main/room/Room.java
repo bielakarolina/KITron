@@ -124,20 +124,29 @@ public class Room implements Runnable{
         }
     }
 
+    public void printPlayersPaths(){
+        for(Player player: players){
+            System.out.println(player.getName());
+            System.out.println(player.getParsedPath());
+        }
+        System.out.println();
+    }
+
     private class processTask extends TimerTask{
 
 
         @Override
         public void run() {
             System.out.println("Sending package");
-            //TODO
-            board.update();
-            ByteBuffer buffer = ByteBuffer.wrap(parsePlayerList().getBytes());
-            try {
-                multicastChannel.send(buffer, serverAddress);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            printPlayersPaths();
+//            //TODO
+//            board.update();
+//            ByteBuffer buffer = ByteBuffer.wrap(parsePlayerList().getBytes());
+//            try {
+//                multicastChannel.send(buffer, serverAddress);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
             //process one step //BOARD
             //check collision //BOARD
             //send update //dostaje
