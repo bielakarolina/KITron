@@ -1,63 +1,65 @@
 package game;
 
 import javafx.application.Application;
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.ArcType;
+import javafx.stage.Stage;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
-import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
-// court dimensions
-
-public abstract class Map extends Application {
-
-    int MAPWIDTH = 500;
-    int MAPHEIGHT = 500;
-
-    int VELOCITY = 3;
-
-    Player[] players;
-
-    public Map(JLabel sco1, JLabel sco2, int p) {
-        setBackground(Color.WHITE);
-        if (p > 8) { p = 8; }
-        this.players = new Player[p];
-
-        setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        setFocusable(true);
+public class Map extends Application {
 
 
-        // player one controls
-        addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {
-                if (!player.getAlive()) {
-                } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    player.setXVelocity(-VELOCITY);
-                    player.setYVelocity(0);
-                } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    player.setXVelocity(VELOCITY);
-                    player.setYVelocity(0);
-                } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    player.setYVelocity(-VELOCITY);
-                    player.setXVelocity(0);
-                } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    player.setYVelocity(VELOCITY);
-                    player.setXVelocity(0);
-                } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    player.jump();
-                } else if (e.getKeyCode() == KeyEvent.VK_B) {
-                    player.startBoost();
-                }
-            }
-            public void keyReleased(KeyEvent e) {
-            }
-        });
+    //    public static void main(String[] args) {
+//        launch(args);
+//    }
+    public Map(){
+
+    }
+//
+//    @Override
+//    public void start(Stage stage) throws Exception {
+//
+//    }
+
+
+    public VBox setCanvas(){
+        Canvas blurryCanvas = createCanvasGrid(600, 300);
+        VBox vbox = new VBox(5, blurryCanvas);
+           return vbox;
     }
 
-    public void setBackground(Color background) {
-        this.background = background;
+    private Canvas createCanvasGrid(int width, int height) {
+        Canvas canvas = new Canvas(width, height);
+        GraphicsContext gc = canvas.getGraphicsContext2D() ;
+        gc.setLineWidth(1.0);
+        for (int x = 0; x < width; x+=10) {
+            double x1 ;
+            x1 = x + 0.5 ;
+            gc.moveTo(x1, 0);
+            gc.lineTo(x1, height);
+            gc.stroke();
+        }
+
+        for (int y = 0; y < height; y+=10) {
+            double y1 ;
+            y1 = y + 0.5 ;
+            gc.moveTo(0, y1);
+            gc.lineTo(width, y1);
+            gc.stroke();
+        }
+        return canvas ;
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        Canvas blurryCanvas = createCanvasGrid(600, 300);
+        VBox root = new VBox(5, blurryCanvas);
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
 }

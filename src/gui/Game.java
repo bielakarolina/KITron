@@ -1,16 +1,14 @@
 package gui;
 
+import game.Map;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -70,11 +68,15 @@ public class Game {
     }
 
     public Canvas setCanvas(){
-        final Canvas canvas = new Canvas(600,440);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        Map map = new Map();
+        final Canvas canvas = map.setCanvas();
+//        GraphicsContext gc = canvas.getGraphicsContext2D();
+//
+//        gc.setFill(Color.BLACK);
+//        gc.fillRect(10,10,600,440);
 
-        gc.setFill(Color.BLACK);
-        gc.fillRect(10,10,600,440);
+
+
         return  canvas;
     }
 }
