@@ -60,6 +60,8 @@ public class Game {
     }
 
     public void showActualGame(){
+
+
         Canvas canvas = getCanvas();
 
         Button endGame = new Button("End Game");
@@ -70,6 +72,8 @@ public class Game {
                 owner.close();
             }
         });
+
+
         root.getChildren().addAll(canvas, endGame);
 
     }
