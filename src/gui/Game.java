@@ -11,7 +11,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 
 public class Game {
@@ -29,8 +33,13 @@ public class Game {
     private int leftMarg = 12;
     private int rootSpacing = 10;
     private String rootStyle ="-fx-background-color: #FFFFFF;";
+    String hostName = "localhost";
+    int portNumber = 12345;
+    Socket socket = null;
+    public BufferedReader in;
+    public PrintWriter out;
 
-    public Game(){
+    public Game(Socket socket) throws IOException {
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
@@ -39,6 +48,13 @@ public class Game {
                 (Game.class.getResource("stylesheets/gameView.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();
+
+        // create socket
+        this.socket = socket;
+
+        // in & out streams
+        out = new PrintWriter(socket.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
     public void setStageProperty(){
@@ -64,7 +80,7 @@ public class Game {
             @Override public void handle(ActionEvent e) {
                 GameOver gameOver = null;
                 try {
-                    gameOver = new GameOver();
+                    gameOver = new GameOver(socket);
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }

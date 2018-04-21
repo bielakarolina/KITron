@@ -41,7 +41,7 @@ public class GameOver {
     public PrintWriter out;
     public String line= null;
 
-    public GameOver() throws IOException {
+    public GameOver(Socket socket) throws IOException {
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
@@ -52,7 +52,7 @@ public class GameOver {
         setHBoxProperty();
 
         // create socket
-        socket = new Socket(hostName, portNumber);
+        this.socket = socket;
 
         // in & out streams
         out = new PrintWriter(socket.getOutputStream(), true);
@@ -108,7 +108,7 @@ public class GameOver {
                     e1.printStackTrace();
                 }
                 try {
-                    pokoje = new RoomsView(line);
+                    pokoje = new RoomsView(line, socket);
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }

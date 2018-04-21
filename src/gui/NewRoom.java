@@ -17,6 +17,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+
 
 public class NewRoom {
     private Stage owner;
@@ -33,14 +39,26 @@ public class NewRoom {
     private int leftMarg = 12;
     private int rootSpacing = 10;
     private String rootStyle ="-fx-background-color: #FFFFFF;";
+    String hostName = "localhost";
+    int portNumber = 12345;
+    Socket socket = null;
+    public BufferedReader in;
+    public PrintWriter out;
 
-    public NewRoom(){
+    public NewRoom(Socket socket) throws IOException {
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
         setStageProperty();
         setHBoxProperty();
+
+        // create socket
+        this.socket = socket;
+
+        // in & out streams
+        out = new PrintWriter(socket.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
     public void setStageProperty(){
@@ -133,7 +151,12 @@ public class NewRoom {
             pForm.getDialogStage().close();
             rooms.close();
 
-            Game actualGame = new Game();
+            Game actualGame = null;
+            try {
+                actualGame = new Game(socket);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             actualGame.showActualGame();
         });
         pForm.getDialogStage().show();

@@ -60,7 +60,12 @@ public class Menu {
         Button startBttn = new Button("End Game");
         startBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                Login login = new Login();
+                Login login = null;
+                try {
+                    login = new Login();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 try {
                     login.showLogin();
                 } catch (IOException e1) {

@@ -55,7 +55,7 @@ public class RoomsView {
     public Text ilosc;
     public String line;
 
-    public RoomsView(String line) throws IOException {
+    public RoomsView(String line, Socket socket) throws IOException {
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
@@ -66,7 +66,7 @@ public class RoomsView {
         setVBoxProperty();
 
         // create socket
-        socket = new Socket(hostName, portNumber);
+        this.socket = socket;
 
         // in & out streams
         out = new PrintWriter(socket.getOutputStream(), true);
@@ -131,7 +131,12 @@ public class RoomsView {
 
         newRoomBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                NewRoom newRoom = new NewRoom();
+                NewRoom newRoom = null;
+                try {
+                    newRoom = new NewRoom(socket);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 newRoom.showNewRoom(getOwner());
 
             }
@@ -192,9 +197,9 @@ public class RoomsView {
     }
 
     public ObservableList<String[]> createList(ObservableList<String[]> items) throws IOException {
-        out.println("Give me rooms");
+        //out.println("Give me rooms");
         //String line = in.readLine();
-        String line = "lala, 123, 3, 4; mama, 134, 1, 2";
+        //String line = "lala, 123, 3, 4; mama, 134, 1, 2";
         String[] rooms = line.split("; ");
         int i = rooms.length, m = 0;
         String[][] roomsInfo = new String[i][4];
@@ -234,7 +239,12 @@ public class RoomsView {
         task.setOnSucceeded(event -> {
             pForm.getDialogStage().close();
             owner.close();
-            Game actualGame = new Game();
+            Game actualGame = null;
+            try {
+                actualGame = new Game(socket);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             actualGame.showActualGame();
         });
         pForm.getDialogStage().show();

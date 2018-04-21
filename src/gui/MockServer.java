@@ -18,8 +18,8 @@ public class MockServer {
             // create socket
             serverSocket = new ServerSocket(portNumber);
             int i =0;
-            while(true){
 
+            while(true){
                 // accept client
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("client connected");
@@ -33,14 +33,23 @@ public class MockServer {
                 if(msg.equals("lalala")) {
 
                     System.out.println("Imie: " + msg);
+                    msg = in.readLine();
+
+                    if (msg.contains("Giv")) {
+                        System.out.println(msg);
+                        out.println("lala, 123, 3, 4; mama, 134, 1, 2");
+                        System.out.println("lala, 123, 3, 4; mama, 134, 1, 2");
+                    }
                 }
-                if(msg.equals("Giv")){
-                    out.println("lala, 123, 3, 4; mama, 134, 1, 2");
+
+
+
+                if (msg.contains("mama")) {
+                            String room = in.readLine();
+                            System.out.println("Pokój: " + room);
                 }
-                if(msg.contains("lala")) {
-                    String room = in.readLine();
-                    System.out.println("Pokój: " + room);
-                }
+
+
             }
         } catch (IOException e) {
             e.printStackTrace();

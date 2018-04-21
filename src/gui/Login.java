@@ -39,7 +39,7 @@ public class Login {
     public PrintWriter out;
     public BufferedReader in;
 
-    public Login(){
+    public Login() throws IOException {
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
@@ -48,6 +48,13 @@ public class Login {
                 (Game.class.getResource("stylesheets/gameView.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();
+
+        // create socket
+        socket = new Socket(hostName, portNumber);
+
+        // in & out streams
+        out = new PrintWriter(socket.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
     public void setStageProperty(){
@@ -73,13 +80,6 @@ public class Login {
     }
 
     public VBox setLogin() throws IOException {
-        // create socket
-        socket = new Socket(hostName, portNumber);
-
-        // in & out streams
-        out = new PrintWriter(socket.getOutputStream(), true);
-        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
         //VBox
         VBox vbox = new VBox(8);
         Label tytul = new Label("Enter your name:");
@@ -94,10 +94,10 @@ public class Login {
                 String imie = text.getText();
                 out.println(imie);
                 String line = null;
-                //line = setRooms();
+                line = setRooms();
                 RoomsView pokoje = null;
                 try {
-                    pokoje = new RoomsView(line);
+                    pokoje = new RoomsView(line, socket);
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
@@ -122,7 +122,7 @@ public class Login {
             try {
                 line = in.readLine();
             } catch (IOException e1) {
-                e1.printStackTrace();
+
             }
         }
         System.out.println(line);
