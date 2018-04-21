@@ -26,6 +26,7 @@ public class ClientHandler implements Runnable {
     public void run() {
 
         String message;
+        String response;
         while(true){
             try {
 
@@ -36,7 +37,7 @@ public class ClientHandler implements Runnable {
 
                 String[] messageList = message.split(" ");
 
-                System.out.println(message);
+                //System.out.println(message);
 
                 if(messageList.length == 1 && player.getPlayerState() == PlayerState.PLAYING) {
                     switch (messageList[0]) {
@@ -59,36 +60,42 @@ public class ClientHandler implements Runnable {
                     }
                 }
                 else{
+
+                    int i;
+                    response = "wrong command";
                     //wiadomosc bedize miec postac albo
                     // hostRoom nazwaPokoju maxIloscGraczy
-                    // joinRoom idPokoju
+                    // joinRoom nazwa pokoju
                     // leaveRoom
                     // initPlayer kolorGracza imieGracza
 
                         switch (messageList[0]){
                             case "hostRoom":
-                                server.addRoom(messageList[1], Integer.parseInt(messageList[2]), player);
+                                i = server.addRoom(messageList[1], Integer.parseInt(messageList[2]), player);
+                                if(i == 0) response = "hostRoom success";
+                                else response = "hostRoom fail";
                                 break;
                             case "joinRoom":
-                                server.joinRoom(player, Integer.parseInt(messageList[1]));
+                                i = server.joinRoom(player, messageList[1]);
+                                if(i == 0) response = "joinRoom success";
+                                else response = "joinRoom fail";
                                 break;
                             case "leaveRoom":
-                                server.leaveRoom(player);
+                                i = server.leaveRoom(player);
+                                if(i == 0) response = "leaveRoom success";
+                                else response = "leaveRoom fail";
                                 break;
                             case "initPlayer":
-                                player.init(messageList[1], messageList[2]);
+                                if(messageList.length == 3){
+                                    player.init(messageList[1], messageList[2]);
+                                    response = "init OK";
+                                }
                                 break;
                     }
+
+                    out = new PrintWriter(clientSocket.getOutputStream(), true);
+                    out.println(response);
                 }
-
-
-
-
-                //and response for the player
-                //need to think when and what we should response
-                //TODO
-                out = new PrintWriter(clientSocket.getOutputStream(), true);
-                out.println("Response");
 
             } catch (IOException e) {
                 e.printStackTrace();

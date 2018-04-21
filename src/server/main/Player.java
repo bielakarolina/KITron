@@ -1,6 +1,7 @@
 package server.main;
 
 import server.main.room.Path;
+import server.main.room.Point;
 import server.main.room.Room;
 
 public class Player {
@@ -12,6 +13,7 @@ public class Player {
     private boolean initialized = false;
     private Path path;
     private PlayerState playerState;
+    private Point position;
 
     Player(int id){
         this.id = id;
@@ -56,9 +58,20 @@ public class Player {
     public PlayerState getPlayerState() {
         return playerState;
     }
+    public void clearPath(){
+        this.path = new Path();
+    }
 
     public void setPlayerState(PlayerState playerState) {
         this.playerState = playerState;
+    }
+
+    public void setPosition(Point position) {
+        this.position = position;
+    }
+
+    public void addToPath(Point position){
+        path.addPoint(position);
     }
 
     public String getParsedPath() {
