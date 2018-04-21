@@ -24,6 +24,8 @@ public class DrawPixels {
         gc.beginPath();
         gc.moveTo(200, 150);
         gc.lineTo(230, 150);
+        gc.stroke();
+
     }
 
     //rysowanie shapów, przyda się przy bonusach

@@ -47,8 +47,7 @@ public class Map {
         gc.stroke();
         gc.applyEffect(new DropShadow(20, 0, -20, Color.WHITE));
         //gc.setFill(Color.BLUE);
-        System.out.println("gowno2");
-        System.out.println("gowno1");
+
     }
 
 
