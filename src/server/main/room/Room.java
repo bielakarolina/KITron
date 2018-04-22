@@ -26,6 +26,7 @@ public class Room implements Runnable{
     private int alive;
     private Timer timer;
     private List<Player> players = new ArrayList<>();
+    private List<String> colors = Arrays.asList("#9D00FF", "#FF00FF","#00FFFF","#00FF00","#FF0000","#FFFF00","#ff0099","#6e0dd0");
 
     //sockets
     private static int multicastPort = 4446;
@@ -67,10 +68,10 @@ public class Room implements Runnable{
 
         players.add(player);
         player.setPlayerState(PlayerState.WAITING);
+        player.setColor(colors.remove(0));
     }
 
     public synchronized void leave(Player player){
-        //chyba trzeba bedzie synchronizowac zasob listy bo co jesli user opusci gre w momencie jak liczony jest jego stan??
         players.remove(player);
         player.setPlayerState(PlayerState.IDLE);
     }

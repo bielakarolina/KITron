@@ -106,7 +106,7 @@ public class ClientHandler implements Runnable {
                             case "initPlayer":
                                 //check if there is player with this name
                                 if(messageList.length == 3){
-                                    player.init(messageList[1], messageList[2]);
+                                    player.init(messageList[1]);
                                     response = "init OK";
                                 }
                                 break;

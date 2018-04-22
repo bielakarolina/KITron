@@ -43,6 +43,8 @@ public class Player {
         return color;
     }
 
+    public void setColor(String color){ this.color = color; }
+
     public int getId() {
         return id;
     }
@@ -55,9 +57,8 @@ public class Player {
         this.name = name;
     }
 
-    public void init(String color, String name){
+    public void init(String name){
         if(!initialized){
-            this.color = color;
             this.name = name;
             initialized = true;
             System.out.println("Initialized player: " + name);
