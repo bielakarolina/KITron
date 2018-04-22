@@ -27,7 +27,7 @@ public class Map {
         return canvas;
     }
 
-    private void drawD17(GraphicsContext gc) {
+    public void drawD17(GraphicsContext gc) {
 
         gc.setStroke(Color.WHITE);
         gc.setLineWidth(5.0);

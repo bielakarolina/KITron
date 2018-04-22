@@ -16,9 +16,12 @@ public class DrawPixels {
 
 
     public Canvas setRoad(String datagram,Canvas canvas){
+        Map map = new Map();
         Spliter spliter = new Spliter();
         ArrayList <PlayerInfo> Data = spliter.parse(datagram);
         GraphicsContext gc1 = canvas.getGraphicsContext2D();
+        gc1.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        map.drawD17(gc1);
         drawLines(gc1,Data);
       //  drawShapes(gc1);
         return  canvas;

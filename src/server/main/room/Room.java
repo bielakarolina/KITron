@@ -123,7 +123,7 @@ public class Room implements Runnable{
 
         sendToAllStartMessage();
 
-        timer.schedule(new processTask(this), 0, 500);
+        timer.schedule(new processTask(this), 0, 100);
         //new Thread(powerUpSpawner).start();
 
         System.out.println("koniec room");
