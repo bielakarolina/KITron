@@ -26,6 +26,9 @@ public class Room implements Runnable{
     private int alive;
     private Timer timer;
     private List<Player> players = new ArrayList<>();
+    private List<String> colors = Arrays.asList("#9D00FF", "#FF00FF","#00FFFF","#00FF00","#FF0000","#FFFF00","#ff0099","#6e0dd0");
+    private PowerUpSpawner powerUpSpawner;
+
 
     //sockets
     private static int multicastPort = 4446;
@@ -41,6 +44,7 @@ public class Room implements Runnable{
         this.board = new Board(width, height);
         this.maxPlayers = maxPlayers;
         this.name = name;
+        timer = new Timer();
 
         try {
             multicastSocket = new MulticastSocket();
@@ -48,6 +52,8 @@ public class Room implements Runnable{
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        powerUpSpawner = new PowerUpSpawner(board);
 
 
     try {
@@ -67,12 +73,15 @@ public class Room implements Runnable{
 
         players.add(player);
         player.setPlayerState(PlayerState.WAITING);
+
+        player.setColor(colors.get(players.size()));
     }
 
     public synchronized void leave(Player player){
         //chyba trzeba bedzie synchronizowac zasob listy bo co jesli user opusci gre w momencie jak liczony jest jego stan??
         players.remove(player);
         player.setPlayerState(PlayerState.IDLE);
+
     }
 
     public boolean isRoomActive() {
@@ -99,6 +108,7 @@ public class Room implements Runnable{
 
         while(players.size() != maxPlayers){
             try {
+                System.out.println(players.size());
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -113,9 +123,8 @@ public class Room implements Runnable{
 
         sendToAllStartMessage();
 
-        //wyslanie wiadomosci do klientow ze gra sie zaczyna
-
-        timer.schedule(new processTask(this), 0, 2000);
+        timer.schedule(new processTask(this), 0, 3000);
+        new Thread(powerUpSpawner).start();
 
         System.out.println("koniec room");
     }
@@ -250,7 +259,7 @@ public class Room implements Runnable{
         //buffer = ByteBuffer.wrap(parsePlayerList().getBytes();
 
         //ByteBuffer buffer = ByteBuffer.wrap(parsePlayerList().getBytes());
-        byte[] buffer = parsePlayerList().getBytes();
+        byte[] buffer = (parsePlayerList()+powerUpSpawner.parsePowerUpList()).getBytes();
         try {
 
             sendPacket = new DatagramPacket(buffer, buffer.length, group, Room.multicastPort);

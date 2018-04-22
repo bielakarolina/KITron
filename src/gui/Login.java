@@ -113,7 +113,7 @@ public class Login {
     public void sendName(TextField text){
         try {
             String imie = text.getText();
-            String msg = "initPlayer ".concat("BLUE".concat(" ".concat(imie)));
+            String msg = "initPlayer ".concat(" ".concat(imie));
 
 
 

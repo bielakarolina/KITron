@@ -29,6 +29,22 @@ public class PowerUp implements Runnable{
         board.cleanPowerUp(point, size);
     }
 
+    public Point getPosition() {
+        return this.point;
+    }
+
+    public String getPowerUpName() {
+        switch(powerUpKind) {
+            case SPEEDUP:
+                return "speedup";
+            case SPEEDDOWN:
+                return "speeddown";
+            case IMMORTALITY:
+                return "immortality";
+        }
+        return null;
+    }
+
 
     @Override
     public void run() {
@@ -60,5 +76,13 @@ public class PowerUp implements Runnable{
             player.setImmortal(false);
         }
 
+    }
+
+    public PowerUpKind getPowerUpKind(){
+        return this.powerUpKind;
+    }
+
+    public int getSize() {
+        return size;
     }
 }
