@@ -155,12 +155,12 @@ public class NewRoom {
         Task<Void> task = new Task<Void>() {
             @Override
             public Void call() throws IOException {
-                while(response.equals(null)) {
+                //while(response.equals(null)) {
                     String response = in.readLine();
                     if (response.contains("startGame")) {
                         return null;
                     }
-                }
+                //}
                 return null;
             /*   for(int i = 0; i < 10000; i++){
                     System.out.println(i);
