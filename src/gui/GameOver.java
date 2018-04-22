@@ -90,7 +90,7 @@ public class GameOver {
         playAgain.setId("playAgain");
         playAgain.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                out.println("Zostań");
+                out.println("playAgain");
                 owner.close();
             }
         });

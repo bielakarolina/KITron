@@ -37,11 +37,12 @@ public class Game {
     private int bottomMarg = 15;
     private int leftMarg = 12;
     private int rootSpacing = 10;
-    String hostName = "localhost";
-    int portNumber = 12345;
+
     Socket socket = null;
     public BufferedReader in;
     public PrintWriter out;
+
+    public Canvas canvas;
 
     public Game(Socket socket) throws IOException {
         new JFXPanel();
@@ -80,8 +81,7 @@ public class Game {
 
     public void showActualGame(){
 
-
-        Canvas canvas = getCanvas();
+        canvas = getCanvas();
 
         Button endGame = new Button("End Game");
         endGame.setOnAction(new EventHandler<ActionEvent>() {
@@ -96,6 +96,10 @@ public class Game {
             }
         });
         root.getChildren().addAll(canvas, endGame);
+
+    }
+
+    public void actualGame(){
 
     }
 
