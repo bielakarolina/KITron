@@ -1,5 +1,5 @@
 .root {
-    -fx-background-image: url("images/over.png");
+    -fx-background-image: url("images/win.jpg");
     /*-fx-background-color: white;*/
 }
 .button {
@@ -15,7 +15,6 @@
     -fx-border-insets: 10px;
     -fx-background-insets: 10px;
 }
-
 #back:hover {
     -fx-background-color: #ef0f0f;
     -fx-color: black;
