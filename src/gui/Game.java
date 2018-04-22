@@ -12,11 +12,13 @@ import javafx.scene.Scene;
 
 import javafx.scene.canvas.Canvas;
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -105,7 +107,7 @@ public class Game {
         thread.start();
         // actualGame();
     }
-    }
+
 
     public HBox setButtonHbox(){
 
@@ -130,9 +132,21 @@ public class Game {
         returnButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
 
-                Menu menu = new Menu();
-                menu.showMenu();
-                owner.close();
+                out.println("leaveRoom");
+                try {
+                    String response = in.readLine();
+                    if(response.contains("success")){
+                        Menu menu = new Menu();
+                        menu.showMenu();
+                        owner.close();
+                    }
+                    else{
+                        AlertView alert = new AlertView(owner, "Upsss. Try Again");
+                    }
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
             }
         });
 
