@@ -17,16 +17,15 @@ import javafx.scene.canvas.Canvas;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 
 public class Game {
@@ -101,11 +100,17 @@ public class Game {
         TCPHandler tcpHandler = new TCPHandler(scene, socket);
         Thread tcpThread = new Thread(tcpHandler);
         tcpThread.start();
+
+        final ImageView imv = new ImageView();
+        final Image image2 = new Image(Main.class.getResourceAsStream("stylesheets/images/logo.png"));
+        imv.setImage(image2);
+
+
        canvas= initCanvas();
 
         HBox hbox = setButtonHbox();
         hbox.setAlignment(Pos.BOTTOM_CENTER);
-        root.getChildren().addAll(canvas, hbox);
+        root.getChildren().addAll(imv,canvas, hbox);
 
         MapReceiver mapReceiver = new MapReceiver(this);
         Thread thread = new Thread(mapReceiver);
