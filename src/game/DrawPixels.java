@@ -12,10 +12,8 @@ public class DrawPixels {
 
     Map map = new Map();
     final Canvas canvas = map.setCanvas();
-    int n;
-    double[][] points =new double [2][n];
-    String [] stage = new String[n];
-    double lineWith =3.0;
+
+    final static double lineWith =3.0;
 
 
     public Canvas setRoad(String datagram){
@@ -23,13 +21,13 @@ public class DrawPixels {
         ArrayList <PlayerInfo> Data = spliter.parse(datagram);
         GraphicsContext gc1 = canvas.getGraphicsContext2D();
         drawLines(gc1,Data);
-        drawShapes(gc1);
+      //  drawShapes(gc1);
         return  canvas;
     }
 
     private void drawLines(GraphicsContext gc,ArrayList<PlayerInfo> Data) {
 
-        for(int i=0;i<Data.size()-1;i++) {
+        for(int i=0;i<Data.size();i++) {
             Color pColor=Data.get(i).getColor();
             gc.setStroke(pColor);
 

@@ -105,7 +105,7 @@ public class Game {
 
 
     public Canvas getCanvas(){
-        String data = "id,gracz,#9D00FF,180_200_sizeup,30_200_curve;id2,gracz2,#9D00F0,30_60_sizedown,220_80_curve;";
+        String data = "id,gracz,#9D0FFF,180_200_sizeup,30_200_curve,30_300_curve,150_300_curve;id2,gracz2,#9D00FF,100_260_sizedown,100_100_curve;";
         DrawPixels drawPixels = new DrawPixels();
         final Canvas canvas = drawPixels.setRoad(data);
         return  canvas;
