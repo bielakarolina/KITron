@@ -3,6 +3,7 @@ package gui;
 import game.DrawPixels;
 import game.Map;
 import game.MapReceiver;
+import game.TCPHandler;
 import javafx.animation.AnimationTimer;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
@@ -85,6 +86,11 @@ public class Game {
     }
 
     public void showActualGame(){
+        TCPHandler tcpHandler = new TCPHandler(scene, socket);
+        Thread tcpThread = new Thread(tcpHandler);
+        tcpThread.start();
+
+
        canvas= initCanvas();
        Button endGame = new Button("End Game");
         endGame.setOnAction(new EventHandler<ActionEvent>() {
@@ -128,7 +134,7 @@ public class Game {
 
 
     public Canvas initCanvas(){
-        Map map =new Map();
+        Map map = new Map();
        final Canvas canvas = map.setCanvas();
         return  canvas;
     }
@@ -143,4 +149,10 @@ public class Game {
     public Stage getOwner() {
         return owner;
     }
+
+
+    public Scene getScene(){
+        return this.scene;
+    }
+
 }
