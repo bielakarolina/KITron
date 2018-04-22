@@ -239,6 +239,7 @@ public class Room implements Runnable{
                 if(findWinner() != null){
                     System.out.println("Player winner: " + findWinner().getName());
                 }
+                findWinner().addWinnerPoints();
                 powerUpSpawner.reset();
 
                 new Thread(room).start();

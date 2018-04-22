@@ -22,6 +22,7 @@ public class Player {
     private int size = 3;
     private boolean alive = true;
     private boolean immortal = false;
+    private int score = 0;
 
     Player(int id, Socket socket){
         this.id = id;
@@ -162,4 +163,10 @@ public class Player {
     public Socket getSocket() {
         return socket;
     }
+
+    public int getScore() {return score;}
+
+    public void addPowerUpPoints() {score+=20;}
+
+    public void addWinnerPoints() {score+=400;}
 }

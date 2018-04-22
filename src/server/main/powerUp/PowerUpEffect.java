@@ -27,32 +27,36 @@ public class PowerUpEffect implements Runnable {
 
     @Override
     public void run() {
-        if(powerUpKind == PowerUpKind.SPEEDUP){
-            player.setSpeed(maxSpeed);
-            try {
-                Thread.sleep(time*1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            player.setSpeed(normalSpeed);
-        }
-        else if(powerUpKind == PowerUpKind.SPEEDDOWN){
-            player.setSpeed(minSpeed);
-            try {
-                Thread.sleep(time*1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            player.setSpeed(normalSpeed);
-        }
-        else if(powerUpKind == PowerUpKind.IMMORTALITY) {
-            player.setImmortal(true);
-            try {
-                Thread.sleep(time*1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            player.setImmortal(false);
+        switch(powerUpKind) {
+            case SPEEDUP:
+                try {
+                    Thread.sleep(time * 1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                player.setSpeed(normalSpeed);
+                break;
+            case SPEEDDOWN:
+                player.setSpeed(minSpeed);
+                try {
+                    Thread.sleep(time * 1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                player.setSpeed(normalSpeed);
+                break;
+            case IMMORTALITY:
+                player.setImmortal(true);
+                try {
+                    Thread.sleep(time * 1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                player.setImmortal(false);
+                break;
+            case POINTS:
+                player.addPowerUpPoints();
+                break;
         }
 
     }
