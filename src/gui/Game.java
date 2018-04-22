@@ -7,6 +7,7 @@ import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 
 import javafx.scene.canvas.Canvas;
@@ -73,7 +74,6 @@ public class Game {
     }
 
     public void setHBoxProperty() {
-        //root.setStyle(rootStyle);
         root.setPadding(new Insets(topMarg, rightMarg, bottomMarg, leftMarg));
         root.setSpacing(rootSpacing);
     }
@@ -82,6 +82,16 @@ public class Game {
 
 
         Canvas canvas = getCanvas();
+
+        HBox hbox = setButtonHbox();
+        hbox.setAlignment(Pos.BOTTOM_CENTER);
+        root.getChildren().addAll(canvas, hbox);
+
+    }
+
+    public HBox setButtonHbox(){
+
+        HBox hbox = new HBox();
 
         Button endGame = new Button("End Game");
         endGame.setOnAction(new EventHandler<ActionEvent>() {
@@ -95,10 +105,22 @@ public class Game {
                 gameOver.showGameOver(getOwner());
             }
         });
-        root.getChildren().addAll(canvas, endGame);
 
+        Button returnButton = new Button("Return");
+        returnButton.setId("back");
+        returnButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+
+                Menu menu = new Menu();
+                menu.showMenu();
+                owner.close();
+            }
+        });
+
+        hbox.setAlignment(Pos.BOTTOM_RIGHT);
+        hbox.getChildren().addAll(returnButton, endGame);
+        return hbox;
     }
-
 
     public Canvas getCanvas(){
 

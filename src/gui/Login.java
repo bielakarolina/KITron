@@ -27,7 +27,7 @@ public class Login {
     private String title = "LOGIN";
     private Scene scene;
     private VBox root;
-    private int topMarg = 100;
+    private int topMarg = 50;
     private int rightMarg = 12;
     private int bottomMarg = 15;
     private int leftMarg = 12;
@@ -115,16 +115,10 @@ public class Login {
             String imie = text.getText();
             String msg = "initPlayer ".concat("BLUE".concat(" ".concat(imie)));
 
-
-
             //
                 if (imie.equals("")) {
                     AlertView alert = new AlertView(owner, "Please enter your name!");
-                 /*
-                   Login login = new Login();
-                    login.showLogin();
-                    owner.close();
-               */
+
                 } else {
                     out.println(msg);
 
