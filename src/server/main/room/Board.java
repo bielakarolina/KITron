@@ -2,6 +2,7 @@ package server.main.room;
 
 import server.main.Direction;
 import server.main.Player;
+import server.main.powerUp.PowerUp;
 
 public class Board {
 
@@ -305,6 +306,31 @@ public class Board {
         for(int i = point.getX(); i<point.getX()+player.getSize(); i++){
             for(int j = point.getY(); j<point.getY()+player.getSize(); j++){
                 board[i][j] = player.getId();
+            }
+        }
+    }
+
+    public void addPowerUp(PowerUp powerUp) {
+        int x = powerUp.getPosition().getX();
+        int y = powerUp.getPosition().getY();
+        int size = powerUp.getSize();
+        switch(powerUp.getPowerUpKind()){
+            case IMMORTALITY:
+                drawRectangleOnBoard(x,y, size, -1);
+                break;
+            case SPEEDDOWN:
+                drawRectangleOnBoard(x,y, size, -2);
+                break;
+            case SPEEDUP:
+                drawRectangleOnBoard(x,y, size, -3);
+                break;
+        }
+    }
+
+    private void drawRectangleOnBoard(int x,int y, int size, int value) {
+        for(int i = x; i < x+size; i++){
+            for(int j = y; j < y+size; j++){
+                board[i][j] = value;
             }
         }
     }

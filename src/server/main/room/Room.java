@@ -26,6 +26,7 @@ public class Room implements Runnable{
     private int alive;
     private Timer timer;
     private List<Player> players = new ArrayList<>();
+    private PowerUpSpawner powerUpSpawner;
 
     //sockets
     private static int multicastPort = 4446;
@@ -35,6 +36,7 @@ public class Room implements Runnable{
     private InetSocketAddress serverAddress = new InetSocketAddress("239.1.1.1", 5000);
     MulticastSocket multicastSocket;
     InetAddress group;
+
 
 
     public Room(int width, int height, int maxPlayers, String name){
@@ -49,18 +51,19 @@ public class Room implements Runnable{
             e.printStackTrace();
         }
 
+        powerUpSpawner = new PowerUpSpawner(board);
 
-    try {
-        multicastInterface = NetworkInterface.getNetworkInterfaces().nextElement();
-        multicastChannel = DatagramChannel.open(StandardProtocolFamily.INET)
-                .setOption(StandardSocketOptions.SO_REUSEADDR, true)
-                .bind(new InetSocketAddress(5000))
-                .setOption(StandardSocketOptions.IP_MULTICAST_IF, multicastInterface);
-        multicastChannel.configureBlocking(false);
-        MembershipKey groupKey = multicastChannel.join(Inet4Address.getByName("239.1.1.1"), multicastInterface);
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
+        try {
+            multicastInterface = NetworkInterface.getNetworkInterfaces().nextElement();
+            multicastChannel = DatagramChannel.open(StandardProtocolFamily.INET)
+                    .setOption(StandardSocketOptions.SO_REUSEADDR, true)
+                    .bind(new InetSocketAddress(5000))
+                    .setOption(StandardSocketOptions.IP_MULTICAST_IF, multicastInterface);
+            multicastChannel.configureBlocking(false);
+            MembershipKey groupKey = multicastChannel.join(Inet4Address.getByName("239.1.1.1"), multicastInterface);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public synchronized void join(Player player){
@@ -116,6 +119,7 @@ public class Room implements Runnable{
         //wyslanie wiadomosci do klientow ze gra sie zaczyna
 
         timer.schedule(new processTask(this), 0, 2000);
+        new Thread(powerUpSpawner).start();
 
         System.out.println("koniec room");
     }
@@ -250,7 +254,7 @@ public class Room implements Runnable{
         //buffer = ByteBuffer.wrap(parsePlayerList().getBytes();
 
         //ByteBuffer buffer = ByteBuffer.wrap(parsePlayerList().getBytes());
-        byte[] buffer = parsePlayerList().getBytes();
+        byte[] buffer = (parsePlayerList()+powerUpSpawner.parsePowerUpList()).getBytes();
         try {
 
             sendPacket = new DatagramPacket(buffer, buffer.length, group, Room.multicastPort);
