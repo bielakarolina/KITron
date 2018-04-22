@@ -127,14 +127,26 @@ public class Game {
 
         endGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                GameOver gameOver = null;
+                /*out.println("leaveRoom");
                 try {
-                    gameOver = new GameOver(socket);
+                    String response = in.readLine();
+                    if(response.contains("success")){*/
+                        GameOver gameOver = null;
+                        try {
+                           gameOver = new GameOver(socket);
+                        } catch (IOException e1) {
+                           e1.printStackTrace();
+                        }
+                        gameOver.showGameOver(getOwner());
+                        owner.close();
+                    }
+                   /* else{
+                        AlertView alert = new AlertView(owner, "Upsss. Try Again");
+                    }
                 } catch (IOException e1) {
                     e1.printStackTrace();
-                }
-                gameOver.showGameOver(getOwner());
-            }
+                }*/
+           // }
         });
 
         Button returnButton = new Button("Return");
@@ -142,24 +154,11 @@ public class Game {
         returnButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
 
-                out.println("leaveRoom");
-                try {
-                    String response = in.readLine();
-                    if(response.contains("success")){
-                        Menu menu = new Menu();
-                        menu.showMenu();
-                        owner.close();
-                    }
-                    else{
-                        AlertView alert = new AlertView(owner, "Upsss. Try Again");
-                    }
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-
+                Menu menu = new Menu();
+                menu.showMenu();
+                owner.close();
             }
         });
-
         hbox.setAlignment(Pos.BOTTOM_RIGHT);
         hbox.getChildren().addAll(returnButton, endGame);
         return hbox;

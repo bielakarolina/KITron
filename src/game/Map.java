@@ -23,7 +23,6 @@ public class Map {
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         drawD17(gc);
-        System.out.println("gowno");
         return canvas;
     }
 

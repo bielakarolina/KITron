@@ -13,15 +13,20 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 
 public class Waiting {
     private Stage dialogStage;
     private final ProgressIndicator pin = new ProgressIndicator();
     public Socket socket = null;
+    public BufferedReader in;
+    public PrintWriter out;
 
-    public void Waiting(Socket socket) {
+    public void Waiting(Socket socket) throws IOException {
         this.socket = socket;
         dialogStage = new Stage();
         dialogStage.initStyle(StageStyle.DECORATED);
@@ -31,6 +36,9 @@ public class Waiting {
         dialogStage.setAlwaysOnTop(true);
         dialogStage.setTitle("Loading");
         dialogStage.initModality(Modality.WINDOW_MODAL);
+
+        out = new PrintWriter(socket.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
         // PROGRESS BAR
         final Label label = new Label();
@@ -54,7 +62,11 @@ public class Waiting {
         dialogStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent we) {
                 try {
-                    socket.close();
+                    out.println("leaveRoom");
+                    String response = in.readLine();
+                    if(response.contains("success")) {
+                        socket.close();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

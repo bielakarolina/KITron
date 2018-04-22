@@ -17,7 +17,7 @@ public class DummyClient {
     public static void main(String[] args) throws IOException {
 
         System.out.println("JAVA TCP UDP CLIENT");
-        String hostName = "149.156.126.10";
+        String hostName = "192.168.137.176";
         int portNumber = 12345;
         Socket socket = null;
 

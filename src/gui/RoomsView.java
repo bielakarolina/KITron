@@ -193,7 +193,11 @@ public class RoomsView {
                         e1.printStackTrace();
                     }
                     if (msg.contains("success")) {
-                        ProgressMaking();
+                        try {
+                            ProgressMaking();
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
                     } else {
                         AlertView alert = new AlertView(owner, "Sorry. Room full.");
                     }
@@ -290,7 +294,7 @@ public class RoomsView {
         return items;
     }
 
-    public void ProgressMaking(){
+    public void ProgressMaking() throws IOException {
         Waiting pForm = new Waiting();
         pForm.Waiting(socket);
         Task<Void> task = new Task<Void>() {

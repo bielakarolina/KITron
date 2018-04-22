@@ -96,11 +96,12 @@ public class GameOver {
     public HBox setHBox(Stage ownerFromGame){
         HBox hbox = new HBox();
 
-        Button playAgain = new Button("Play Again");
+        Button playAgain = new Button("Menu");
         playAgain.setId("playAgain");
         playAgain.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                out.println("Stay");
+                Menu menu = new Menu();
+                menu.showMenu();
                 owner.close();
             }
         });
@@ -109,15 +110,7 @@ public class GameOver {
         backToRooms.setId("back");
         backToRooms.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                out.println("leaveRoom");
-                String msg = null;
-                try {
-                    msg = in.readLine();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
 
-                if(msg.contains("success")) {
                     String line = null;
                     line = setRooms();
                     RoomsView pokoje = null;
@@ -127,10 +120,7 @@ public class GameOver {
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
-                }
-                else{
-                    AlertView alert = new AlertView(owner, "Something Broken. Try Again");
-                }
+
                 ownerFromGame.close();
                 owner.close();
             }
