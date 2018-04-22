@@ -183,7 +183,7 @@ public class Board {
 
         for(int j=rightBottom.getY()-1 ; j >= leftTop.getY(); j--){
             for(int i=leftTop.getX(); i<rightBottom.getX(); i++){
-                if(board[i][j] != 0){
+                if(board[i][j] > 0){
                     collisionPoint = new Point(i, j, "collision");
                     System.out.println("collision");
                     return false;
@@ -199,7 +199,7 @@ public class Board {
 
         for(int j=leftTop.getY(); j< rightBottom.getY(); j++){
             for(int i=leftTop.getX(); i< rightBottom.getX(); i++){
-                if(board[i][j] != 0){
+                if(board[i][j] > 0){
                     collisionPoint = new Point(i, j, "collision");
                     System.out.println("collision");
                     return false;
@@ -215,7 +215,7 @@ public class Board {
 
         for(int i=leftTop.getX(); i<rightBottom.getX(); i++){
             for(int j=leftTop.getY(); j< rightBottom.getY(); j++){
-                if(board[i][j] != 0){
+                if(board[i][j] > 0){
                     collisionPoint = new Point(i, j, "collision");
                     System.out.println("collision");
                     return false;
@@ -231,7 +231,7 @@ public class Board {
 
         for(int i=rightBottom.getX()- 1; i>= leftTop.getX(); i--){
             for(int j=leftTop.getY(); j< rightBottom.getY(); j++){
-                if(board[i][j] != 0){
+                if(board[i][j] > 0){
                     collisionPoint = new Point(i, j, "collision");
                     System.out.println("collision");
                     return false;
