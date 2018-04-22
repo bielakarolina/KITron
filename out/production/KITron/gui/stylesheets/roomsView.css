@@ -1,6 +1,5 @@
 .text{
     -fx-text-fill: white;
-    /*-fx-font-size: 25px;*/
 }
 
 #tytul{
@@ -14,6 +13,7 @@
 }
 .list-view{
     -fx-background-color: transparent;
+    -fx-text-fill: white;
 }
 
 .list-cell{
@@ -30,8 +30,12 @@
     -fx-text-fill: white;
     -fx-opacity: 0.3;
 }
+.list-cell:filled{
+    -fx-text-fill: white;
+}
 
-.list-cell:odd {
+.list-cell:filled:odd {
+    -fx-text-fill: white;
     -fx-cell-hover-color: #fcfff6;
     -fx-background-color: white;
     -fx-opacity: 0.3;

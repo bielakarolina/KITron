@@ -5,6 +5,7 @@
 
 .root {
     -fx-background-image: url("images/space.png");
+    -fx-text-fill: white;
 }
 
 .text{

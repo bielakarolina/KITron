@@ -37,7 +37,9 @@ public class Waiting {
 
         Scene scene = new Scene(hb, 530, 230);
         scene.getStylesheets().add
-                (Waiting.class.getResource("stylesheets/waiting.css").toExternalForm());
+                (Waiting.class.getResource("stylesheets/default.css").toExternalForm());
+       // scene.getStylesheets().add
+        //        (Waiting.class.getResource("stylesheets/waiting.css").toExternalForm());
         dialogStage.setScene(scene);
     }
 
