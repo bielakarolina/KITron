@@ -3,6 +3,8 @@ package server.main.room;
 import server.main.Direction;
 import server.main.Player;
 import server.main.powerUp.PowerUp;
+import server.main.powerUp.PowerUpEffect;
+import server.main.powerUp.PowerUpSpawner;
 
 public class Board {
 
@@ -10,6 +12,7 @@ public class Board {
     private int width;
     private int height;
     private Point collisionPoint;
+    private PowerUpSpawner powerUpSpawner;
 
     Board(int width, int height){
         this.board = new int[width][height];
@@ -52,7 +55,7 @@ public class Board {
                     System.out.println("up");
                 }
                 else {
-                    collision = checkArrayMarkedSectionsUp(leftTop, rightBottom);
+                    collision = checkArrayMarkedSectionsUp(leftTop, rightBottom, player);
                     if(!collision){
                         int i = 1;
 
@@ -83,7 +86,7 @@ public class Board {
                 }
                 else {
 
-                    collision = checkArrayMarkedSectionsDown(leftTop, rightBottom);
+                    collision = checkArrayMarkedSectionsDown(leftTop, rightBottom, player);
                     if(!collision){
                         int i = 1;
 
@@ -111,7 +114,7 @@ public class Board {
                     System.out.println("left");
                 }
                 else {
-                    collision = checkArrayMarkedSectionsLeft(leftTop, rightBottom);
+                    collision = checkArrayMarkedSectionsLeft(leftTop, rightBottom, player);
                     if(!collision){
                         int i = 1;
 
@@ -140,7 +143,7 @@ public class Board {
                     System.out.println("right");
                 }
                 else{
-                    collision = checkArrayMarkedSectionsRight(leftTop, rightBottom);
+                    collision = checkArrayMarkedSectionsRight(leftTop, rightBottom, player);
                     if(!collision){
                         int i = 1;
 
@@ -179,7 +182,7 @@ public class Board {
     }
 
     //w gore
-    private boolean checkArrayMarkedSectionsUp(Point leftTop, Point rightBottom) {
+    private boolean checkArrayMarkedSectionsUp(Point leftTop, Point rightBottom, Player player) {
 
         for(int j=rightBottom.getY()-1 ; j >= leftTop.getY(); j--){
             for(int i=leftTop.getX(); i<rightBottom.getX(); i++){
@@ -187,15 +190,30 @@ public class Board {
                     collisionPoint = new Point(i, j, "collision");
                     System.out.println("collision");
                     return false;
+                } else {
+                    handleGainingPowerUp(i,j,player);
                 }
             }
         }
         return true;
     }
 
+    private void handleGainingPowerUp(int i, int j, Player player) {
+        if(board[i][j] < 0) {
+            PowerUp powerUp = powerUpSpawner.getById(board[i][j]);
+            PowerUpEffect powerUpEffect = new PowerUpEffect(powerUp.getPowerUpKind());
+
+            powerUpEffect.setPlayer(player);
+            new Thread(powerUpEffect).start();
+
+            clearPowerUp(powerUp);
+            powerUpSpawner.remove(powerUp);
+        }
+    }
+
 
     //w doł jest spoko
-    private boolean checkArrayMarkedSectionsDown(Point leftTop, Point rightBottom) {
+    private boolean checkArrayMarkedSectionsDown(Point leftTop, Point rightBottom, Player player) {
 
         for(int j=leftTop.getY(); j< rightBottom.getY(); j++){
             for(int i=leftTop.getX(); i< rightBottom.getX(); i++){
@@ -203,6 +221,8 @@ public class Board {
                     collisionPoint = new Point(i, j, "collision");
                     System.out.println("collision");
                     return false;
+                } else {
+                    handleGainingPowerUp(i,j,player);
                 }
 
             }
@@ -211,7 +231,7 @@ public class Board {
     }
 
 
-    private boolean checkArrayMarkedSectionsLeft(Point leftTop, Point rightBottom) {
+    private boolean checkArrayMarkedSectionsLeft(Point leftTop, Point rightBottom, Player player) {
 
         for(int i=leftTop.getX(); i<rightBottom.getX(); i++){
             for(int j=leftTop.getY(); j< rightBottom.getY(); j++){
@@ -219,6 +239,8 @@ public class Board {
                     collisionPoint = new Point(i, j, "collision");
                     System.out.println("collision");
                     return false;
+                } else {
+                    handleGainingPowerUp(i,j,player);
                 }
             }
         }
@@ -226,7 +248,7 @@ public class Board {
     }
 
     //w prawo jest spoko
-    private boolean checkArrayMarkedSectionsRight(Point leftTop, Point rightBottom) {
+    private boolean checkArrayMarkedSectionsRight(Point leftTop, Point rightBottom, Player player) {
 
         for(int i=rightBottom.getX()- 1; i>= leftTop.getX(); i--){
             for(int j=leftTop.getY(); j< rightBottom.getY(); j++){
@@ -234,6 +256,8 @@ public class Board {
                     collisionPoint = new Point(i, j, "collision");
                     System.out.println("collision");
                     return false;
+                } else {
+                    handleGainingPowerUp(i,j,player);
                 }
 
             }
@@ -293,7 +317,7 @@ public class Board {
         }
     }
 
-    public void cleanPowerUp(PowerUp powerUp) {
+    public void clearPowerUp(PowerUp powerUp) {
         Point point = powerUp.getPosition();
         int size = powerUp.getSize();
         for(int i = point.getX(); i< point.getX()+size; i++){
@@ -315,24 +339,18 @@ public class Board {
         int x = powerUp.getPosition().getX();
         int y = powerUp.getPosition().getY();
         int size = powerUp.getSize();
-        switch(powerUp.getPowerUpKind()){
-            case IMMORTALITY:
-                drawRectangleOnBoard(x,y, size, -1);
-                break;
-            case SPEEDDOWN:
-                drawRectangleOnBoard(x,y, size, -2);
-                break;
-            case SPEEDUP:
-                drawRectangleOnBoard(x,y, size, -3);
-                break;
-        }
+        drawRectangleOnBoard(x, y, size, powerUp.getId());
     }
 
-    private void drawRectangleOnBoard(int x,int y, int size, int value) {
+    private void drawRectangleOnBoard(int x, int y, int size, int value) {
         for(int i = x; i < x+size; i++){
             for(int j = y; j < y+size; j++){
                 board[i][j] = value;
             }
         }
+    }
+
+    public void setPowerUpSpawner(PowerUpSpawner powerUpSpawner) {
+        this.powerUpSpawner = powerUpSpawner;
     }
 }

@@ -1,8 +1,6 @@
-package server.main.room;
+package server.main.powerUp;
 
-import server.main.Player;
-import server.main.powerUp.PowerUp;
-import server.main.powerUp.PowerUpKind;
+import server.main.room.Board;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,11 +14,14 @@ public class PowerUpSpawner implements Runnable {
     private Timer timer;
     private Board board;
     private ArrayList<PowerUp> powerUps;
+    private int lastId;
 
     public PowerUpSpawner(Board board) {
         this.timer = new Timer();
         this.board = board;
         this.powerUps = new ArrayList<>();
+        lastId = 0;
+        board.setPowerUpSpawner(this);
     }
 
     public String parsePowerUpList() {
@@ -42,6 +43,18 @@ public class PowerUpSpawner implements Runnable {
     @Override
     public void run() {
         timer.schedule(new spawnerTask(this), 0, 5000);
+    }
+
+    public PowerUp getById(int id) {
+        for(PowerUp powerUp : powerUps){
+            if(powerUp.getId() == id)
+                return powerUp;
+        }
+        return null;
+    }
+
+    public void remove(PowerUp powerUp) {
+        powerUps.remove(powerUp);
     }
 
     private class spawnerTask extends TimerTask {
@@ -78,6 +91,8 @@ public class PowerUpSpawner implements Runnable {
             } while(powerUps.contains(new PowerUp(x,y,powerUpKind)));
 
             PowerUp powerUp = new PowerUp(x,y,powerUpKind);
+            lastId--;
+            powerUp.setId(lastId);
             powerUps.add(powerUp);
             board.addPowerUp(powerUp);
         }
