@@ -4,6 +4,7 @@ import server.main.room.Room;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.Inet4Address;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class Server {
 
         try {
             serverSocket = new ServerSocket(portNumber);
-
+            System.out.println(Inet4Address.getLocalHost().getHostAddress());
             while(true){
 
                 clientSocket = serverSocket.accept();

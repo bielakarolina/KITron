@@ -36,6 +36,8 @@ public class PowerUp {
                 return "speeddown";
             case IMMORTALITY:
                 return "immortality";
+            case POINTS:
+                return "points";
         }
         return null;
     }

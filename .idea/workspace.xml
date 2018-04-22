@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55dbe6b2-19c5-4b79-86d3-dd6d34f4160a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/KITron/server/main/room/Board.class" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/room/Board.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/KITron/server/main/Player$1.class" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/Player$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/KITron/server/main/Player.class" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/Player.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/KITron/server/main/Server.class" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/Server.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/KITron/server/main/room/Room$processTask.class" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/room/Room$processTask.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/KITron/server/main/room/Room.class" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/room/Room.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/main/Player.java" afterPath="$PROJECT_DIR$/src/server/main/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/main/powerUp/PowerUpEffect.java" afterPath="$PROJECT_DIR$/src/server/main/powerUp/PowerUpEffect.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/main/powerUp/PowerUpKind.java" afterPath="$PROJECT_DIR$/src/server/main/powerUp/PowerUpKind.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/main/room/Room.java" afterPath="$PROJECT_DIR$/src/server/main/room/Room.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/client/DummyClient.java" afterPath="$PROJECT_DIR$/src/server/client/DummyClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/main/Server.java" afterPath="$PROJECT_DIR$/src/server/main/Server.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/main/powerUp/PowerUp.java" afterPath="$PROJECT_DIR$/src/server/main/powerUp/PowerUp.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,22 +30,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PowerUp.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PowerUp.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server/main/powerUp/PowerUp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="31" column="24" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
+            <state relative-caret-position="391">
+              <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
               <folding>
                 <element signature="e#438#439#0" expanded="true" />
                 <element signature="e#466#467#0" expanded="true" />
                 <element signature="e#577#578#0" expanded="true" />
                 <element signature="e#610#611#0" expanded="true" />
-                <element signature="e#949#950#0" expanded="true" />
-                <element signature="e#988#989#0" expanded="true" />
-                <element signature="e#1016#1017#0" expanded="true" />
-                <element signature="e#1043#1044#0" expanded="true" />
-                <element signature="e#1069#1070#0" expanded="true" />
-                <element signature="e#1094#1095#0" expanded="true" />
+                <element signature="e#1007#1008#0" expanded="true" />
+                <element signature="e#1046#1047#0" expanded="true" />
+                <element signature="e#1074#1075#0" expanded="true" />
+                <element signature="e#1101#1102#0" expanded="true" />
+                <element signature="e#1127#1128#0" expanded="true" />
+                <element signature="e#1152#1153#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -51,7 +54,7 @@
       <file leaf-file-name="PowerUpEffect.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server/main/powerUp/PowerUpEffect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
+            <state relative-caret-position="935">
               <caret line="57" column="42" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
               <folding>
                 <element signature="e#505#506#0" expanded="true" />
@@ -61,11 +64,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Room.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Room.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server/main/room/Room.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
+            <state relative-caret-position="3757">
               <caret line="241" column="47" selection-start-line="241" selection-start-column="47" selection-end-line="241" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/server/main/Server.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="164">
+              <caret line="46" column="24" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -125,8 +138,8 @@
       <file leaf-file-name="DummyClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server/client/DummyClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-283">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            <state relative-caret-position="187">
+              <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -170,13 +183,15 @@
         <option value="$PROJECT_DIR$/src/game/MapReceiver.java" />
         <option value="$PROJECT_DIR$/src/server/main/room/PowerUpSpawner.java" />
         <option value="$PROJECT_DIR$/src/game/DrawPixels.java" />
-        <option value="$PROJECT_DIR$/src/server/main/powerUp/PowerUp.java" />
         <option value="$PROJECT_DIR$/src/server/main/powerUp/PowerUpSpawner.java" />
         <option value="$PROJECT_DIR$/src/game/Map.java" />
         <option value="$PROJECT_DIR$/src/server/main/room/Board.java" />
         <option value="$PROJECT_DIR$/src/server/main/powerUp/PowerUpEffect.java" />
         <option value="$PROJECT_DIR$/src/server/main/room/Room.java" />
         <option value="$PROJECT_DIR$/src/server/main/Player.java" />
+        <option value="$PROJECT_DIR$/src/server/main/Server.java" />
+        <option value="$PROJECT_DIR$/src/server/client/DummyClient.java" />
+        <option value="$PROJECT_DIR$/src/server/main/powerUp/PowerUp.java" />
       </list>
     </option>
   </component>
@@ -818,7 +833,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524396421792</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="added score">
+      <created>1524398038421</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1524398038421</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -878,7 +900,8 @@
     <MESSAGE value="changes" />
     <MESSAGE value="now you can eat the bonus and it disappear (hopefully)" />
     <MESSAGE value="now you can eat the bonus and it disappear (for real :D)" />
-    <option name="LAST_COMMIT_MESSAGE" value="now you can eat the bonus and it disappear (for real :D)" />
+    <MESSAGE value="added score" />
+    <option name="LAST_COMMIT_MESSAGE" value="added score" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1053,14 +1076,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/client/ClientTCPReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/game/TemporaryUDPServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1109,46 +1124,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/main/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/client/DummyClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-283">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/game/Map.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="363">
           <caret line="47" column="64" selection-start-line="47" selection-start-column="64" selection-end-line="47" selection-end-column="64" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/main/powerUp/PowerUp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="31" column="24" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
-          <folding>
-            <element signature="e#438#439#0" expanded="true" />
-            <element signature="e#466#467#0" expanded="true" />
-            <element signature="e#577#578#0" expanded="true" />
-            <element signature="e#610#611#0" expanded="true" />
-            <element signature="e#949#950#0" expanded="true" />
-            <element signature="e#988#989#0" expanded="true" />
-            <element signature="e#1016#1017#0" expanded="true" />
-            <element signature="e#1043#1044#0" expanded="true" />
-            <element signature="e#1069#1070#0" expanded="true" />
-            <element signature="e#1094#1095#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1187,17 +1167,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/main/powerUp/PowerUpEffect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="57" column="42" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
-          <folding>
-            <element signature="e#505#506#0" expanded="true" />
-            <element signature="e#551#552#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/server/main/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="448">
@@ -1206,11 +1175,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/client/ClientTCPReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_151/src.zip!/java/net/Socket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="433" column="0" selection-start-line="433" selection-start-column="0" selection-end-line="433" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/client/DummyClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/main/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="46" column="24" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/server/main/room/Room.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
+        <state relative-caret-position="3757">
           <caret line="241" column="47" selection-start-line="241" selection-start-column="47" selection-end-line="241" selection-end-column="47" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/main/powerUp/PowerUpEffect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="935">
+          <caret line="57" column="42" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+          <folding>
+            <element signature="e#505#506#0" expanded="true" />
+            <element signature="e#551#552#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/main/powerUp/PowerUp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
+          <folding>
+            <element signature="e#438#439#0" expanded="true" />
+            <element signature="e#466#467#0" expanded="true" />
+            <element signature="e#577#578#0" expanded="true" />
+            <element signature="e#610#611#0" expanded="true" />
+            <element signature="e#1007#1008#0" expanded="true" />
+            <element signature="e#1046#1047#0" expanded="true" />
+            <element signature="e#1074#1075#0" expanded="true" />
+            <element signature="e#1101#1102#0" expanded="true" />
+            <element signature="e#1127#1128#0" expanded="true" />
+            <element signature="e#1152#1153#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
