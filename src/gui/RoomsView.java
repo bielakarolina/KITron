@@ -12,16 +12,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Callback;
 
 import java.io.*;
 import java.net.Socket;
@@ -114,7 +109,7 @@ public class RoomsView {
                     ProgressMaking();
                 }
                 else{
-                    showAlert();
+                    AlertView alert = new AlertView(owner, "Sorry. Room full.");
                 }
             }
         });
@@ -249,12 +244,12 @@ public class RoomsView {
         Task<Void> task = new Task<Void>() {
             @Override
             public Void call() throws IOException {
-                while(response.equals(null)) {
+                //while(response.equals(null)) {
                     String response = in.readLine();
                     if (response.contains("startGame")) {
                         return null;
                     }
-                }
+                //}
             /*   for(int i = 0; i < 10000; i++){
                     System.out.println(i);
                 }
@@ -280,25 +275,12 @@ public class RoomsView {
         thread.start();
     }
 
-    public Alert showAlert(){
-        Alert.AlertType type  = Alert.AlertType.INFORMATION;
-        Alert alert = new Alert(type, "");
-        alert.initModality(Modality.APPLICATION_MODAL);
-        alert.initOwner(owner);
-        alert.getDialogPane().setContentText("Sorry. Room full.");
-        alert.getDialogPane().setHeaderText(null);
-        alert.showAndWait()
-                .filter(response -> response == ButtonType.OK)
-                .ifPresent(response -> System.out.println("The alert was approved"));
-        return alert;
-    }
-
     public Stage getOwner() {
         return owner;
     }
 
     public String setRooms(){
-        out.println("refresh");
+        out.println("roomList");
         String line = null;
         while(line == null) {
             try {

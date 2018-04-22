@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.util.*;
 import java.io.IOException;
 import java.net.*;
+import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.nio.channels.MembershipKey;
 import java.util.ArrayList;
@@ -18,7 +19,6 @@ import java.util.TimerTask;
 
 public class Room implements Runnable{
 
-    //room properties
     private Board board;
     private int maxPlayers;
     private boolean roomActive = false;
@@ -26,7 +26,9 @@ public class Room implements Runnable{
     private int alive;
     private Timer timer;
     private List<Player> players = new ArrayList<>();
+    private List<String> colors = Arrays.asList("#9D00FF", "#FF00FF","#00FFFF","#00FF00","#FF0000","#FFFF00","#ff0099","#6e0dd0");
     private PowerUpSpawner powerUpSpawner;
+
 
     //sockets
     private static int multicastPort = 4446;
@@ -39,10 +41,12 @@ public class Room implements Runnable{
     private static final long gameSpeed = 2000;
 
 
+
     public Room(int width, int height, int maxPlayers, String name){
         this.board = new Board(width, height);
         this.maxPlayers = maxPlayers;
         this.name = name;
+        timer = new Timer();
 
         try {
             multicastSocket = new MulticastSocket();
@@ -53,29 +57,32 @@ public class Room implements Runnable{
 
         powerUpSpawner = new PowerUpSpawner(board);
 
-        try {
-            multicastInterface = NetworkInterface.getNetworkInterfaces().nextElement();
-            multicastChannel = DatagramChannel.open(StandardProtocolFamily.INET)
-                    .setOption(StandardSocketOptions.SO_REUSEADDR, true)
-                    .bind(new InetSocketAddress(5000))
-                    .setOption(StandardSocketOptions.IP_MULTICAST_IF, multicastInterface);
-            multicastChannel.configureBlocking(false);
-            MembershipKey groupKey = multicastChannel.join(Inet4Address.getByName("239.1.1.1"), multicastInterface);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    try {
+        multicastInterface = NetworkInterface.getNetworkInterfaces().nextElement();
+        multicastChannel = DatagramChannel.open(StandardProtocolFamily.INET)
+                .setOption(StandardSocketOptions.SO_REUSEADDR, true)
+                .bind(new InetSocketAddress(5000))
+                .setOption(StandardSocketOptions.IP_MULTICAST_IF, multicastInterface);
+        multicastChannel.configureBlocking(false);
+        MembershipKey groupKey = multicastChannel.join(Inet4Address.getByName("239.1.1.1"), multicastInterface);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
     }
 
     public synchronized void join(Player player){
 
         players.add(player);
         player.setPlayerState(PlayerState.WAITING);
+
+        player.setColor(colors.get(players.size()));
     }
 
     public synchronized void leave(Player player){
         //chyba trzeba bedzie synchronizowac zasob listy bo co jesli user opusci gre w momencie jak liczony jest jego stan??
         players.remove(player);
         player.setPlayerState(PlayerState.IDLE);
+
     }
 
     public boolean isRoomActive() {
@@ -102,6 +109,7 @@ public class Room implements Runnable{
 
         while(players.size() != maxPlayers){
             try {
+                System.out.println(players.size());
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -116,9 +124,7 @@ public class Room implements Runnable{
 
         sendToAllStartMessage();
 
-        //wyslanie wiadomosci do klientow ze gra sie zaczyna
-
-        timer.schedule(new processTask(this), 0, gameSpeed);
+        timer.schedule(new processTask(this), 0, 3000);
         new Thread(powerUpSpawner).start();
 
         System.out.println("koniec room");
