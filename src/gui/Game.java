@@ -1,8 +1,11 @@
 package gui;
 
+
 import game.DrawPixels;
 import game.Map;
 import game.MapReceiver;
+import game.TCPHandler;
+import javafx.animation.AnimationTimer;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,7 +15,7 @@ import javafx.scene.Scene;
 
 import javafx.scene.canvas.Canvas;
 
-import javafx.scene.control.Alert;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -40,8 +43,7 @@ public class Game {
     private int bottomMarg = 15;
     private int leftMarg = 12;
     private int rootSpacing = 10;
-    String hostName = "localhost";
-    int portNumber = 12345;
+
     Socket socket = null;
     public BufferedReader in;
     public PrintWriter out;
@@ -96,6 +98,9 @@ public class Game {
     }
 
     public void showActualGame(){
+        TCPHandler tcpHandler = new TCPHandler(scene, socket);
+        Thread tcpThread = new Thread(tcpHandler);
+        tcpThread.start();
        canvas= initCanvas();
 
         HBox hbox = setButtonHbox();
@@ -191,4 +196,10 @@ public class Game {
     public Stage getOwner() {
         return owner;
     }
+
+
+    public Scene getScene(){
+        return this.scene;
+    }
+
 }
