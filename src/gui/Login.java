@@ -27,7 +27,6 @@ public class Login {
     private String title = "LOGIN";
     private Scene scene;
     private VBox root;
-    private Alert.AlertType type = Alert.AlertType.INFORMATION;
     private int topMarg = 15;
     private int rightMarg = 12;
     private int bottomMarg = 15;
@@ -114,37 +113,37 @@ public class Login {
     public void sendName(TextField text){
         try {
             String imie = text.getText();
-            String msg = "initPlayer ".concat(imie);
+            String msg = "initPlayer ".concat("BLUE".concat(" ".concat(imie)));
 
-            if (imie.equals("")) {
-                showAlert();
-                Login login = new Login();
-                login.showLogin();
-                owner.close();
-            } else {
-                out.println(msg);
-                owner.close();
-                String line = null;
-                line = setRooms();
-                RoomsView pokoje = new RoomsView(line, socket);
-                pokoje.showRoomsView();
-            }
+
+
+            //
+                if (imie.equals("")) {
+                    AlertView alert = new AlertView(owner, "Please enter your name!");
+                 /*
+                   Login login = new Login();
+                    login.showLogin();
+                    owner.close();
+               */
+                } else {
+                    out.println(msg);
+
+                    String response = null;
+                    response = in.readLine();
+                    System.out.println(response);
+
+                    if(response.contains("init OK")) {
+                        owner.close();
+                        String rooms = null;
+                        rooms = setRooms();
+                        RoomsView pokoje = new RoomsView(rooms, socket);
+                        pokoje.showRoomsView();
+                    }
+                }
+
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-    }
-
-
-    public Alert showAlert(){
-        Alert alert = new Alert(type, "");
-        alert.initModality(Modality.APPLICATION_MODAL);
-        alert.initOwner(owner);
-        alert.getDialogPane().setContentText("Please enter your name!");
-        alert.getDialogPane().setHeaderText(null);
-        alert.showAndWait()
-                .filter(response -> response == ButtonType.OK)
-                .ifPresent(response -> System.out.println("The alert was approved"));
-        return alert;
     }
 
 

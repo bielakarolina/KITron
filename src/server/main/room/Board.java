@@ -143,7 +143,7 @@ public class Board {
                     if(!collision){
                         int i = 1;
 
-                        while(board[collisionPoint.getX()- i ][collisionPoint.getY()] !=0){
+                        while(board[collisionPoint.getX()-i][collisionPoint.getY()] !=0){
                             i++;
                         }
 
