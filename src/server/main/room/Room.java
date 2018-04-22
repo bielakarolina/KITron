@@ -4,6 +4,7 @@ import server.main.Direction;
 import server.main.Player;
 import server.main.PlayerState;
 
+import java.io.PrintWriter;
 import java.util.*;
 import java.io.IOException;
 import java.net.*;
@@ -17,27 +18,29 @@ import java.util.TimerTask;
 
 public class Room implements Runnable{
 
-    public static int multicastPort = 4446;
-
-    List<Player> players = new ArrayList<>();
+    //room properties
     private Board board;
     private int maxPlayers;
     private boolean roomActive = false;
     private String name;
+    private int alive;
     private Timer timer;
+    private List<Player> players = new ArrayList<>();
+
+    //sockets
+    private static int multicastPort = 4446;
     private DatagramChannel channel;
     private NetworkInterface multicastInterface = null;
     private DatagramChannel multicastChannel = null;
     private InetSocketAddress serverAddress = new InetSocketAddress("239.1.1.1", 5000);
-    private int alive;
     MulticastSocket multicastSocket;
     InetAddress group;
+
 
     public Room(int width, int height, int maxPlayers, String name){
         this.board = new Board(width, height);
         this.maxPlayers = maxPlayers;
         this.name = name;
-        timer = new Timer();
 
         try {
             multicastSocket = new MulticastSocket();
@@ -61,6 +64,7 @@ public class Room implements Runnable{
     }
 
     public synchronized void join(Player player){
+
         players.add(player);
         player.setPlayerState(PlayerState.WAITING);
     }
@@ -107,11 +111,30 @@ public class Room implements Runnable{
         startGame();
         roomActive = true;
 
-        //wyslanie wiadomosci do klienta ze gra sie zaczyna
+        sendToAllStartMessage();
 
-        timer.schedule(new processTask(this), 0, 3000);
+        //wyslanie wiadomosci do klientow ze gra sie zaczyna
+
+        timer.schedule(new processTask(this), 0, 2000);
 
         System.out.println("koniec room");
+    }
+
+    private void sendToAllStartMessage() {
+
+        PrintWriter out;
+        Socket clientSocket;
+
+        for(Player player: players){
+            clientSocket = player.getSocket();
+            try {
+                out = new PrintWriter(clientSocket.getOutputStream(), true);
+                out.println("startGame");
+                System.out.println(player.getName() + " was sent startGame message");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
@@ -146,6 +169,7 @@ public class Room implements Runnable{
 
 
            Point point = new Point(x, y, "start");
+           board.drawPlayer(point, player);
             //Point point = new Point(5, 5, "start");
 
             player.setPosition(point);
@@ -200,14 +224,18 @@ public class Room implements Runnable{
             update();
 
             board.printBoard();
+            System.out.println("Allive: " + room.alive);
             System.out.println();
 
             sendUpdate();
 
-            if(alive == 1){
+            if(alive <= 1){
                 timer.cancel();
                 timer.purge();
-                System.out.println("Player winner: " + findWinner().getName());
+                if(findWinner() != null){
+                    System.out.println("Player winner: " + findWinner().getName());
+                }
+
                 new Thread(room).start();
             }
 
@@ -234,6 +262,10 @@ public class Room implements Runnable{
     }
 
     public String parsePlayerList() {
+
+        StringBuilder gameState = new StringBuilder();
+
+
         String s = "";
         for(Player p : players) {
             s = p.getId() + ";" + p.getName()+";" + p.getColor();

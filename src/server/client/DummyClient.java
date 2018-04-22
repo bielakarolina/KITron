@@ -27,23 +27,22 @@ public class DummyClient {
         MulticastSocket multicastSocket = new MulticastSocket();
         InetAddress group = InetAddress.getByName("239.1.1.1");
 
-        new Thread(new DummyClientMulticastReceiver()).start();
 
         try {
             // create socket
             socket = new Socket(hostName, portNumber);
 
+            new Thread(new DummyClientMulticastReceiver()).start();
+            new Thread(new ClientTCPReceiver(socket)).start();
+
             while(true){
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
                 Scanner scanner = new Scanner(System.in);
                 String message = scanner.nextLine();
 
-                // send msg, read response
+                // send msg
                 out.println(message);
-                String response = in.readLine();
-                System.out.println("received response: " + response);
             }
 
 

@@ -47,7 +47,7 @@ public class Server {
 
                 clientSocket = serverSocket.accept();
                 System.out.println("Client " + playerIdGiver.incrementAndGet() + " connected");
-                Player player = new Player(playerIdGiver.get());
+                Player player = new Player(playerIdGiver.get(), clientSocket);
 
                 players.add(player);
 
