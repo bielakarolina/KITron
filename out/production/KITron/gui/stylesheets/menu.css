@@ -1,0 +1,49 @@
+.button {
+    -fx-font-family: "ARCADECLASSIC";
+    -fx-font-size:45px;
+    -fx-pref-width: 400px;
+}
+
+#play{
+    -fx-pref-width: 425px;
+    -fx-pref-height: 100px;
+    -fx-font-size: 60px;
+    -fx-border-color: #ffe136;
+    -fx-text-fill: #ffe136;
+}
+#play:hover{
+    -fx-background-color: #ffe136;
+    -fx-text-fill: black;
+}
+
+#insrtuction{
+    -fx-border-color: #328fff;
+    -fx-text-fill: #328fff;
+}
+
+#insrtuction:hover{
+    -fx-background-color: #328fff;
+    -fx-text-fill: black;
+}
+
+#score{
+    -fx-border-color: #72ff4b;
+    -fx-text-fill: #72ff4b;
+}
+
+#score:hover{
+    -fx-background-color: #72ff4b;
+    -fx-text-fill: black;
+}
+
+#end{
+    -fx-border-color: #ff0b0b;
+    -fx-text-fill: #ff0b0b;
+}
+
+#end:hover{
+    -fx-background-color: #ff0b0b;
+    -fx-text-fill: black;
+}
+
+
