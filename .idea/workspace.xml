@@ -6,10 +6,6 @@
       <change beforePath="$PROJECT_DIR$/out/production/KITron/game/DrawPixels.class" afterPath="$PROJECT_DIR$/out/production/KITron/game/DrawPixels.class" />
       <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/Game$1.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/Game$1.class" />
       <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/Game.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/Game.class" />
-      <change beforePath="$PROJECT_DIR$/src/game/DrawPixels.java" afterPath="$PROJECT_DIR$/src/game/DrawPixels.java" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Game.java" afterPath="$PROJECT_DIR$/src/gui/Game.java" />
-      <change beforePath="$PROJECT_DIR$/src/server/main/Server.java" afterPath="$PROJECT_DIR$/src/server/main/Server.java" />
-      <change beforePath="$PROJECT_DIR$/src/server/main/room/Room.java" afterPath="$PROJECT_DIR$/src/server/main/room/Room.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -553,11 +549,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524392876132</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="ddd">
+      <created>1524395783840</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1524395783840</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20003000" />
+    <option name="totallyTimeSpent" value="20014000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
