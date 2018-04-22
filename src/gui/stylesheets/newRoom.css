@@ -1,4 +1,7 @@
+.text{
+    -fx-font-size: 20px;
 
+}
 .choice-box .context-menu {
     -fx-border-color: white;
     -fx-background-color: transparent;
@@ -8,6 +11,7 @@
 }
 .choice-box .menu-item > .label {
     -fx-text-fill: white;
+
 }
 .choice-box .menu-item:focused > .label {
     -fx-text-fill: black;

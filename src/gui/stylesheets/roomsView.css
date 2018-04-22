@@ -1,6 +1,5 @@
 .text{
     -fx-text-fill: white;
-    -fx-font-size: 25px;
 }
 
 #tytul{
@@ -21,6 +20,7 @@
     -fx-cell-hover-color: #fcfff6;
     -fx-background-color: white;
     -fx-font-size: 20px;
+    -fx-text-fill: white;
     -fx-opacity: 0.1;
 }
 
