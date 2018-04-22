@@ -182,19 +182,24 @@ public class RoomsView {
         Button acceptBttn= new Button("Choose");
         acceptBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                String[] room = list.getSelectionModel().getSelectedItem();
-                out.println("joinRoom " + room[0]);
-                String msg = null;
-                try {
-                    msg = in.readLine();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-                if(msg.contains("success")) {
-                    ProgressMaking();
+                String[] room = null;
+                room = list.getSelectionModel().getSelectedItem();
+                if(room != null) {
+                    out.println("joinRoom " + room[0]);
+                    String msg = null;
+                    try {
+                        msg = in.readLine();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                    if (msg.contains("success")) {
+                        ProgressMaking();
+                    } else {
+                        AlertView alert = new AlertView(owner, "Sorry. Room full.");
+                    }
                 }
                 else{
-                    AlertView alert = new AlertView(owner, "Sorry. Room full.");
+                    AlertView alert = new AlertView(owner, "Choose Room");
                 }
             }
         });
