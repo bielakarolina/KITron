@@ -1,8 +1,10 @@
-public class Point {
+package game;
+
+public class PointPlayer {
     private int x;
     private int y;
 
-    public Point(int x, int y){
+    public PointPlayer(int x, int y){
         this.x = x;
         this.y = y;
     }

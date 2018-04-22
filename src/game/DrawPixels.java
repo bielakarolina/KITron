@@ -4,6 +4,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
+import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 public class DrawPixels {
 
@@ -14,24 +17,44 @@ public class DrawPixels {
     String [] stage = new String[n];
     double lineWith =3.0;
 
-    public Canvas setRoad(){
 
+    public Canvas setRoad(String datagram){
+        Spliter spliter = new Spliter();
+        ArrayList <PlayerInfo> Data = spliter.parse(datagram);
         GraphicsContext gc1 = canvas.getGraphicsContext2D();
-    //     drawLines(gc1,Color.YELLOW);
-       // drawShapes(gc1);
+        drawLines(gc1,Data);
+        drawShapes(gc1);
         return  canvas;
     }
 
-    private void drawLines(GraphicsContext gc,int id, String playerName, Color pColor,double points, Stage stage) {
-        gc.setStroke(pColor);
-        for(int i=0;i<n-1;i++) {
-            if (stage==Stage.sizeup) gc.setLineWidth(lineWith+2.0);
-            else if(stage==Stage.sizedown) gc.setLineWidth(lineWith-2.0);
-            else gc.setLineWidth(lineWith);
+    private void drawLines(GraphicsContext gc,ArrayList<PlayerInfo> Data) {
+
+        for(int i=0;i<Data.size()-1;i++) {
+            Color pColor=Data.get(i).getColor();
+            gc.setStroke(pColor);
+
+            for (int j = 0; j < Data.get(i).getStages().size()-1; j++) {
+
+                game.Stage stage1= Data.get(i).getStages().get(j);
+                double x1 =  Data.get(i).getPoints().get(j).getX();
+                double y1= Data.get(i).getPoints().get(j).getY();
+
+                double x2 =  Data.get(i).getPoints().get(j+1).getX();
+                double y2 = Data.get(i).getPoints().get(j+1).getY();
+
+                if (stage1== game.Stage.sizeup) gc.setLineWidth(lineWith+2.0);
+                else if(stage1==game.Stage.sizedown) gc.setLineWidth(lineWith-2.0);
+                else gc.setLineWidth(lineWith);
+
                 gc.beginPath();
-           // gc.moveTo(points[0][i], points[1][i]);
-           // gc.lineTo(points[0][i], points[1][i]);
-            gc.stroke();
+                gc.moveTo(x1,y1);
+                gc.lineTo(x2,y2);
+                gc.stroke();
+            }
+
+
+
+
         }
     }
 

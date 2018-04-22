@@ -1,3 +1,5 @@
+package game;
+
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
@@ -6,12 +8,20 @@ public class PlayerInfo {
     private String id;
     private String player;
     private Color color;
-    private ArrayList<Point> points; // = new ArrayList<>();
+    private ArrayList<PointPlayer> points; // = new ArrayList<>();
     private ArrayList<Stage> stages;
 
-    public PlayerInfo() {}
 
-    public PlayerInfo(String id, String player, Color color, ArrayList<Point> points, ArrayList<Stage> stages) {
+//    private ArrayList<Point> points; // = new ArrayList<>();
+//    private ArrayList<Stage> stages;
+//    private String bonus;
+
+    public PlayerInfo() {
+        this.points = new ArrayList<>();
+        this.stages = new ArrayList<>();
+    }
+
+    public PlayerInfo(String id, String player, Color color, ArrayList<PointPlayer> points, ArrayList<Stage> stages) {
         this.id = id;
         this.player = player;
         this.color = color;
@@ -31,7 +41,7 @@ public class PlayerInfo {
         this.color = color;
     }
 
-    public void setPoints(ArrayList<Point> points) {
+    public void setPoints(ArrayList<PointPlayer> points) {
         this.points = points;
     }
 
@@ -51,7 +61,7 @@ public class PlayerInfo {
         return color;
     }
 
-    public ArrayList<Point> getPoints() {
+    public ArrayList<PointPlayer> getPoints() {
         return points;
     }
 
