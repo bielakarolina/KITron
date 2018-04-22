@@ -2,34 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55dbe6b2-19c5-4b79-86d3-dd6d34f4160a" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/server/client/ClientTCPReceiver.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/client/DummyClient.class" afterPath="$PROJECT_DIR$/out/production/KITron/server/client/DummyClient.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/Player$1.class" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/Player$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/Player.class" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/Player.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/Server.class" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/Server.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/room/Board$1.class" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/room/Board$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/room/Board.class" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/room/Board.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/room/Path.class" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/room/Path.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/room/Room$processTask.class" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/room/Room$processTask.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/room/Room.class" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/room/Room.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/tests/TestRoom.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/gui/NewRoom.java" afterPath="$PROJECT_DIR$/src/gui/NewRoom.java" />
-      <change beforePath="$PROJECT_DIR$/src/gui/RoomsView.java" afterPath="$PROJECT_DIR$/src/gui/RoomsView.java" />
-      <change beforePath="$PROJECT_DIR$/src/server/client/DummyClient.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/server/client/DummyClientMulticastReceiver.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/server/main/ClientHandler.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/server/main/Direction.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/server/main/Main.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/server/main/Player.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/server/main/PlayerState.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/server/main/Server.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/server/main/room/Board.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/server/main/room/Path.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/server/main/room/Point.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/server/main/room/Room.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/server/main/room/RoomRequestHandler.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/server/main/room/RoomStateUpdater.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/server/tests/TestRoom.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/NewRoom$2.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/NewRoom$2.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/RoomsView$6.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/RoomsView$6.class" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -270,6 +246,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="KITron4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KITron4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="room" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -526,7 +510,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524346254758</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="ww">
+      <created>1524381725936</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1524381725936</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -534,7 +525,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Hibernate Tools" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -551,7 +541,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1421875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2140625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Graph Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
