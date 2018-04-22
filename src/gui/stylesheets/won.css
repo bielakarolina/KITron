@@ -1,0 +1,37 @@
+.label{
+    -fx-font-size: 60px;
+}
+.button {
+    -fx-background-image: transparent;
+    -fx-border: none;
+    -fx-background-radius: 0;
+    -fx-color: white;
+    -fx-padding: 20px 32px;
+    -fx-text-align: center;
+    -fx-font-size: 16px;
+
+
+    -fx-border-insets: 10px;
+    -fx-background-insets: 10px;
+}
+#back{
+    -fx-border-color: #ef0f0f;
+    -fx-text-fill: #ef0f0f;
+}
+
+#back:hover {
+    -fx-background-color: #ef0f0f;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+#playAgain{
+    -fx-border-color: #43d844;
+    -fx-text-fill: #43d844;
+}
+
+#playAgain:hover {
+    -fx-background-color: #43d844;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+

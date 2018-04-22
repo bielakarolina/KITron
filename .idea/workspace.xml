@@ -2,45 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55dbe6b2-19c5-4b79-86d3-dd6d34f4160a" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/gui/stylesheets/ARCADECLASSIC.TTF" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/gui/stylesheets/images/over.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/gui/stylesheets/images/win.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/gui/stylesheets/won.css" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/Game$1.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/Game$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/Game.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/Game.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/Login$1.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/Login$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/Login$2.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/Login$2.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/Login.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/Login.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/Menu$1.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/Menu$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/Menu$2.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/Menu$2.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/Menu$3.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/Menu$3.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/Menu$4.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/Menu$4.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/Menu.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/Menu.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/NewRoom$1.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/NewRoom$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/NewRoom$2.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/NewRoom$2.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/NewRoom.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/NewRoom.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/RoomsView$1.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/RoomsView$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/RoomsView$2.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/RoomsView$2.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/RoomsView$3.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/RoomsView$3.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/RoomsView$4.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/RoomsView$4.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/RoomsView$5.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/RoomsView$5.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/RoomsView$6.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/RoomsView$6.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/RoomsView.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/RoomsView.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/Waiting.class" afterPath="$PROJECT_DIR$/out/production/KITron/gui/Waiting.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/stylesheets/default.css" afterPath="$PROJECT_DIR$/out/production/KITron/gui/stylesheets/default.css" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/stylesheets/gameOver.css" afterPath="$PROJECT_DIR$/out/production/KITron/gui/stylesheets/gameOver.css" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/stylesheets/highscore.css" afterPath="$PROJECT_DIR$/out/production/KITron/gui/stylesheets/highscore.css" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/stylesheets/login.css" afterPath="$PROJECT_DIR$/out/production/KITron/gui/stylesheets/login.css" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/stylesheets/menu.css" afterPath="$PROJECT_DIR$/out/production/KITron/gui/stylesheets/menu.css" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/stylesheets/newRoom.css" afterPath="$PROJECT_DIR$/out/production/KITron/gui/stylesheets/newRoom.css" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/stylesheets/roomsView.css" afterPath="$PROJECT_DIR$/out/production/KITron/gui/stylesheets/roomsView.css" />
-      <change beforePath="$PROJECT_DIR$/src/gui/stylesheets/default.css" afterPath="$PROJECT_DIR$/src/gui/stylesheets/default.css" />
-      <change beforePath="$PROJECT_DIR$/src/gui/stylesheets/gameOver.css" afterPath="$PROJECT_DIR$/src/gui/stylesheets/gameOver.css" />
-      <change beforePath="$PROJECT_DIR$/src/gui/stylesheets/highscore.css" afterPath="$PROJECT_DIR$/src/gui/stylesheets/highscore.css" />
-      <change beforePath="$PROJECT_DIR$/src/gui/stylesheets/login.css" afterPath="$PROJECT_DIR$/src/gui/stylesheets/login.css" />
-      <change beforePath="$PROJECT_DIR$/src/gui/stylesheets/menu.css" afterPath="$PROJECT_DIR$/src/gui/stylesheets/menu.css" />
-      <change beforePath="$PROJECT_DIR$/src/gui/stylesheets/newRoom.css" afterPath="$PROJECT_DIR$/src/gui/stylesheets/newRoom.css" />
-      <change beforePath="$PROJECT_DIR$/src/gui/stylesheets/roomsView.css" afterPath="$PROJECT_DIR$/src/gui/stylesheets/roomsView.css" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -108,7 +71,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gui/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="525">
@@ -128,6 +91,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="294">
               <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="menu.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/gui/stylesheets/menu.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="9" lean-forward="true" selection-start-line="0" selection-start-column="9" selection-end-line="18" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -387,7 +360,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main (1)">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -553,8 +526,8 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Application.Main (1)" />
-        <item index="1" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Main (1)" />
         <item index="2" class="java.lang.String" itemvalue="Application.MockServer" />
         <item index="3" class="java.lang.String" itemvalue="Application.TemporaryUDPServer" />
       </list>
@@ -654,7 +627,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524386013285</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Css merge">
+      <created>1524386529204</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1524386529204</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -662,7 +642,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Hibernate Tools" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -673,7 +652,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3660419" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3660419" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Graph Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -740,7 +719,8 @@
     <MESSAGE value="ww" />
     <MESSAGE value="ahth" />
     <MESSAGE value="Few Changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Few Changes" />
+    <MESSAGE value="Css merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="Css merge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -928,13 +908,6 @@
     <entry file="jar://$APPLICATION_CONFIG_DIR$/jdks/jbsdk8u152b1119.3_windows_x64/jre/lib/rt.jar!/java/lang/Thread.class" />
     <entry file="file://$PROJECT_DIR$/src/gui/stylesheets/login.css~origin_GUI_KIT-14" />
     <entry file="file://$PROJECT_DIR$/src/gui/stylesheets/login.css~HEAD" />
-    <entry file="file://$PROJECT_DIR$/src/gui/stylesheets/menu.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/game/ControlsThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
@@ -1111,14 +1084,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/stylesheets/newRoom.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
@@ -1129,6 +1094,22 @@
             <element signature="e#4312#4313#0" expanded="true" />
             <element signature="e#4357#4358#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/stylesheets/newRoom.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/stylesheets/menu.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="9" lean-forward="true" selection-start-line="0" selection-start-column="9" selection-end-line="18" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
