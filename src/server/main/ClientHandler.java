@@ -16,6 +16,7 @@ public class ClientHandler implements Runnable {
     private PrintWriter out;
     private Socket clientSocket;
     private Player player;
+    private boolean running = true;
 
     ClientHandler(Server server, Player player, Socket clientSocket) throws IOException {
         this.server = server;
@@ -29,7 +30,7 @@ public class ClientHandler implements Runnable {
 
         String message;
         String response;
-        while(true){
+        while(running){
             try {
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
@@ -118,7 +119,15 @@ public class ClientHandler implements Runnable {
                     out.println(response);
                 }
 
-            } catch (IOException e) {
+            } catch (IOException | NullPointerException e ) {
+                System.out.println("hello");
+                server.leaveRoom(player);
+                try {
+                    player.getSocket().close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                running = false;
                 e.printStackTrace();
             }
         }

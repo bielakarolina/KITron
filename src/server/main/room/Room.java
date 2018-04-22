@@ -68,12 +68,14 @@ public class Room implements Runnable{
 
         players.add(player);
         player.setPlayerState(PlayerState.WAITING);
-        player.setColor(colors.remove(0));
+
+        player.setColor(colors.get(players.size()));
     }
 
     public synchronized void leave(Player player){
         players.remove(player);
         player.setPlayerState(PlayerState.IDLE);
+
     }
 
     public boolean isRoomActive() {
@@ -100,6 +102,7 @@ public class Room implements Runnable{
 
         while(players.size() != maxPlayers){
             try {
+                System.out.println(players.size());
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();

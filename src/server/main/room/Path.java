@@ -16,7 +16,7 @@ public class Path {
     public String toString() {
         String s = "";
         for(Point p : points){
-            s += "," + p.getX() + "." + p.getY() +"."+p.getState();
+            s += "," + p.getX() + "_" + p.getY() + "_" + p.getState();
         }
         return s;
     }

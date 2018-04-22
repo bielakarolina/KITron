@@ -2,24 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55dbe6b2-19c5-4b79-86d3-dd6d34f4160a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/junit_4_12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KITron.iml" beforeDir="false" afterPath="$PROJECT_DIR$/KITron.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/game/TemporaryUDPServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/game/TemporaryUDPServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/MockServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/gui/MockServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/client/DummyClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/server/client/DummyClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/gui/Login.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/ClientHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/Direction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/PlayerState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/room/Point.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/room/RoomRequestHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/room/RoomStateUpdater.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/Player$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/Player$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/room/Path.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/room/Path.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/room/Room$processTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/room/Room$processTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/room/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/room/Room.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/main/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/main/ClientHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/main/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/main/room/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/main/room/Path.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/main/room/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/main/room/Room.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -53,8 +47,8 @@
       <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server/main/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-435">
-              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            <state relative-caret-position="220">
+              <caret line="116" column="26" selection-start-line="116" selection-start-column="21" selection-end-line="116" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -62,8 +56,8 @@
       <file leaf-file-name="Room.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server/main/room/Room.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="73" column="50" selection-start-line="73" selection-start-column="50" selection-end-line="73" selection-end-column="50" />
+            <state relative-caret-position="83">
+              <caret line="104" column="51" lean-forward="true" selection-start-line="104" selection-start-column="51" selection-end-line="104" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -71,8 +65,21 @@
       <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server/main/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="45" column="61" lean-forward="true" selection-start-line="45" selection-start-column="61" selection-end-line="45" selection-end-column="61" />
+            <state relative-caret-position="219">
+              <caret line="89" column="28" selection-start-line="89" selection-start-column="20" selection-end-line="89" selection-end-column="28" />
+              <folding>
+                <element signature="e#1873#1874#0" expanded="true" />
+                <element signature="e#1963#1964#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Path.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/server/main/room/Path.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="20" column="17" lean-forward="true" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -80,8 +87,29 @@
       <file leaf-file-name="ClientHandler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server/main/ClientHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="108" column="64" lean-forward="true" selection-start-line="108" selection-start-column="64" selection-end-line="108" selection-end-column="64" />
+            <state relative-caret-position="-30">
+              <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AbstractList.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/IDE/Intellij/Java/jdk1.8.0_161/src.zip!/java/util/AbstractList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="137">
+              <caret line="160" selection-start-line="160" selection-end-line="160" />
+              <folding>
+                <element signature="e#5400#5401#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Login.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/Login.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-225">
+              <caret line="115" column="64" lean-forward="true" selection-start-line="115" selection-start-column="64" selection-end-line="115" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -99,12 +127,13 @@
     <findStrings>
       <find>=======</find>
       <find>dupa</find>
+      <find>Blue</find>
     </findStrings>
     <replaceStrings>
       <replace />
     </replaceStrings>
     <dirStrings>
-      <dir>C:\Users\Karolina\Desktop\IT\INFORMATYKA\Semestr VI\IO\KITron</dir>
+      <dir />
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -177,8 +206,11 @@
         <option value="$PROJECT_DIR$/src/gui/MockServer.java" />
         <option value="$PROJECT_DIR$/src/gui/NewRoom.java" />
         <option value="$PROJECT_DIR$/src/gui/RoomsView.java" />
-        <option value="$PROJECT_DIR$/src/server/main/room/Room.java" />
+        <option value="$PROJECT_DIR$/src/test.java" />
+        <option value="$PROJECT_DIR$/src/gui/Login.java" />
         <option value="$PROJECT_DIR$/src/server/main/Player.java" />
+        <option value="$PROJECT_DIR$/src/server/main/room/Path.java" />
+        <option value="$PROJECT_DIR$/src/server/main/room/Room.java" />
         <option value="$PROJECT_DIR$/src/server/main/ClientHandler.java" />
       </list>
     </option>
@@ -329,6 +361,11 @@
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
+    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test" />
+      <module name="KITron" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -385,11 +422,13 @@
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.TemporaryUDPServer" />
       <item itemvalue="Application.Main (1)" />
+      <item itemvalue="Application.test" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.test" />
         <item itemvalue="Application.MockServer" />
         <item itemvalue="Application.TemporaryUDPServer" />
       </list>
@@ -415,7 +454,7 @@
       <workItem from="1524339445392" duration="1100000" />
       <workItem from="1524340548053" duration="656000" />
       <workItem from="1524345416398" duration="1322000" />
-      <workItem from="1524382068390" duration="818000" />
+      <workItem from="1524382068390" duration="3863000" />
     </task>
     <task id="LOCAL-00001" summary="Drawing">
       <created>1524315476224</created>
@@ -452,15 +491,21 @@
       <option name="project" value="LOCAL" />
       <updated>1524381725936</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added color">
+      <created>1524382905283</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1524382905283</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12441000" />
+    <option name="totallyTimeSpent" value="15486000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="61" y="-4" width="1305" height="772" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -471,12 +516,12 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.13855422" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.13554217" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2137931" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2137931" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -534,32 +579,10 @@
     <MESSAGE value="Drawing" />
     <MESSAGE value="Merge remote-tracking branch 'remotes/origin/GUI/KIT-14'&#10;&#10;# Conflicts:&#10;#&#9;out/production/KITron/gui/stylesheets/highscore.css&#10;#&#9;out/production/KITron/gui/stylesheets/login.css&#10;#&#9;out/production/KITron/gui/stylesheets/main.css&#10;#&#9;out/production/KITron/gui/stylesheets/menu.css&#10;#&#9;out/production/KITron/gui/stylesheets/newRoom.css&#10;#&#9;out/production/KITron/gui/stylesheets/waiting.css&#10;#&#9;src/gui/Game.java&#10;#&#9;src/gui/GameOver.java&#10;#&#9;src/gui/Highscore.java&#10;#&#9;src/gui/Instruction.java&#10;#&#9;src/gui/Login.java&#10;#&#9;src/gui/Main.java&#10;#&#9;src/gui/Menu.java&#10;#&#9;src/gui/NewRoom.java&#10;#&#9;src/gui/RoomsView.java&#10;#&#9;src/gui/stylesheets/login.css&#10;#&#9;src/gui/stylesheets/main.css&#10;#&#9;src/gui/stylesheets/menu.css&#10;#&#9;src/gui/stylesheets/newRoom.css" />
     <MESSAGE value="ww" />
-    <option name="LAST_COMMIT_MESSAGE" value="ww" />
+    <MESSAGE value="added color" />
+    <option name="LAST_COMMIT_MESSAGE" value="added color" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/game/ControlsThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_CONFIG_DIR$/jdks/jbsdk8u152b1119.3_windows_x64/jre/lib/rt.jar!/java/lang/Thread.class" />
-    <entry file="jar://$APPLICATION_CONFIG_DIR$/jdks/jbsdk8u152b1119.3_windows_x64/jre/lib/rt.jar!/java/net/DualStackPlainSocketImpl.class" />
-    <entry file="file://$PROJECT_DIR$/src/gui/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="59" selection-start-line="59" selection-end-line="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="934">
-          <caret line="93" selection-start-line="93" selection-end-line="93" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/game/Map.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="560">
@@ -729,13 +752,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="68" column="21" lean-forward="true" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
@@ -826,13 +842,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/main/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-435">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/NewRoom.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -847,24 +856,83 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/main/Direction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/IDE/Intellij/Java/jdk1.8.0_161/src.zip!/java/util/AbstractList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="160" selection-start-line="160" selection-end-line="160" />
+          <folding>
+            <element signature="e#5400#5401#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="36" lean-forward="true" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/server/main/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="45" column="61" lean-forward="true" selection-start-line="45" selection-start-column="61" selection-end-line="45" selection-end-column="61" />
+        <state relative-caret-position="219">
+          <caret line="89" column="28" selection-start-line="89" selection-start-column="20" selection-end-line="89" selection-end-column="28" />
+          <folding>
+            <element signature="e#1873#1874#0" expanded="true" />
+            <element signature="e#1963#1964#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/main/room/Path.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="20" column="17" lean-forward="true" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/main/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="116" column="26" selection-start-line="116" selection-start-column="21" selection-end-line="116" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-225">
+          <caret line="115" column="64" lean-forward="true" selection-start-line="115" selection-start-column="64" selection-end-line="115" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/IDE/Intellij/Java/jdk1.8.0_161/src.zip!/java/net/Socket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="1489" column="29" selection-start-line="1489" selection-start-column="29" selection-end-line="1489" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/main/room/Room.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="73" column="50" selection-start-line="73" selection-start-column="50" selection-end-line="73" selection-end-column="50" />
+        <state relative-caret-position="83">
+          <caret line="104" column="51" lean-forward="true" selection-start-line="104" selection-start-column="51" selection-end-line="104" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/main/ClientHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="108" column="64" lean-forward="true" selection-start-line="108" selection-start-column="64" selection-end-line="108" selection-end-column="64" />
+        <state relative-caret-position="-30">
+          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
         </state>
       </provider>
     </entry>
