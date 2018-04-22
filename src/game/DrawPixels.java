@@ -9,23 +9,30 @@ public class DrawPixels {
 
     Map map = new Map();
     final Canvas canvas = map.setCanvas();
+    int n;
+    double[][] points =new double [2][n];
+    String [] stage = new String[n];
+    double lineWith =3.0;
 
     public Canvas setRoad(){
 
         GraphicsContext gc1 = canvas.getGraphicsContext2D();
-         drawLines(gc1,Color.YELLOW);
+    //     drawLines(gc1,Color.YELLOW);
        // drawShapes(gc1);
         return  canvas;
     }
 
-    private void drawLines(GraphicsContext gc,Color c){
-        gc.setStroke(c);
-        gc.setLineWidth(3.0);
-        gc.beginPath();
-        gc.moveTo(200, 150);
-        gc.lineTo(230, 150);
-        gc.stroke();
-
+    private void drawLines(GraphicsContext gc,int id, String playerName, Color pColor,double points, Stage stage) {
+        gc.setStroke(pColor);
+        for(int i=0;i<n-1;i++) {
+            if (stage==Stage.sizeup) gc.setLineWidth(lineWith+2.0);
+            else if(stage==Stage.sizedown) gc.setLineWidth(lineWith-2.0);
+            else gc.setLineWidth(lineWith);
+                gc.beginPath();
+           // gc.moveTo(points[0][i], points[1][i]);
+           // gc.lineTo(points[0][i], points[1][i]);
+            gc.stroke();
+        }
     }
 
     //rysowanie shapów, przyda się przy bonusach
