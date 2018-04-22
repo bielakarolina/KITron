@@ -3,6 +3,7 @@ package gui;
 import game.DrawPixels;
 import game.Map;
 import game.MapReceiver;
+import javafx.animation.AnimationTimer;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,6 +12,7 @@ import javafx.scene.Scene;
 
 import javafx.scene.canvas.Canvas;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -43,6 +45,9 @@ public class Game {
     public PrintWriter out;
 
     public Canvas canvas;
+  //  public String data;
+    public Canvas canvas1;
+   // public String data = "id,gracz,#9D0FFF,180_200_sizeup,30_200_curve,30_300_curve,150_300_curve;id2,gracz2,#9D00FF,100_260_sizedown,100_100_curve;";
 
     public Game(Socket socket) throws IOException {
         new JFXPanel();
@@ -80,8 +85,12 @@ public class Game {
     }
 
     public void showActualGame(){
+       canvas= initCanvas();
+        MapReceiver mapReceiver = new MapReceiver(this);
+        Thread thread = new Thread(mapReceiver);
+        thread.start();
 
-        canvas = getCanvas();
+        //canvas = getCanvas();
 
         Button endGame = new Button("End Game");
         endGame.setOnAction(new EventHandler<ActionEvent>() {
@@ -101,13 +110,27 @@ public class Game {
 
     public void actualGame(){
 
+
+
+//        AnimationTimer timer = new AnimationTimer() {
+//            @Override
+//            public void handle(long l) {
+//
+//                   canvas = canvas1;
+//            }
+//        };
     }
 
+    public Canvas initCanvas(){
+        Map map =new Map();
+       final Canvas canvas = map.setCanvas();
+        return  canvas;
+    }
 
-    public Canvas getCanvas(){
-        String data = "id,gracz,#9D0FFF,180_200_sizeup,30_200_curve,30_300_curve,150_300_curve;id2,gracz2,#9D00FF,100_260_sizedown,100_100_curve;";
+    public Canvas getCanvas(String data){
+
         DrawPixels drawPixels = new DrawPixels();
-        final Canvas canvas = drawPixels.setRoad(data);
+        canvas = drawPixels.setRoad(data);
         return  canvas;
     }
     public Stage getOwner() {

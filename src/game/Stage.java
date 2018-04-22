@@ -1,7 +1,7 @@
 package game;
 
 public enum Stage {
-    curve,sizeup,sizedown;
+    start,end,curve,sizeup,sizedown;
 
 
 }

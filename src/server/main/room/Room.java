@@ -124,7 +124,7 @@ public class Room implements Runnable{
         sendToAllStartMessage();
 
         timer.schedule(new processTask(this), 0, 3000);
-        new Thread(powerUpSpawner).start();
+        //new Thread(powerUpSpawner).start();
 
         System.out.println("koniec room");
     }
@@ -259,7 +259,7 @@ public class Room implements Runnable{
         //buffer = ByteBuffer.wrap(parsePlayerList().getBytes();
 
         //ByteBuffer buffer = ByteBuffer.wrap(parsePlayerList().getBytes());
-        byte[] buffer = (parsePlayerList()+powerUpSpawner.parsePowerUpList()).getBytes();
+        byte[] buffer = (parsePlayerList()).getBytes();
         try {
 
             sendPacket = new DatagramPacket(buffer, buffer.length, group, Room.multicastPort);

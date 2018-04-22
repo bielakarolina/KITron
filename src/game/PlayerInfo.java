@@ -8,13 +8,9 @@ public class PlayerInfo {
     private String id;
     private String player;
     private Color color;
-    private ArrayList<PointPlayer> points; // = new ArrayList<>();
+    private ArrayList<PointPlayer> points;
     private ArrayList<Stage> stages;
 
-
-//    private ArrayList<Point> points; // = new ArrayList<>();
-//    private ArrayList<Stage> stages;
-//    private String bonus;
 
     public PlayerInfo() {
         this.points = new ArrayList<>();
