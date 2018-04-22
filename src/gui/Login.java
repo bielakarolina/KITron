@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 import java.io.*;
 import java.net.Socket;
@@ -21,13 +22,13 @@ import java.net.Socket;
 public class Login {
     private Stage owner;
     private int widthScene=450;
-    private int heightScene=850;
+    private int heightScene=350;
     private int widthStage=650;
-    private int heightStage=850;
+    private int heightStage=350;
     private String title = "LOGIN";
     private Scene scene;
     private VBox root;
-    private int topMarg = 15;
+    private int topMarg = 50;
     private int rightMarg = 12;
     private int bottomMarg = 15;
     private int leftMarg = 12;
@@ -57,6 +58,15 @@ public class Login {
         // in & out streams
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        owner.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void setStageProperty(){
@@ -115,16 +125,10 @@ public class Login {
             String imie = text.getText();
             String msg = "initPlayer ".concat(" ".concat(imie));
 
-
-
             //
                 if (imie.equals("")) {
                     AlertView alert = new AlertView(owner, "Please enter your name!");
-                 /*
-                   Login login = new Login();
-                    login.showLogin();
-                    owner.close();
-               */
+
                 } else {
                     out.println(msg);
 

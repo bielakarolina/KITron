@@ -14,18 +14,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 import java.io.*;
 import java.net.Socket;
 
 public class RoomsView {
     private Stage owner;
-    private int widthScene=500;
+    private int widthScene=600;
     private int heightScene=700;
-    private int widthStage=500;
+    private int widthStage=600;
     private int heightStage=700;
     private String title = "Rooms";
     private Scene scene;
@@ -40,8 +41,8 @@ public class RoomsView {
     public PrintWriter out;
     public BufferedReader in;
 
-    public Text nazwa;
-    public Text ilosc;
+    public Label nazwa;
+    public Label ilosc;
     public String line;
     public ObservableList<String[]> items;
     public ListView<String[]> list;
@@ -67,6 +68,15 @@ public class RoomsView {
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         //out.println("Give me rooms");
         this.line = line;
+        owner.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void setStageProperty(){
@@ -90,31 +100,13 @@ public class RoomsView {
         napis.setId("tytul");
 
         HBox hbox = setHbox();
+        HBox hboxret = setButtonHbox();
 
         list = setList();
 
-        Button acceptBttn= new Button("Choose");
-        acceptBttn.setId("accept");
-        acceptBttn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                String[] room = list.getSelectionModel().getSelectedItem();
-                out.println("joinRoom " + room[0]);
-                String msg = null;
-                try {
-                    msg = in.readLine();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-                if(msg.contains("success")) {
-                    ProgressMaking();
-                }
-                else{
-                    AlertView alert = new AlertView(owner, "Sorry. Room full.");
-                }
-            }
-        });
-
-        root.getChildren().addAll(napis, hbox, list, acceptBttn);
+        hbox.setAlignment(Pos.CENTER);
+        hboxret.setAlignment(Pos.BOTTOM_LEFT);
+        root.getChildren().addAll(napis, hbox, list, hboxret);
     }
 
     public HBox setHbox() throws FileNotFoundException {
@@ -122,6 +114,7 @@ public class RoomsView {
 
         Button refresh = new Button("refresh");
         refresh.setAlignment(Pos.CENTER_LEFT);
+
 
         refresh.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
@@ -141,10 +134,12 @@ public class RoomsView {
         });
 
         Button newRoomBttn = setNewButton();
+
         VBox grupa = setGroup();
 
+
         hbox.setAlignment(Pos.CENTER);
-        hbox.getChildren().addAll(refresh, newRoomBttn, grupa);
+        hbox.getChildren().addAll(refresh, newRoomBttn,grupa);
         return hbox;
     }
 
@@ -169,13 +164,59 @@ public class RoomsView {
         return newRoomBttn;
     }
 
+    public HBox setButtonHbox(){
+
+        HBox hbox = new HBox();
+
+        Button returnButton = new Button("Return");
+        returnButton.setId("back");
+        returnButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+
+                Menu menu = new Menu();
+                menu.showMenu();
+                owner.close();
+            }
+        });
+
+        Button acceptBttn= new Button("Choose");
+        acceptBttn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                String[] room = list.getSelectionModel().getSelectedItem();
+                out.println("joinRoom " + room[0]);
+                String msg = null;
+                try {
+                    msg = in.readLine();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                if(msg.contains("success")) {
+                    ProgressMaking();
+                }
+                else{
+                    AlertView alert = new AlertView(owner, "Sorry. Room full.");
+                }
+            }
+        });
+
+        acceptBttn.setAlignment(Pos.BOTTOM_RIGHT);
+        hbox.setAlignment(Pos.BOTTOM_RIGHT);
+        hbox.getChildren().addAll(returnButton, acceptBttn);
+        return hbox;
+    }
+
     public VBox setGroup(){
         VBox grupa = new VBox();
         grupa.setPadding(new Insets(topMarg, rightMarg, bottomMarg, leftMarg));
 
-        nazwa = new Text("Nazwa: ");
-        ilosc = new Text("Ilośc gości w pokoju: ");
+        nazwa = new Label("Name: ");
+        ilosc = new Label("Players: ");
 
+        nazwa.setTextFill(Color.WHITE);
+        nazwa.setStyle("-fx-font-size: 24;");
+
+        ilosc.setTextFill(Color.WHITE);
+        ilosc.setStyle("-fx-font-size: 24;");
 
         grupa.getChildren().addAll(nazwa, ilosc);
         return grupa;
@@ -195,8 +236,10 @@ public class RoomsView {
 
                 if (empty || item == null || item[0] == null) {
                     setText(null);
+
                 } else {
                     setText(item[0]);
+
                 }
             }
         });
@@ -214,8 +257,12 @@ public class RoomsView {
     }
 
     public void printRow(String[] row){
-        nazwa.setText("Nazwa: "+ row[0]);
-        ilosc.setText("Ilośc gości w pokoju: " + row[1] + "/" + row[2] );
+        nazwa.setText("Name: "+ row[0]);
+        nazwa.setTextFill(Color.WHITE);
+        nazwa.setStyle("-fx-font-size: 24;");
+        ilosc.setText("Players: " + row[1] + "/" + row[2] );
+        ilosc.setTextFill(Color.WHITE);
+        ilosc.setStyle("-fx-font-size: 24;");
 
 
     }
@@ -240,7 +287,7 @@ public class RoomsView {
 
     public void ProgressMaking(){
         Waiting pForm = new Waiting();
-        pForm.Waiting();
+        pForm.Waiting(socket);
         Task<Void> task = new Task<Void>() {
             @Override
             public Void call() throws IOException {

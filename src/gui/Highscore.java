@@ -89,6 +89,7 @@ public class Highscore {
         Label tytul = new Label("HIGHSCORE ");
         tytul.setId("tytul");
 
+
         HBox hbox = setHbox();
         HBox hbuttnbox = setButtonHbox();
 

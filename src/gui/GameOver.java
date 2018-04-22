@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 import java.io.*;
 import java.net.Socket;
@@ -20,14 +21,14 @@ import java.net.Socket;
 
 public class GameOver {
     private Stage owner;
-    private int widthScene=200;
-    private int heightScene=200;
-    private int widthStage=400;
-    private int heightStage=200;
+    private int widthScene=600;
+    private int heightScene=250;
+    private int widthStage=600;
+    private int heightStage=250;
 
     private Scene scene;
     private VBox root;
-    private int topMarg = 15;
+    private int topMarg = 30;
     private int rightMarg = 12;
     private int bottomMarg = 15;
     private int leftMarg = 12;
@@ -56,6 +57,15 @@ public class GameOver {
         // in & out streams
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        owner.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void setStageProperty(){
@@ -90,7 +100,7 @@ public class GameOver {
         playAgain.setId("playAgain");
         playAgain.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                out.println("playAgain");
+                out.println("Stay");
                 owner.close();
             }
         });

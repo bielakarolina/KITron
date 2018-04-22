@@ -1,35 +1,49 @@
-/*
-#accept {
-    -fx-background-color: #ddd;
-    -fx-border: none;
-    -fx-background-radius: 0;
-    -fx-color: white;
-    -fx-padding: 8px 32px;
-    -fx-text-align: center;
-    -fx-font-size: 16px;
-    -fx-margin-top: 20px;
-    -fx-margin: 4px 2px
+.text{
+    -fx-text-fill: white;
+}
+#tytul{
+    -fx-text-fill: white;
+    -fx-font-size: 50px;
+}
+.button{
+    -fx-border-insets: 10px;
+    -fx-background-insets: 10px;
 }
 
-#accept:hover {
-    -fx-background-color: #3f4143;
-    -fx-color: black;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+.list-view{
+    -fx-background-color: transparent;
+}
+
+.list-cell{
+    -fx-background-color: white;
+    -fx-font-size: 30px;
+    -fx-opacity: 0.1;
+}
+
+.list-cell:filled{
+    -fx-cell-hover-color: #f5f5f1;
+    -fx-text-fill: black;
+    -fx-opacity: 0.5;
+}
+
+.list-cell:filled:hover {
+    -fx-cell-hover-color: #f5f5f1;
+    -fx-text-fill: black;
+    -fx-opacity: 0.8;
 }
 
 #newRoom{
-    -fx-background-color: #ef0f0f;
-    -fx-border: none;
-    -fx-background-radius: 50%;
-    -fx-color: black;
+    -fx-border-color: #ef0f0f;
+    -fx-background-color: transparent;
+
+    -fx-text-fill: #ef0f0f;
     -fx-padding: 10px 40px;
     -fx-text-align: center;
-    -fx-font-size: 80px;
-
 }
 
 #newRoom:hover {
-    -fx-background-color: #9e0e0e;
-    -fx-color: black;
+
+    -fx-background-color: #ef0f0f;
+    -fx-text-fill: black;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }

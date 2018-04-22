@@ -1,34 +1,29 @@
+@font-face {
+    -fx-font-family: 'ARCADECLASSIC';
+    src: url('ARCADECLASSIC.ttf');
+}
+
 .root {
     -fx-background-image: url("images/space.png");
-    /*-fx-background-color: white;*/
 }
 
 .text{
-    -fx-color: white;
-    -fx-font-family: "Palatino Linotype";
+    -fx-text-fill: white;
+    -fx-font-family: "ARCADECLASSIC";
 }
 .label{
-    -fx-font-family: "Bauhaus 93";
+    -fx-font-family: "ARCADECLASSIC";
+    -fx-alignment: top-center;
+    -fx-text-fill: white;
+}
+.button{
+    -fx-background-color: transparent;
     -fx-font-size: 30px;
+    -fx-border-color: white;
+    -fx-text-fill: white;
 }
-
-.button {
+.button:hover{
     -fx-background-color: white;
-    -fx-border: none;
-    -fx-background-radius: 0;
-
-
-    -fx-color: white;
-    -fx-padding: 20px 32px;
-    -fx-text-align: center;
-    -fx-font-size: 25px;
-
-    -fx-border-insets: 10px;
-    -fx-background-insets: 10px;
+    -fx-text-fill: black;
 }
 
-.button:hover {
-    /*-fx-background-color: white;*/
-    -fx-color: white;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
-}
