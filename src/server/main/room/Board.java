@@ -6,7 +6,7 @@ import server.main.powerUp.PowerUp;
 
 public class Board {
 
-    private int[][] board;
+    int[][] board;
     private int width;
     private int height;
     private Point collisionPoint;
@@ -181,8 +181,8 @@ public class Board {
     //w gore
     private boolean checkArrayMarkedSectionsUp(Point leftTop, Point rightBottom) {
 
-        for(int j=rightBottom.getY()-1 ; j >= leftTop.getY(); j--){
-            for(int i=leftTop.getX(); i<rightBottom.getX(); i++){
+        for(int j=rightBottom.getY() ; j >= leftTop.getY(); j--){
+            for(int i=leftTop.getX(); i<=rightBottom.getX(); i++){
                 if(board[i][j] > 0){
                     collisionPoint = new Point(i, j, "collision");
                     System.out.println("collision");
@@ -197,8 +197,8 @@ public class Board {
     //w doł jest spoko
     private boolean checkArrayMarkedSectionsDown(Point leftTop, Point rightBottom) {
 
-        for(int j=leftTop.getY(); j< rightBottom.getY(); j++){
-            for(int i=leftTop.getX(); i< rightBottom.getX(); i++){
+        for(int j=leftTop.getY(); j<= rightBottom.getY(); j++){
+            for(int i=leftTop.getX(); i<= rightBottom.getX(); i++){
                 if(board[i][j] > 0){
                     collisionPoint = new Point(i, j, "collision");
                     System.out.println("collision");
@@ -213,8 +213,8 @@ public class Board {
 
     private boolean checkArrayMarkedSectionsLeft(Point leftTop, Point rightBottom) {
 
-        for(int i=leftTop.getX(); i<rightBottom.getX(); i++){
-            for(int j=leftTop.getY(); j< rightBottom.getY(); j++){
+        for(int i=leftTop.getX(); i<=rightBottom.getX(); i++){
+            for(int j=leftTop.getY(); j<= rightBottom.getY(); j++){
                 if(board[i][j] > 0){
                     collisionPoint = new Point(i, j, "collision");
                     System.out.println("collision");
@@ -230,7 +230,7 @@ public class Board {
     private boolean checkArrayMarkedSectionsRight(Point leftTop, Point rightBottom) {
 
         for(int i=rightBottom.getX()- 1; i>= leftTop.getX(); i--){
-            for(int j=leftTop.getY(); j< rightBottom.getY(); j++){
+            for(int j=leftTop.getY(); j<= rightBottom.getY(); j++){
                 if(board[i][j] > 0){
                     collisionPoint = new Point(i, j, "collision");
                     System.out.println("collision");

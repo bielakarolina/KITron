@@ -106,10 +106,10 @@ public class ClientHandler implements Runnable {
                                 break;
                             case "initPlayer":
                                 //check if there is player with this name
-                                if(messageList.length == 3){
-                                    player.init(messageList[1]);
-                                    response = "init OK";
-                                }
+
+                                player.init(messageList[1]);
+                                response = "init OK";
+
                                 break;
                             case "roomList":
                                 response = createRoomList();

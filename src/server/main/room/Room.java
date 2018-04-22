@@ -28,6 +28,8 @@ public class Room implements Runnable{
     private List<Player> players = new ArrayList<>();
     private List<String> colors = Arrays.asList("#9D00FF", "#FF00FF","#00FFFF","#00FF00","#FF0000","#FFFF00","#ff0099","#6e0dd0");
     private PowerUpSpawner powerUpSpawner;
+    private int playAgainPlayers = 0;
+    private int playerQuit = 0;
 
 
     //sockets
@@ -121,29 +123,12 @@ public class Room implements Runnable{
         startGame();
         roomActive = true;
 
-        sendToAllStartMessage();
+        sendMessage("startGame");
 
-        timer.schedule(new processTask(this), 0, 3000);
+        timer.schedule(new processTask(this), 0, 40);
         new Thread(powerUpSpawner).start();
 
         System.out.println("koniec room");
-    }
-
-    private void sendToAllStartMessage() {
-
-        PrintWriter out;
-        Socket clientSocket;
-
-        for(Player player: players){
-            clientSocket = player.getSocket();
-            try {
-                out = new PrintWriter(clientSocket.getOutputStream(), true);
-                out.println("startGame");
-                System.out.println(player.getName() + " was sent startGame message");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
 
@@ -232,7 +217,7 @@ public class Room implements Runnable{
 
             update();
 
-            board.printBoard();
+            //board.printBoard();
             System.out.println("Allive: " + room.alive);
             System.out.println();
 
@@ -245,9 +230,40 @@ public class Room implements Runnable{
                     System.out.println("Player winner: " + findWinner().getName());
                 }
 
-                new Thread(room).start();
+                sendMessage("endGame");
+
+                while(playAgainPlayers != players.size()){
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if(playerQuit == 1){
+                        sendMessage("quitGame");
+                        break;
+                    }
+                }
+
+                if(playerQuit != 1)
+                    new Thread(room).start();
             }
 
+        }
+    }
+
+    private void sendMessage(String message) {
+        PrintWriter out;
+        Socket clientSocket;
+
+        for(Player player: players){
+            clientSocket = player.getSocket();
+            try {
+                out = new PrintWriter(clientSocket.getOutputStream(), true);
+                out.println(message);
+                System.out.println(player.getName() + " was sent endGame message");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

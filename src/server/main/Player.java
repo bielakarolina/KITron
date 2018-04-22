@@ -19,7 +19,7 @@ public class Player {
     private PlayerState playerState;
     private Point position;
     private int speed = 2;
-    private int size = 3;
+    private int size = 1;
     private boolean alive = true;
     private boolean immortal = false;
 

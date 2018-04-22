@@ -4,6 +4,7 @@ import server.main.room.Room;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.Inet4Address;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -15,8 +16,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Server {
 
 
-    private static final int STANDARD_BOARD_WIDTH = 40;
-    private static final int STANDARD_BOARD_HEIGHT = 40;
+    private static final int STANDARD_BOARD_WIDTH = 600;
+    private static final int STANDARD_BOARD_HEIGHT = 440;
     private int portNumber = 12345;
     private ServerSocket serverSocket;
 
@@ -42,10 +43,12 @@ public class Server {
 
         try {
             serverSocket = new ServerSocket(portNumber);
+            System.out.println(Inet4Address.getLocalHost().getHostAddress());
 
             while(true){
 
                 clientSocket = serverSocket.accept();
+                System.out.println(clientSocket.getInetAddress().getHostAddress());
                 System.out.println("Client " + playerIdGiver.incrementAndGet() + " connected");
                 Player player = new Player(playerIdGiver.get(), clientSocket);
 

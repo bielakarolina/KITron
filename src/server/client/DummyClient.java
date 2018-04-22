@@ -17,7 +17,7 @@ public class DummyClient {
     public static void main(String[] args) throws IOException {
 
         System.out.println("JAVA TCP UDP CLIENT");
-        String hostName = "localhost";
+        String hostName = "10.129.2.175";
         int portNumber = 12345;
         Socket socket = null;
 
@@ -30,7 +30,7 @@ public class DummyClient {
 
         try {
             // create socket
-            socket = new Socket(hostName, portNumber);
+            socket = new Socket(InetAddress.getByName(hostName), portNumber);
 
             new Thread(new DummyClientMulticastReceiver()).start();
             new Thread(new ClientTCPReceiver(socket)).start();

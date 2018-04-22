@@ -2,27 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55dbe6b2-19c5-4b79-86d3-dd6d34f4160a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/server/main/powerUp/PowerUp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/main/powerUp/PowerUpKind.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/main/room/PowerUpSpawner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/game/TemporaryUDPServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/game/TemporaryUDPServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/MockServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/gui/MockServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KITron/gui/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/gui/Login.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KITron/server/client/DummyClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/server/client/DummyClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/ClientHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/ClientHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/Player$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/Player$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/Player.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/Server.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/room/Board$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/room/Board$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/room/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/room/Board.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/room/Path.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/room/Path.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/room/Room$processTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/room/Room$processTask.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KITron/server/main/room/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KITron/server/main/room/Room.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/client/DummyClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/client/DummyClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/main/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/main/ClientHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/main/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/main/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/main/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/main/room/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/main/room/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/main/room/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/main/room/Path.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/main/room/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/main/room/Room.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -35,43 +28,79 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="NewRoom.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gui/NewRoom.java">
+      <file leaf-file-name="Path.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/server/main/room/Path.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2040">
-              <caret line="157" column="18" selection-start-line="157" selection-start-column="18" selection-end-line="157" selection-end-column="18" />
+            <state relative-caret-position="120">
+              <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Path.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/server/main/room/Path.java">
+      <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/server/main/room/Board.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="155">
+              <caret line="286" column="26" selection-start-line="286" selection-start-column="16" selection-end-line="286" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Room.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/server/main/room/Room.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="220" column="56" lean-forward="true" selection-start-line="220" selection-start-column="56" selection-end-line="220" selection-end-column="56" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/server/main/Server.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-375">
+              <caret line="19" column="57" lean-forward="true" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KITron.iml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/KITron.iml">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/server/main/room/Board.java">
+      <file leaf-file-name="DummyClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/server/client/DummyClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="310" column="5" lean-forward="true" selection-start-line="310" selection-start-column="5" selection-end-line="310" selection-end-column="5" />
+            <state relative-caret-position="378">
+              <caret line="38" column="82" lean-forward="true" selection-start-line="38" selection-start-column="82" selection-end-line="38" selection-end-column="82" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Room.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/server/main/room/Room.java">
+      <file leaf-file-name="ClientHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/server/main/ClientHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="261" column="43" selection-start-line="261" selection-start-column="43" selection-end-line="261" selection-end-column="43" />
+            <state relative-caret-position="676">
+              <caret line="110" column="53" lean-forward="true" selection-start-line="110" selection-start-column="53" selection-end-line="110" selection-end-column="53" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PowerUpSpawner.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/server/main/room/PowerUpSpawner.java">
+      <file leaf-file-name="ClientTCPReceiver.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/server/client/ClientTCPReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="81" column="28" selection-start-line="81" selection-start-column="18" selection-end-line="81" selection-end-column="28" />
+            <state relative-caret-position="60">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/server/main/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -79,8 +108,8 @@
       <file leaf-file-name="Login.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gui/Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="115" column="64" lean-forward="true" selection-start-line="115" selection-start-column="64" selection-end-line="115" selection-end-column="64" />
+            <state relative-caret-position="1605">
+              <caret line="124" column="38" selection-start-line="124" selection-start-column="38" selection-end-line="124" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -101,6 +130,13 @@
     <findStrings>
       <find>=======</find>
       <find>dupa</find>
+      <find>BLUE</find>
+      <find>PowerUp</find>
+      <find>powerUpSpawner</find>
+      <find>process</find>
+      <find>send</find>
+      <find>sendToAllStartMessage</find>
+      <find>processTa</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -114,7 +150,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ActualServerAndNonActualGUI" />
+        <entry key="$PROJECT_DIR$" value="GUI/elses" />
       </map>
     </option>
   </component>
@@ -179,10 +215,16 @@
         <option value="$PROJECT_DIR$/src/gui/MockServer.java" />
         <option value="$PROJECT_DIR$/src/gui/NewRoom.java" />
         <option value="$PROJECT_DIR$/src/gui/RoomsView.java" />
-        <option value="$PROJECT_DIR$/src/server/main/room/Board.java" />
-        <option value="$PROJECT_DIR$/src/server/main/room/Room.java" />
         <option value="$PROJECT_DIR$/src/gui/Login.java" />
         <option value="$PROJECT_DIR$/src/server/main/room/PowerUpSpawner.java" />
+        <option value="$PROJECT_DIR$/src/server/main/room/ColorPan.java" />
+        <option value="$PROJECT_DIR$/src/server/main/Player.java" />
+        <option value="$PROJECT_DIR$/src/server/main/room/Board.java" />
+        <option value="$PROJECT_DIR$/src/server/main/room/Dupa.java" />
+        <option value="$PROJECT_DIR$/src/server/client/DummyClient.java" />
+        <option value="$PROJECT_DIR$/src/server/main/ClientHandler.java" />
+        <option value="$PROJECT_DIR$/src/server/main/Server.java" />
+        <option value="$PROJECT_DIR$/src/server/main/room/Room.java" />
       </list>
     </option>
   </component>
@@ -193,10 +235,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="713" />
-    <option name="y" value="24" />
-    <option name="width" value="653" />
-    <option name="height" value="744" />
+    <option name="x" value="61" />
+    <option name="y" value="-4" />
+    <option name="width" value="1305" />
+    <option name="height" value="772" />
   </component>
   <component name="ProjectReloadState">
     <option name="STATE" value="1" />
@@ -207,6 +249,8 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -218,12 +262,6 @@
               <item name="KITron" type="b2602c69:ProjectViewProjectNode" />
               <item name="KITron" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KITron" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KITron" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="gui" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="KITron" type="b2602c69:ProjectViewProjectNode" />
@@ -251,14 +289,20 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="powerUp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="KITron" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KITron" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="room" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -288,9 +332,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Main (1)">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+    </configuration>
+    <configuration name="DummyClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.client.DummyClient" />
+      <module name="KITron" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
     </configuration>
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server.main.Main" />
@@ -395,14 +450,15 @@
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.TemporaryUDPServer" />
       <item itemvalue="Application.Main (1)" />
+      <item itemvalue="Application.DummyClient" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.DummyClient" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.TemporaryUDPServer" />
         <item itemvalue="Application.MockServer" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -426,7 +482,8 @@
       <workItem from="1524339445392" duration="1100000" />
       <workItem from="1524340548053" duration="656000" />
       <workItem from="1524345416398" duration="1322000" />
-      <workItem from="1524386806965" duration="299000" />
+      <workItem from="1524386806965" duration="11094000" />
+      <workItem from="1524400457096" duration="1465000" />
     </task>
     <task id="LOCAL-00001" summary="Drawing">
       <created>1524315476224</created>
@@ -463,77 +520,55 @@
       <option name="project" value="LOCAL" />
       <updated>1524381725936</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="ww">
+      <created>1524387252918</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1524387252918</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11924000" />
+    <option name="totallyTimeSpent" value="24184000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="61" y="-4" width="1305" height="772" extended-state="6" />
+    <frame x="60" y="-11" width="1307" height="780" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.25" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info id="Image Layers" order="2" />
-      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.25" />
+      <window_info anchor="right" id="Palette&#9;" order="10" />
+      <window_info id="Image Layers" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.31024095" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info id="Capture Tool" order="2" />
+      <window_info anchor="right" id="Maven Projects" order="5" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28614458" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info id="Capture Tool" order="5" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2137931" />
-      <window_info anchor="right" id="Database" order="3" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24597701" />
+      <window_info anchor="right" id="Database" order="6" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="2" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info id="UI Designer" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Graph Database" order="3" />
-      <window_info anchor="right" id="Hibernate Tools" order="3" />
+      <window_info anchor="right" id="Hibernate Tools" order="8" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" id="Graph Database" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Graph Database Console" order="7" />
+      <window_info anchor="bottom" id="Graph Database Console" order="9" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
     </layout>
-    <layout-to-restore>
-      <window_info anchor="right" id="Palette" order="0" />
-      <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
-      <window_info id="Designer" order="1" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Version Control" order="2" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="Messages" order="1" weight="0.32992035" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.21197917" />
-      <window_info id="Structure" order="6" weight="0.25" />
-      <window_info anchor="right" id="Commander" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="10" />
-      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.2320819" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Capture Tool" order="0" />
-      <window_info id="UI Designer" order="2" />
-      <window_info anchor="bottom" id="Find" order="5" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="right" id="Database" order="2" />
-      <window_info anchor="right" id="Maven Projects" order="1" />
-      <window_info id="Favorites" order="4" side_tool="true" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -548,41 +583,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="ww" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_CONFIG_DIR$/jdks/jbsdk8u152b1119.3_windows_x64/jre/lib/rt.jar!/java/net/DualStackPlainSocketImpl.class" />
-    <entry file="file://$PROJECT_DIR$/src/gui/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="59" selection-start-line="59" selection-end-line="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="934">
-          <caret line="93" selection-start-line="93" selection-end-line="93" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/Map.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/MapReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1450">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
-          <folding>
-            <element signature="imports" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/MockServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
@@ -813,40 +813,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/NewRoom.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2040">
-          <caret line="157" column="18" selection-start-line="157" selection-start-column="18" selection-end-line="157" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/RoomsView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
           <caret line="285" column="14" selection-start-line="285" selection-start-column="14" selection-end-line="285" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/main/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/main/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="45" column="24" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
-          <folding>
-            <element signature="e#798#799#0" expanded="true" />
-            <element signature="e#830#831#0" expanded="true" />
-            <element signature="e#883#884#0" expanded="true" />
-            <element signature="e#925#926#0" expanded="true" />
-            <element signature="e#957#958#0" expanded="true" />
-            <element signature="e#985#986#0" expanded="true" />
-            <element signature="e#1036#1037#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -857,44 +827,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/main/ClientHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/server/main/room/ColorPan.java" />
+    <entry file="file://$PROJECT_DIR$/src/gui/NewRoom.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="108" column="64" selection-start-line="108" selection-start-column="64" selection-end-line="108" selection-end-column="64" />
+        <state relative-caret-position="2010">
+          <caret line="157" column="18" selection-start-line="157" selection-start-column="18" selection-end-line="157" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/main/room/Path.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/main/room/Room.java">
+    <entry file="file://$PROJECT_DIR$/src/server/main/room/PowerUpSpawner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="261" column="43" selection-start-line="261" selection-start-column="43" selection-end-line="261" selection-end-column="43" />
+        <state relative-caret-position="1050">
+          <caret line="81" column="38" selection-start-line="81" selection-start-column="38" selection-end-line="81" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/Login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="115" column="64" lean-forward="true" selection-start-line="115" selection-start-column="64" selection-end-line="115" selection-end-column="64" />
+        <state relative-caret-position="1605">
+          <caret line="124" column="38" selection-start-line="124" selection-start-column="38" selection-end-line="124" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/main/room/PowerUpSpawner.java">
+    <entry file="file://$PROJECT_DIR$/src/server/main/room/Dupa.java" />
+    <entry file="file://$PROJECT_DIR$/src/server/main/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="81" column="28" selection-start-line="81" selection-start-column="18" selection-end-line="81" selection-end-column="28" />
+        <state relative-caret-position="240">
+          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/client/ClientTCPReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/main/room/Path.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/client/DummyClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="38" column="82" lean-forward="true" selection-start-line="38" selection-start-column="82" selection-end-line="38" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KITron.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/main/ClientHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="676">
+          <caret line="110" column="53" lean-forward="true" selection-start-line="110" selection-start-column="53" selection-end-line="110" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/main/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-375">
+          <caret line="19" column="57" lean-forward="true" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/main/room/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="310" column="5" lean-forward="true" selection-start-line="310" selection-start-column="5" selection-end-line="310" selection-end-column="5" />
+        <state relative-caret-position="155">
+          <caret line="286" column="26" selection-start-line="286" selection-start-column="16" selection-end-line="286" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/main/room/Room.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="220" column="56" lean-forward="true" selection-start-line="220" selection-start-column="56" selection-end-line="220" selection-end-column="56" />
         </state>
       </provider>
     </entry>
