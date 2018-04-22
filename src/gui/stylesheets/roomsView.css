@@ -1,11 +1,11 @@
-#tytul{
-    -fx-text-fill: white;
-    -fx-font-size: 50px;
-}
-
 .text{
     -fx-text-fill: white;
     -fx-font-size: 25px;
+}
+
+#tytul{
+    -fx-text-fill: white;
+    -fx-font-size: 50px;
 }
 .button{
 

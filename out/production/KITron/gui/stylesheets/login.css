@@ -1,3 +1,8 @@
+#tytul{
+
+    -fx-font-size: 60px;
+}
+
 .text-input {
     -fx-text-fill: -fx-text-inner-color;
     -fx-highlight-fill: derive(-fx-control-inner-background,-20%);

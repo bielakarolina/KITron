@@ -15,6 +15,6 @@
 
 .choice-box {
     -fx-background-color: black;
-    -fx-mark-color: orange; // arrow color
+    -fx-mark-color: #72ff4b; // arrow color
 }
 .choice-box > .label { -fx-text-fill: white; }

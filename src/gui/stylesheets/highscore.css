@@ -2,7 +2,10 @@
 .root{
     -fx-background-color: #262626;
 }
-
+.text{
+    -fx-text-fill: white;
+    -fx-font-family: "ARCADECLASSIC";
+}
 #tytul{
     -fx-font-size: 60px;
     -fx-text-fill: white;
@@ -24,6 +27,7 @@
 .table-view .column-header-background .label{
     -fx-background-color: transparent;
     -fx-text-fill: white;
+    -fx-font-size:25px;
 }
 
 .table-view .column-header {

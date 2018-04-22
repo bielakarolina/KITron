@@ -13,7 +13,7 @@
 }
 .label{
     -fx-font-family: "ARCADECLASSIC";
-    -fx-font-size: 30px;
+    /*-fx-font-size: 30px;*/
     -fx-text-fill: white;
     -fx-alignment: top-center;
 }
