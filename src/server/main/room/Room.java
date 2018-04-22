@@ -265,13 +265,18 @@ public class Room implements Runnable{
 
         StringBuilder gameState = new StringBuilder();
 
+        for(Player player : players) {
 
-        String s = "";
-        for(Player p : players) {
-            s = p.getId() + ";" + p.getName()+";" + p.getColor();
-            s += ";" + p.getParsedPath();
+            gameState.append(player.getId());
+            gameState.append(",");
+            gameState.append(player.getName());
+            gameState.append(",");
+            gameState.append(player.getColor());
+            gameState.append(player.getParsedPath());
+            gameState.append(";");
+
         }
-        return s;
+        return gameState.toString();
     }
 
     public boolean containsPlayer(Player player) {
