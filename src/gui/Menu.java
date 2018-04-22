@@ -7,6 +7,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -58,6 +60,7 @@ public class Menu {
     }
 
     public void showMenu(){
+
         Button startBttn = new Button("PLAY");
         startBttn.setId("play");
         startBttn.setOnAction(new EventHandler<ActionEvent>() {
