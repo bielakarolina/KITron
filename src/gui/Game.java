@@ -96,7 +96,7 @@ public class Game {
             }
         });
         root.getChildren().addAll(canvas, endGame);
-
+        System.out.println("lalal");
     }
 
     public void actualGame(){
