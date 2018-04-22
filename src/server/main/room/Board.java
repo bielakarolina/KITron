@@ -188,11 +188,11 @@ public class Board {
                     System.out.println("collision");
                     return false;
                 }
-
             }
         }
         return true;
     }
+
 
     //w doł jest spoko
     private boolean checkArrayMarkedSectionsDown(Point leftTop, Point rightBottom) {
@@ -220,7 +220,6 @@ public class Board {
                     System.out.println("collision");
                     return false;
                 }
-
             }
         }
         return true;
@@ -294,7 +293,9 @@ public class Board {
         }
     }
 
-    public void cleanPowerUp(Point point, int size) {
+    public void cleanPowerUp(PowerUp powerUp) {
+        Point point = powerUp.getPosition();
+        int size = powerUp.getSize();
         for(int i = point.getX(); i< point.getX()+size; i++){
             for(int j = point.getY(); i< point.getY()+size; j++){
                 board[i][j] = 0;

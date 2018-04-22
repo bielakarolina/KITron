@@ -109,8 +109,8 @@
       <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server/main/room/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4862">
-              <caret line="292" column="33" selection-start-line="292" selection-start-column="33" selection-end-line="292" selection-end-column="33" />
+            <state relative-caret-position="244">
+              <caret line="189" column="17" selection-start-line="189" selection-start-column="17" selection-end-line="189" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -719,7 +719,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524384459992</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="little hitbox collision change">
+      <created>1524384935896</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1524384935896</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -775,7 +782,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Drawing" />
     <MESSAGE value="Power up spawning on boeard and parsing to UDP message" />
-    <option name="LAST_COMMIT_MESSAGE" value="Power up spawning on boeard and parsing to UDP message" />
+    <MESSAGE value="little hitbox collision change" />
+    <option name="LAST_COMMIT_MESSAGE" value="little hitbox collision change" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1039,8 +1047,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/main/room/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4862">
-          <caret line="292" column="33" selection-start-line="292" selection-start-column="33" selection-end-line="292" selection-end-column="33" />
+        <state relative-caret-position="244">
+          <caret line="189" column="17" selection-start-line="189" selection-start-column="17" selection-end-line="189" selection-end-column="17" />
           <folding />
         </state>
       </provider>
