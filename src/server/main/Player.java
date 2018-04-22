@@ -4,8 +4,11 @@ import server.main.room.Path;
 import server.main.room.Point;
 import server.main.room.Room;
 
+import java.net.Socket;
+
 public class Player {
 
+    private final Socket socket;
     private int id;
     private String color;
     private String name;
@@ -18,11 +21,13 @@ public class Player {
     private int speed = 2;
     private int size = 3;
     private boolean alive = true;
+    private boolean immortal = false;
 
-    Player(int id){
+    Player(int id, Socket socket){
         this.id = id;
         this.path = new Path();
         this.playerState = PlayerState.IDLE;
+        this.socket = socket;
 
     }
 
@@ -81,7 +86,7 @@ public class Player {
     }
 
     public String getParsedPath() {
-        return path.toString()+";"+position.getX()+";"+position.getY();
+        return path.toString()+","+position.getX()+ "." + position.getY() + ".end";
     }
 
     public Point getPosition() {
@@ -133,6 +138,10 @@ public class Player {
         return speed;
     }
 
+    public void setSpeed(int speed){
+        this.speed = speed;
+    }
+
     public boolean isAlive() {
         return alive;
     }
@@ -140,5 +149,17 @@ public class Player {
     public void setAlive(boolean alive) {
         this.alive = alive;
         System.out.println(this.alive);
+    }
+
+    public void setImmortal(boolean immortal) {
+        this.immortal = immortal;
+    }
+
+    public boolean isImmortal() {
+        return immortal;
+    }
+
+    public Socket getSocket() {
+        return socket;
     }
 }
