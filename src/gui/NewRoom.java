@@ -201,10 +201,10 @@ public class NewRoom {
             Game actualGame = null;
             try {
                 actualGame = new Game(socket);
+                actualGame.showActualGame();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            actualGame.showActualGame();
         });
         pForm.getDialogStage().show();
 
