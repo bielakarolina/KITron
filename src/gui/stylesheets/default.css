@@ -10,7 +10,6 @@
 .text{
     -fx-text-fill: white;
     -fx-font-family: "ARCADECLASSIC";
-    /*-fx-font-size: 45px;*/
 }
 .label{
     -fx-font-family: "ARCADECLASSIC";

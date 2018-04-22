@@ -20,14 +20,14 @@ import java.net.Socket;
 
 public class GameOver {
     private Stage owner;
-    private int widthScene=200;
-    private int heightScene=200;
-    private int widthStage=400;
-    private int heightStage=200;
+    private int widthScene=600;
+    private int heightScene=250;
+    private int widthStage=600;
+    private int heightStage=250;
 
     private Scene scene;
     private VBox root;
-    private int topMarg = 15;
+    private int topMarg = 30;
     private int rightMarg = 12;
     private int bottomMarg = 15;
     private int leftMarg = 12;
@@ -90,7 +90,7 @@ public class GameOver {
         playAgain.setId("playAgain");
         playAgain.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                out.println("Zostań");
+                out.println("Stay");
                 owner.close();
             }
         });
