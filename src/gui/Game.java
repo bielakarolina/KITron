@@ -86,13 +86,7 @@ public class Game {
 
     public void showActualGame(){
        canvas= initCanvas();
-        MapReceiver mapReceiver = new MapReceiver(this);
-        Thread thread = new Thread(mapReceiver);
-        thread.start();
-
-        //canvas = getCanvas();
-
-        Button endGame = new Button("End Game");
+       Button endGame = new Button("End Game");
         endGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 GameOver gameOver = null;
@@ -106,9 +100,21 @@ public class Game {
         });
         root.getChildren().addAll(canvas, endGame);
         System.out.println("lalal");
+
+        MapReceiver mapReceiver = new MapReceiver(this);
+        Thread thread = new Thread(mapReceiver);
+        thread.start();
+       // actualGame();
     }
 
-    public void actualGame(){
+//    public void actualGame(String data){
+//        MapReceiver mapReceiver = new MapReceiver(this);
+//        Thread thread = new Thread(mapReceiver);
+//        thread.start();
+//
+//        canvas = getCanvas(data);
+//    }
+
 
 
 
@@ -119,7 +125,7 @@ public class Game {
 //                   canvas = canvas1;
 //            }
 //        };
-    }
+
 
     public Canvas initCanvas(){
         Map map =new Map();
@@ -130,7 +136,8 @@ public class Game {
     public Canvas getCanvas(String data){
 
         DrawPixels drawPixels = new DrawPixels();
-        canvas = drawPixels.setRoad(data);
+        canvas = drawPixels.setRoad(data,canvas);
+
         return  canvas;
     }
     public Stage getOwner() {

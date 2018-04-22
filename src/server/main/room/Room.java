@@ -123,7 +123,7 @@ public class Room implements Runnable{
 
         sendToAllStartMessage();
 
-        timer.schedule(new processTask(this), 0, 3000);
+        timer.schedule(new processTask(this), 0, 500);
         //new Thread(powerUpSpawner).start();
 
         System.out.println("koniec room");
@@ -232,7 +232,7 @@ public class Room implements Runnable{
 
             update();
 
-            board.printBoard();
+            //board.printBoard();
             System.out.println("Allive: " + room.alive);
             System.out.println();
 

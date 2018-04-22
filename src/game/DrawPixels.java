@@ -10,13 +10,12 @@ import java.util.ArrayList;
 
 public class DrawPixels {
 
-    Map map = new Map();
-    final Canvas canvas = map.setCanvas();
+
 
     final static double lineWith =3.0;
 
 
-    public Canvas setRoad(String datagram){
+    public Canvas setRoad(String datagram,Canvas canvas){
         Spliter spliter = new Spliter();
         ArrayList <PlayerInfo> Data = spliter.parse(datagram);
         GraphicsContext gc1 = canvas.getGraphicsContext2D();
