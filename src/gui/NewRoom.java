@@ -138,13 +138,13 @@ public class NewRoom {
                     ProgressMaking(rooms);
                 }
                 else{
-                    AlertView alert = new AlertView(owner, "Something Broken. Try Again.");
+                    AlertView alert = new AlertView(owner, "Something is broken. Try Again.");
                 }
                 owner.close();
             }
         });
 
-        bttnHBox.setAlignment(Pos.CENTER_RIGHT);
+        bttnHBox.setAlignment(Pos.BOTTOM_RIGHT);
         bttnHBox.getChildren().addAll(create);
         return bttnHBox;
     }
