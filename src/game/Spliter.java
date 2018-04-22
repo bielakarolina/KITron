@@ -91,16 +91,6 @@ public class Spliter {
         return bonusInfoArrayList;
     }
 
-    public static void main(String[] args) {
-        //String tmp = "id,gracz,#9D00FF,1.2.stage1,3.4.stage2;id2,gracz2,#9D00F0,5.6.stage3,7.8.stage4;";
-        //String tmp = "id,gracz,#9D00FF,1|2|stage1,3|4|stage2;id2,gracz2,#9D00F0,5|6|stage3,7|8|stage4;";
-        String tmp = "id,gracz,#9D00FF,1_2_curve,3_4_curve;id2,gracz2,#9D00F0,5_6_curve,7_8_curve:9_9_bonus1;10_10_bonus2";
 
-        Spliter spliter = new Spliter();
-        spliter.parse(tmp);
-        spliter.parseBonus(tmp);
-
-
-    }
 
 }
