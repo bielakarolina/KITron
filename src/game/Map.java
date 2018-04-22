@@ -33,21 +33,21 @@ public class Map {
         gc.setLineWidth(5.0);
         gc.beginPath();
         gc.lineTo(260, 310);
-        gc.lineTo(60, 250);
-        gc.lineTo(60,40);
-        gc.lineTo(260,60);
-        gc.lineTo(260,200);
-        gc.moveTo(300, 210);
-        gc.lineTo(300, 90);
-        gc.lineTo(530, 110);
-        gc.lineTo(550, 380);
+        gc.lineTo(50, 250);
+        gc.lineTo(50,200);
+        gc.lineTo(50,200);
+        gc.lineTo(260,220);
+        gc.lineTo(260,240);
+        gc.moveTo(300, 240);
+        gc.lineTo(300, 230);
+        gc.lineTo(400, 230);
+        gc.lineTo(450, 350);
         gc.lineTo(300, 315);
         //gc.lineTo();
         gc.stroke();
         gc.applyEffect(new DropShadow(20, 0, -20, Color.WHITE));
         //gc.setFill(Color.BLUE);
-        System.out.println("gowno2");
-        System.out.println("gowno1");
+
     }
 
 

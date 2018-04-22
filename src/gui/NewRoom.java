@@ -17,13 +17,19 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+
 
 public class NewRoom {
     private Stage owner;
     private int widthScene=400;
-    private int heightScene=200;
+    private int heightScene=400;
     private int widthStage=400;
-    private int heightStage=200;
+    private int heightStage=400;
     private String title = "New Room";
     private Scene scene;
     private VBox root;
@@ -32,16 +38,31 @@ public class NewRoom {
     private int bottomMarg = 15;
     private int leftMarg = 12;
     private int rootSpacing = 10;
+    Socket socket = null;
+    public BufferedReader in;
+    public PrintWriter out;
+    public TextField nameField;
+    public ChoiceBox cb;
+    public String response;
 
-    public NewRoom(){
+    public NewRoom(Socket socket) throws IOException {
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add
+                (Game.class.getResource("stylesheets/default.css").toExternalForm());
+        scene.getStylesheets().add
                 (NewRoom.class.getResource("stylesheets/newRoom.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();
+
+        // create socket
+        this.socket = socket;
+
+        // in & out streams
+        out = new PrintWriter(socket.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
     public void setStageProperty(){
@@ -72,7 +93,7 @@ public class NewRoom {
 
         Label name = new Label("Room name  ");
 
-        TextField nameField = new TextField();
+        nameField = new TextField();
         nameField.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
 
         nameHBox.setAlignment(Pos.CENTER);
@@ -94,7 +115,7 @@ public class NewRoom {
     }
 
     public ChoiceBox setChoice(){
-        ChoiceBox cb = new ChoiceBox();
+        cb = new ChoiceBox();
         cb.getItems().addAll("2", "3", "4");
         cb.getSelectionModel().selectFirst();
         return cb;
@@ -106,7 +127,19 @@ public class NewRoom {
         Button create = new Button("Create room");
         create.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                ProgressMaking(rooms);
+                out.println("hostRoom "+ nameField.getText() + " "+ cb.getSelectionModel().getSelectedItem());
+                String msg = null;
+                try {
+                    msg = in.readLine();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                if(msg.contains("success")) {
+                    ProgressMaking(rooms);
+                }
+                else{
+                    AlertView alert = new AlertView(owner, "Something Broken. Try Again.");
+                }
                 owner.close();
             }
         });
@@ -121,19 +154,30 @@ public class NewRoom {
         pForm.Waiting();
         Task<Void> task = new Task<Void>() {
             @Override
-            public Void call() {
-                for(int i = 0; i < 100000; i++){
+            public Void call() throws IOException {
+                while(response.equals(null)) {
+                    String response = in.readLine();
+                    if (response.contains("startGame")) {
+                        return null;
+                    }
+                }
+                return null;
+            /*   for(int i = 0; i < 10000; i++){
                     System.out.println(i);
                 }
-                return null ;
+                */
             }
         };
         pForm.activateProgressBar(task);
         task.setOnSucceeded(event -> {
             pForm.getDialogStage().close();
             rooms.close();
-
-            Game actualGame = new Game();
+            Game actualGame = null;
+            try {
+                actualGame = new Game(socket);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             actualGame.showActualGame();
         });
         pForm.getDialogStage().show();
