@@ -11,11 +11,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -63,6 +66,15 @@ public class NewRoom {
         // in & out streams
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        owner.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void setStageProperty(){
@@ -80,7 +92,7 @@ public class NewRoom {
     }
 
     public void showNewRoom(Stage rooms){
-        HBox nameHBox = setNameHBox();
+        HBox nameHBox = setNameHBox(rooms);
         HBox gamerHBOX = setGamerHBox();
         HBox bttnHBox = setBttnHBox(rooms);
 
@@ -88,14 +100,21 @@ public class NewRoom {
         root.getChildren().addAll(nameHBox, gamerHBOX, bttnHBox);
     }
 
-    public HBox setNameHBox(){
+    public HBox setNameHBox(Stage rooms){
         HBox nameHBox = new HBox();
 
         Label name = new Label("Room name  ");
 
         nameField = new TextField();
         nameField.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
-
+        nameField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent ke) {
+                if (ke.getCode().equals(KeyCode.ENTER)) {
+                    sendRoom(rooms);
+                }
+            }
+        });
         nameHBox.setAlignment(Pos.CENTER);
         nameHBox.getChildren().addAll(name, nameField);
         return nameHBox;
@@ -127,20 +146,7 @@ public class NewRoom {
         Button create = new Button("Create room");
         create.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                out.println("hostRoom "+ nameField.getText() + " "+ cb.getSelectionModel().getSelectedItem());
-                String msg = null;
-                try {
-                    msg = in.readLine();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-                if(msg.contains("success")) {
-                    ProgressMaking(rooms);
-                }
-                else{
-                    AlertView alert = new AlertView(owner, "Something is broken. Try Again.");
-                }
-                owner.close();
+                sendRoom(rooms);
             }
         });
 
@@ -148,10 +154,30 @@ public class NewRoom {
         bttnHBox.getChildren().addAll(create);
         return bttnHBox;
     }
+    public void sendRoom(Stage rooms){
+        if (nameField.getText().equals("")) {
+            AlertView alert = new AlertView(owner, "Please enter room name!");
+        }
+        else {
+            out.println("hostRoom " + nameField.getText() + " " + cb.getSelectionModel().getSelectedItem());
+            String msg = null;
+            try {
+                msg = in.readLine();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            if (msg.contains("success")) {
+                ProgressMaking(rooms);
+            } else {
+                AlertView alert = new AlertView(owner, "Shit got down");
+            }
+            owner.close();
+        }
+    }
 
     public void ProgressMaking(Stage rooms){
         Waiting pForm = new Waiting();
-        pForm.Waiting();
+        pForm.Waiting(socket);
         Task<Void> task = new Task<Void>() {
             @Override
             public Void call() throws IOException {

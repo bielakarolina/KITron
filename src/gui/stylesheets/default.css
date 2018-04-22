@@ -13,11 +13,9 @@
 }
 .label{
     -fx-font-family: "ARCADECLASSIC";
-    /*-fx-font-size: 30px;*/
-    -fx-text-fill: white;
     -fx-alignment: top-center;
+    -fx-text-fill: white;
 }
-
 .button{
     -fx-background-color: transparent;
     -fx-font-size: 30px;
@@ -29,22 +27,3 @@
     -fx-text-fill: black;
 }
 
-
-/*.button {
-    -fx-background-color: #111111;
-    -fx-border: none;
-    -fx-background-radius: 0;
-
-
-    -fx-color: black;
-    -fx-padding: 20px 40px;
-    -fx-text-align: center;
-    -fx-font-size: 25px;
-
-    -fx-border-insets: 10px;
-    -fx-background-insets: 10px;
-}
-.button:hover {
-    -fx-color: white;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
-}*/

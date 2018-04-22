@@ -5,7 +5,6 @@
 .text{
     -fx-text-fill: white;
     -fx-font-family: "ARCADECLASSIC";
-
 }
 #tytul{
     -fx-font-size: 60px;

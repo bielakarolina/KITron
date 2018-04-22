@@ -3,16 +3,15 @@ package gui;
 import game.DrawPixels;
 import game.Map;
 import game.MapReceiver;
-import javafx.animation.AnimationTimer;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 
 import javafx.scene.canvas.Canvas;
 
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -39,7 +38,8 @@ public class Game {
     private int bottomMarg = 15;
     private int leftMarg = 12;
     private int rootSpacing = 10;
-
+    String hostName = "localhost";
+    int portNumber = 12345;
     Socket socket = null;
     public BufferedReader in;
     public PrintWriter out;
@@ -67,6 +67,15 @@ public class Game {
         // in & out streams
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        owner.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void setStageProperty(){
@@ -86,7 +95,24 @@ public class Game {
 
     public void showActualGame(){
        canvas= initCanvas();
-       Button endGame = new Button("End Game");
+
+        HBox hbox = setButtonHbox();
+        hbox.setAlignment(Pos.BOTTOM_CENTER);
+        root.getChildren().addAll(canvas, hbox);
+
+        MapReceiver mapReceiver = new MapReceiver(this);
+        Thread thread = new Thread(mapReceiver);
+        thread.start();
+        // actualGame();
+    }
+    }
+
+    public HBox setButtonHbox(){
+
+        HBox hbox = new HBox();
+
+        Button endGame = new Button("End Game");
+
         endGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 GameOver gameOver = null;
@@ -98,15 +124,22 @@ public class Game {
                 gameOver.showGameOver(getOwner());
             }
         });
-        root.getChildren().addAll(canvas, endGame);
-        System.out.println("lalal");
 
-        MapReceiver mapReceiver = new MapReceiver(this);
-        Thread thread = new Thread(mapReceiver);
-        thread.start();
-       // actualGame();
+        Button returnButton = new Button("Return");
+        returnButton.setId("back");
+        returnButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+
+                Menu menu = new Menu();
+                menu.showMenu();
+                owner.close();
+            }
+        });
+
+        hbox.setAlignment(Pos.BOTTOM_RIGHT);
+        hbox.getChildren().addAll(returnButton, endGame);
+        return hbox;
     }
-
 //    public void actualGame(String data){
 //        MapReceiver mapReceiver = new MapReceiver(this);
 //        Thread thread = new Thread(mapReceiver);
@@ -125,6 +158,7 @@ public class Game {
 //                   canvas = canvas1;
 //            }
 //        };
+
 
 
     public Canvas initCanvas(){

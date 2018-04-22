@@ -1,4 +1,6 @@
-
+.text{
+    -fx-font-size: 30px;
+}
 .choice-box .context-menu {
     -fx-border-color: white;
     -fx-background-color: transparent;
@@ -8,6 +10,7 @@
 }
 .choice-box .menu-item > .label {
     -fx-text-fill: white;
+
 }
 .choice-box .menu-item:focused > .label {
     -fx-text-fill: black;
@@ -18,3 +21,14 @@
     -fx-mark-color: #72ff4b; // arrow color
 }
 .choice-box > .label { -fx-text-fill: white; }
+
+
+.text-field {
+    -fx-background-color: #a9a9a9 , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+}
+
+.text-field:focused {
+    -fx-background-color: #a9a9a9 , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+}
