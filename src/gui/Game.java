@@ -3,6 +3,8 @@ package gui;
 import game.DrawPixels;
 import game.Map;
 import game.MapReceiver;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,6 +16,11 @@ import javafx.scene.canvas.Canvas;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -96,16 +103,65 @@ public class Game {
     }
 
     public void showActualGame(){
-       canvas= initCanvas();
+        Image logo = new Image("file:stylesheets/images/logo.png");
+        ImageView logoView = new ImageView(logo);
+
+        canvas= initCanvas();
+
+        TableView<String[]> highscore = setTable();
 
         HBox hbox = setButtonHbox();
         hbox.setAlignment(Pos.BOTTOM_CENTER);
-        root.getChildren().addAll(canvas, hbox);
+
+        root.getChildren().addAll(logoView, canvas, highscore,  hbox);
 
         MapReceiver mapReceiver = new MapReceiver(this);
         Thread thread = new Thread(mapReceiver);
         thread.start();
-        // actualGame();
+    }
+
+    public TableView<String[]> setTable() throws IOException {
+        TableView<String[]> table = new TableView<>();
+
+        ObservableList<String[]> tItems = FXCollections.observableArrayList();
+
+        tItems = createlist(tItems);
+
+        TableColumn<String[],Integer> number = new TableColumn<>("No.");
+        number.setPrefWidth(100);
+
+        TableColumn<String[],String[]> name = new TableColumn<>("Username");
+        name.setPrefWidth(350);
+
+        TableColumn<String[],String[]> score = new TableColumn<>("Score");
+        score.setPrefWidth(150);
+
+        number.setCellValueFactory(new PropertyValueFactory<>("0"));
+        name.setCellValueFactory(new PropertyValueFactory<>("1"));
+        score.setCellValueFactory(new PropertyValueFactory<>("2"));
+
+        table.getColumns().addAll(number, name, score);
+        table.setItems(tItems);
+
+        return table;
+    }
+
+    public ObservableList<String[]> createlist(ObservableList<String[]> list) throws IOException{
+        String line = "Mikolaj, 100; Basia, 200";//in.readLine();
+        String[] tmp = line.split("; ");
+        int m = 0;
+        String[][] persons = new String[tmp.length][3];
+        for(String x: tmp ){
+            String tmp1[] = x.split(", ");
+            persons[m][0] = String.valueOf(m+1);
+            persons[m][1] = tmp1[0];
+            persons[m][2] = tmp1[1];
+            m++;
+        }
+        for(String[] y: persons) {
+            list.add(y);
+        }
+        return list;
     }
 
 
@@ -114,16 +170,26 @@ public class Game {
         HBox hbox = new HBox();
 
         Button endGame = new Button("End Game");
-
         endGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                GameOver gameOver = null;
+                out.println("leaveRoom");
                 try {
-                    gameOver = new GameOver(socket);
+                    String response = in.readLine();
+                    if(response.contains("success")){
+                        GameOver gameOver = null;
+                        try {
+                            gameOver = new GameOver(socket);
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
+                        gameOver.showGameOver(getOwner());
+                    }
+                    else{
+                        AlertView alert = new AlertView(owner, "Upsss. Try Again");
+                    }
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-                gameOver.showGameOver(getOwner());
             }
         });
 
@@ -154,25 +220,6 @@ public class Game {
         hbox.getChildren().addAll(returnButton, endGame);
         return hbox;
     }
-//    public void actualGame(String data){
-//        MapReceiver mapReceiver = new MapReceiver(this);
-//        Thread thread = new Thread(mapReceiver);
-//        thread.start();
-//
-//        canvas = getCanvas(data);
-//    }
-
-
-
-
-//        AnimationTimer timer = new AnimationTimer() {
-//            @Override
-//            public void handle(long l) {
-//
-//                   canvas = canvas1;
-//            }
-//        };
-
 
 
     public Canvas initCanvas(){

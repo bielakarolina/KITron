@@ -38,6 +38,7 @@ public class GameOver {
     public BufferedReader in;
     public PrintWriter out;
     public String line= null;
+    public int flag = 0;
 
     public GameOver(Socket socket) throws IOException {
         new JFXPanel();
@@ -96,11 +97,12 @@ public class GameOver {
     public HBox setHBox(Stage ownerFromGame){
         HBox hbox = new HBox();
 
-        Button playAgain = new Button("Play Again");
+        Button playAgain = new Button("Menu");
         playAgain.setId("playAgain");
         playAgain.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                out.println("Stay");
+                Menu menu = new Menu();
+                menu.showMenu();
                 owner.close();
             }
         });
