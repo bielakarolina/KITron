@@ -102,7 +102,7 @@ public class Game {
         root.setSpacing(rootSpacing);
     }
 
-    public void showActualGame(){
+    public void showActualGame() throws IOException {
         Image logo = new Image("file:stylesheets/images/logo.png");
         ImageView logoView = new ImageView(logo);
 
