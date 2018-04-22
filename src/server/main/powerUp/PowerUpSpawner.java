@@ -15,6 +15,7 @@ public class PowerUpSpawner implements Runnable {
     private Board board;
     private ArrayList<PowerUp> powerUps;
     private int lastId;
+    private static final long spawnTime = 10000; //milis
 
     public PowerUpSpawner(Board board) {
         this.timer = new Timer();
@@ -42,7 +43,7 @@ public class PowerUpSpawner implements Runnable {
 
     @Override
     public void run() {
-        timer.schedule(new spawnerTask(this), 0, 5000);
+        timer.schedule(new spawnerTask(this), 0, spawnTime);
     }
 
     public PowerUp getById(int id) {
@@ -55,6 +56,11 @@ public class PowerUpSpawner implements Runnable {
 
     public void remove(PowerUp powerUp) {
         powerUps.remove(powerUp);
+    }
+
+    public void reset() {
+        this.lastId = 0;
+        this.powerUps.clear();
     }
 
     private class spawnerTask extends TimerTask {
@@ -88,7 +94,7 @@ public class PowerUpSpawner implements Runnable {
                         break;
                 }
 
-            } while(powerUps.contains(new PowerUp(x,y,powerUpKind)));
+            } while(!board.canPlacePowerUp(x,y,4));
 
             PowerUp powerUp = new PowerUp(x,y,powerUpKind);
             lastId--;

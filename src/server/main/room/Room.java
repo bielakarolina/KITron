@@ -36,7 +36,7 @@ public class Room implements Runnable{
     private InetSocketAddress serverAddress = new InetSocketAddress("239.1.1.1", 5000);
     MulticastSocket multicastSocket;
     InetAddress group;
-
+    private static final long gameSpeed = 2000;
 
 
     public Room(int width, int height, int maxPlayers, String name){
@@ -118,7 +118,7 @@ public class Room implements Runnable{
 
         //wyslanie wiadomosci do klientow ze gra sie zaczyna
 
-        timer.schedule(new processTask(this), 0, 2000);
+        timer.schedule(new processTask(this), 0, gameSpeed);
         new Thread(powerUpSpawner).start();
 
         System.out.println("koniec room");
@@ -239,6 +239,7 @@ public class Room implements Runnable{
                 if(findWinner() != null){
                     System.out.println("Player winner: " + findWinner().getName());
                 }
+                powerUpSpawner.reset();
 
                 new Thread(room).start();
             }

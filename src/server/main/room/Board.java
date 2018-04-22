@@ -185,7 +185,7 @@ public class Board {
     private boolean checkArrayMarkedSectionsUp(Point leftTop, Point rightBottom, Player player) {
 
         for(int j=rightBottom.getY()-1 ; j >= leftTop.getY(); j--){
-            for(int i=leftTop.getX(); i<rightBottom.getX(); i++){
+            for(int i=leftTop.getX(); i<=rightBottom.getX(); i++){
                 if(board[i][j] > 0){
                     collisionPoint = new Point(i, j, "collision");
                     System.out.println("collision");
@@ -201,12 +201,14 @@ public class Board {
     private void handleGainingPowerUp(int i, int j, Player player) {
         if(board[i][j] < 0) {
             PowerUp powerUp = powerUpSpawner.getById(board[i][j]);
+            clearPowerUp(powerUp);
+
             PowerUpEffect powerUpEffect = new PowerUpEffect(powerUp.getPowerUpKind());
 
             powerUpEffect.setPlayer(player);
             new Thread(powerUpEffect).start();
+            //NOT SURE IF IT WORKS
 
-            clearPowerUp(powerUp);
             powerUpSpawner.remove(powerUp);
         }
     }
@@ -215,8 +217,8 @@ public class Board {
     //w doł jest spoko
     private boolean checkArrayMarkedSectionsDown(Point leftTop, Point rightBottom, Player player) {
 
-        for(int j=leftTop.getY(); j< rightBottom.getY(); j++){
-            for(int i=leftTop.getX(); i< rightBottom.getX(); i++){
+        for(int j=leftTop.getY(); j<= rightBottom.getY(); j++){
+            for(int i=leftTop.getX(); i<= rightBottom.getX(); i++){
                 if(board[i][j] > 0){
                     collisionPoint = new Point(i, j, "collision");
                     System.out.println("collision");
@@ -233,8 +235,8 @@ public class Board {
 
     private boolean checkArrayMarkedSectionsLeft(Point leftTop, Point rightBottom, Player player) {
 
-        for(int i=leftTop.getX(); i<rightBottom.getX(); i++){
-            for(int j=leftTop.getY(); j< rightBottom.getY(); j++){
+        for(int i=leftTop.getX(); i<=rightBottom.getX(); i++){
+            for(int j=leftTop.getY(); j<= rightBottom.getY(); j++){
                 if(board[i][j] > 0){
                     collisionPoint = new Point(i, j, "collision");
                     System.out.println("collision");
@@ -251,7 +253,7 @@ public class Board {
     private boolean checkArrayMarkedSectionsRight(Point leftTop, Point rightBottom, Player player) {
 
         for(int i=rightBottom.getX()- 1; i>= leftTop.getX(); i--){
-            for(int j=leftTop.getY(); j< rightBottom.getY(); j++){
+            for(int j=leftTop.getY(); j<= rightBottom.getY(); j++){
                 if(board[i][j] > 0){
                     collisionPoint = new Point(i, j, "collision");
                     System.out.println("collision");
@@ -321,10 +323,11 @@ public class Board {
         Point point = powerUp.getPosition();
         int size = powerUp.getSize();
         for(int i = point.getX(); i< point.getX()+size; i++){
-            for(int j = point.getY(); i< point.getY()+size; j++){
+            for(int j = point.getY(); j< point.getY()+size; j++){
                 board[i][j] = 0;
             }
         }
+        System.out.println("cleared!!! :)");
     }
 
     public void drawPlayer(Point point, Player player){
@@ -352,5 +355,13 @@ public class Board {
 
     public void setPowerUpSpawner(PowerUpSpawner powerUpSpawner) {
         this.powerUpSpawner = powerUpSpawner;
+    }
+
+    public boolean canPlacePowerUp(int x, int y, int size) {
+        for(int i = x; i < x+size; i++)
+            for(int j = y; j < y+size; j++)
+                if(board[i][j] != 0)
+                    return false;
+        return true;
     }
 }
