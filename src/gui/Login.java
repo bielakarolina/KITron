@@ -22,13 +22,13 @@ import java.net.Socket;
 public class Login {
     private Stage owner;
     private int widthScene=450;
-    private int heightScene=850;
+    private int heightScene=350;
     private int widthStage=650;
-    private int heightStage=850;
+    private int heightStage=350;
     private String title = "LOGIN";
     private Scene scene;
     private VBox root;
-    private int topMarg = 15;
+    private int topMarg = 100;
     private int rightMarg = 12;
     private int bottomMarg = 15;
     private int leftMarg = 12;

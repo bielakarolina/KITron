@@ -24,9 +24,9 @@ import java.net.Socket;
 
 public class RoomsView {
     private Stage owner;
-    private int widthScene=500;
+    private int widthScene=600;
     private int heightScene=700;
-    private int widthStage=500;
+    private int widthStage=600;
     private int heightStage=700;
     private String title = "Rooms";
     private Scene scene;
@@ -165,9 +165,8 @@ public class RoomsView {
         VBox grupa = new VBox();
         grupa.setPadding(new Insets(topMarg, rightMarg, bottomMarg, leftMarg));
 
-        nazwa = new Text("Nazwa: ");
-        ilosc = new Text("Ilośc gości w pokoju: ");
-
+        nazwa = new Text("Name: ");
+        ilosc = new Text("Players: ");
 
         grupa.getChildren().addAll(nazwa, ilosc);
         return grupa;
