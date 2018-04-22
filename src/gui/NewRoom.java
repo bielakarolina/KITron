@@ -167,7 +167,11 @@ public class NewRoom {
                 e1.printStackTrace();
             }
             if (msg.contains("success")) {
-                ProgressMaking(rooms);
+                try {
+                    ProgressMaking(rooms);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else {
                 AlertView alert = new AlertView(owner, "Shit got down");
             }
@@ -175,7 +179,7 @@ public class NewRoom {
         }
     }
 
-    public void ProgressMaking(Stage rooms){
+    public void ProgressMaking(Stage rooms) throws IOException {
         Waiting pForm = new Waiting();
         pForm.Waiting(socket);
         Task<Void> task = new Task<Void>() {
