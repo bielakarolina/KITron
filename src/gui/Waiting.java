@@ -1,6 +1,7 @@
 package gui;
 
 import javafx.concurrent.Task;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressIndicator;
@@ -9,12 +10,18 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
+
+import java.io.IOException;
+import java.net.Socket;
 
 public class Waiting {
     private Stage dialogStage;
     private final ProgressIndicator pin = new ProgressIndicator();
+    private Socket socket = null;
 
-    public void Waiting() {
+    public void Waiting(Socket socket) {
+        this.socket = socket;
         dialogStage = new Stage();
         dialogStage.initStyle(StageStyle.DECORATED);
         dialogStage.setMinWidth(530);
@@ -39,6 +46,16 @@ public class Waiting {
         scene.getStylesheets().add
                 (Waiting.class.getResource("stylesheets/waiting.css").toExternalForm());
         dialogStage.setScene(scene);
+
+        dialogStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void activateProgressBar(final Task<?> task)  {

@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -63,6 +64,16 @@ public class NewRoom {
         // in & out streams
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+        owner.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void setStageProperty(){
@@ -151,7 +162,7 @@ public class NewRoom {
 
     public void ProgressMaking(Stage rooms){
         Waiting pForm = new Waiting();
-        pForm.Waiting();
+        pForm.Waiting(socket);
         Task<Void> task = new Task<Void>() {
             @Override
             public Void call() throws IOException {

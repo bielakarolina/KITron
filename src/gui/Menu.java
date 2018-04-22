@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
@@ -37,12 +38,20 @@ public class Menu {
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
         scene = new Scene(root, widthScene, heightScene);
+
         scene.getStylesheets().add
                 (Menu.class.getResource("stylesheets/default.css").toExternalForm());
         scene.getStylesheets().add
                 (Menu.class.getResource("stylesheets/menu.css").toExternalForm());
+
         setStageProperty();
         setHBoxProperty();
+
+        owner.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                System.out.println("Stage is closing");
+            }
+        });
     }
 
     public void setStageProperty(){
@@ -110,6 +119,20 @@ public class Menu {
             }
         });
 
+        Button creditsBttn = new Button("CREDITS");
+        instrBttn.setId("credits");
+        instrBttn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                Credits instr = new Credits();
+                try {
+                    instr.showCredits();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                owner.close();
+            }
+        });
+
         Button endGame = new Button("QUIT");
         endGame.setId("end");
         endGame.setOnAction(new EventHandler<ActionEvent>() {
@@ -117,7 +140,7 @@ public class Menu {
                 owner.close();
             }
         });
-        root.getChildren().addAll(startBttn, instrBttn, highBttn, endGame);
+        root.getChildren().addAll(startBttn, instrBttn, highBttn, creditsBttn, endGame);
         root.setAlignment(Pos.CENTER);
     }
 

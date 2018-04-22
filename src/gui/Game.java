@@ -3,6 +3,7 @@ package gui;
 import game.DrawPixels;
 import game.Map;
 import game.MapReceiver;
+import javafx.animation.AnimationTimer;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -62,6 +64,16 @@ public class Game {
         // in & out streams
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+        owner.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void setStageProperty(){
@@ -99,18 +111,14 @@ public class Game {
         System.out.println("lalal");
     }
 
-    public void actualGame(){
-
-    }
-
 
     public Canvas getCanvas(){
-
 
         DrawPixels drawPixels = new DrawPixels();
         final Canvas canvas = drawPixels.setRoad();
         return  canvas;
     }
+
     public Stage getOwner() {
         return owner;
     }

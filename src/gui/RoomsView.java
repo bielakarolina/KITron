@@ -17,6 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 import java.io.*;
 import java.net.Socket;
@@ -67,6 +68,16 @@ public class RoomsView {
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         //out.println("Give me rooms");
         this.line = line;
+
+        owner.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void setStageProperty(){
@@ -93,28 +104,9 @@ public class RoomsView {
 
         list = setList();
 
-        Button acceptBttn= new Button("Choose");
-        acceptBttn.setId("accept");
-        acceptBttn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                String[] room = list.getSelectionModel().getSelectedItem();
-                out.println("joinRoom " + room[0]);
-                String msg = null;
-                try {
-                    msg = in.readLine();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-                if(msg.contains("success")) {
-                    ProgressMaking();
-                }
-                else{
-                    AlertView alert = new AlertView(owner, "Sorry. Room full.");
-                }
-            }
-        });
+        HBox newHbox = setNewHBox();
 
-        root.getChildren().addAll(napis, hbox, list, acceptBttn);
+        root.getChildren().addAll(napis, hbox, list, newHbox);
     }
 
     public HBox setHbox() throws FileNotFoundException {
@@ -238,9 +230,54 @@ public class RoomsView {
         return items;
     }
 
+    public HBox setNewHBox(){
+        HBox hbox = new HBox();
+
+        Button menuBttn = new Button("Menu");
+        menuBttn.setId("menu");
+        menuBttn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+
+                try {
+                    socket.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                owner.close();
+                Menu menu = new Menu();
+                menu.showMenu();
+            }
+        });
+
+        Button acceptBttn= new Button("Choose");
+        acceptBttn.setId("accept");
+        acceptBttn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                String[] room = list.getSelectionModel().getSelectedItem();
+                out.println("joinRoom " + room[0]);
+                String msg = null;
+                try {
+                    msg = in.readLine();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                if(msg.contains("success")) {
+                    ProgressMaking();
+                }
+                else{
+                    AlertView alert = new AlertView(owner, "Sorry. Room full.");
+                }
+            }
+        });
+
+        hbox.getChildren().addAll(menuBttn, acceptBttn);
+        return hbox;
+    }
+
     public void ProgressMaking(){
         Waiting pForm = new Waiting();
-        pForm.Waiting();
+        pForm.Waiting(socket);
         Task<Void> task = new Task<Void>() {
             @Override
             public Void call() throws IOException {
