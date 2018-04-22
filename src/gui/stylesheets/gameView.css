@@ -1,9 +1,4 @@
 .button {
-    -fx-border-insets: 20px;
+    -fx-border-insets: 10px;
     -fx-background-insets: 10px;
-}
-.button:hover {
-    -fx-background-color: #3f4143;
-    -fx-color: black;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }

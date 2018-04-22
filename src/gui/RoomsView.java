@@ -17,6 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 import java.io.*;
 import java.net.Socket;
@@ -67,6 +68,15 @@ public class RoomsView {
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         //out.println("Give me rooms");
         this.line = line;
+        owner.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void setStageProperty(){
@@ -277,7 +287,7 @@ public class RoomsView {
 
     public void ProgressMaking(){
         Waiting pForm = new Waiting();
-        pForm.Waiting();
+        pForm.Waiting(socket);
         Task<Void> task = new Task<Void>() {
             @Override
             public Void call() throws IOException {
