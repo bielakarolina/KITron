@@ -1,10 +1,13 @@
 package gui;
 
+
 import game.DrawPixels;
 import game.Map;
 import game.MapReceiver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import game.TCPHandler;
+import javafx.animation.AnimationTimer;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -103,6 +106,10 @@ public class Game {
     }
 
     public void showActualGame() throws IOException {
+        TCPHandler tcpHandler = new TCPHandler(scene, socket);
+        Thread tcpThread = new Thread(tcpHandler);
+        tcpThread.start();
+
         Image logo = new Image("file:stylesheets/images/logo.png");
         ImageView logoView = new ImageView(logo);
 
@@ -170,6 +177,7 @@ public class Game {
         HBox hbox = new HBox();
 
         Button endGame = new Button("End Game");
+
         endGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 out.println("leaveRoom");
