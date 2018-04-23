@@ -19,13 +19,13 @@ import java.io.*;
 import java.net.Socket;
 
 
-public class Login {
+public class IPSerwer {
     private Stage owner;
     private int widthScene=450;
     private int heightScene=350;
     private int widthStage=650;
     private int heightStage=350;
-    private String title = "LOGIN";
+    private String title = "SERVER'S IP";
     private Scene scene;
     private VBox root;
     private int topMarg = 50;
@@ -34,13 +34,13 @@ public class Login {
     private int leftMarg = 12;
     private int rootSpacing = 10;
 
-    String hostName;
+/*    String hostName = "localhost";
     int portNumber = 12345;
-    Socket socket = null;
+//    Socket socket = null;
     public PrintWriter out;
     public BufferedReader in;
-
-    public Login(String hostName) throws IOException {
+*/
+    public IPSerwer() {
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
@@ -51,8 +51,7 @@ public class Login {
                 (Login.class.getResource("stylesheets/login.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();
-        this.hostName = hostName;
-
+/*
         // create socket
         socket = new Socket(hostName, portNumber);
 
@@ -68,6 +67,7 @@ public class Login {
                 }
             }
         });
+*/
     }
 
     public void setStageProperty(){
@@ -84,18 +84,17 @@ public class Login {
         root.setSpacing(rootSpacing);
     }
 
-    public void showLogin() throws IOException {
-        VBox login = setLogin();
+    public void showIPSerwer() throws IOException {
+        VBox IP = setIPSerwer();
 
-        root.getChildren().addAll(login);
-
+        root.getChildren().addAll(IP);
     }
 
-    public VBox setLogin() throws IOException {
+    public VBox setIPSerwer() throws IOException {
         //VBox
         VBox vbox = new VBox(8);
 
-        Label tytul = new Label("Enter your name:");
+        Label tytul = new Label("Enter Server's IP:");
         tytul.setId("tytul");
 
         TextField text = new TextField();
@@ -122,48 +121,25 @@ public class Login {
     }
 
     public void sendName(TextField text){
-        try {
-            String imie = text.getText();
-            String msg = "initPlayer ".concat(" ".concat(imie));
+        String IP = text.getText();
 
-            //
-                if (imie.equals("")) {
-                    AlertView alert = new AlertView(owner, "Please enter your name!");
+        //
+        if (IP.equals("")) {
+            AlertView alert = new AlertView(owner, "Please enter Server's IP!");
 
-                } else {
-                    out.println(msg);
-
-                    String response = null;
-                    response = in.readLine();
-                    System.out.println(response);
-
-                    if(response.contains("init OK")) {
-                        owner.close();
-                        String rooms = null;
-                        rooms = setRooms();
-                        RoomsView pokoje = new RoomsView(rooms, socket);
-                        pokoje.showRoomsView();
-                    }
-                }
-
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-    }
-
-
-    public String setRooms(){
-        out.println("roomList");
-        String line = null;
-        while(line == null) {
+        } else {
+            Login login = null;
             try {
-                line = in.readLine();
+                login = new Login(IP);
+                login.showLogin();
             } catch (IOException e1) {
-
+                e1.printStackTrace();
             }
+            owner.close();
+
+
         }
-        System.out.println(line);
-        return line;
+
     }
 
 }

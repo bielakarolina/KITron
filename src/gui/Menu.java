@@ -66,14 +66,9 @@ public class Menu {
         startBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
 
-                Login login = null;
                 try {
-                    login = new Login();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-                try {
-                    login.showLogin();
+                    IPSerwer ip = new IPSerwer();
+                    ip.showIPSerwer();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }

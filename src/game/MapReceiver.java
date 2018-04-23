@@ -21,7 +21,7 @@ public class MapReceiver implements Runnable {
 
                 InetAddress group = null;
                 MulticastSocket multicastSocket = null;
-                byte[] buf = new byte[256];
+                byte[] buf = new byte[8192];
 
                 try {
                         multicastSocket = new MulticastSocket(port);
