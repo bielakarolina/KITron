@@ -1,5 +1,7 @@
 package server.main.room;
 
+import game.Map;
+import javafx.scene.canvas.Canvas;
 import server.main.Direction;
 import server.main.Player;
 import server.main.powerUp.PowerUp;
@@ -282,6 +284,13 @@ public class Board {
                 board[i][j] = 0;
             }
         }
+    }
+
+    public void whereIsD17(){
+        Map map=new Map();
+        Canvas canvas = map.setCanvas();
+        board=map.readingPixels(canvas,board);
+
     }
 
     public void printBoard() {
