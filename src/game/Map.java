@@ -1,17 +1,11 @@
 package game;
 
-import javafx.application.Application;
-import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.PixelReader;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.ArcType;
-import javafx.stage.Stage;
 
 public class Map {
 
@@ -31,6 +25,7 @@ public class Map {
         gc.setStroke(Color.WHITE);
         gc.setLineWidth(5.0);
         gc.beginPath();
+        gc.lineTo(260, 305);
         gc.lineTo(260, 310);
         gc.lineTo(50, 250);
         gc.lineTo(50,200);
@@ -48,6 +43,24 @@ public class Map {
         //gc.setFill(Color.BLUE);
 
     }
+    public int[][] readingPixels(Canvas canvas, int[][] board) {
+        SnapshotParameters params = new SnapshotParameters();
+        params.setFill(Color.BLACK);
 
+        PixelReader reader = canvas.snapshot(params, null).getPixelReader();
+
+        double canvasWidth = canvas.getWidth();
+        double canvasHeight = canvas.getHeight();
+        System.out.println(canvasWidth + " " + canvasHeight);
+        for (int x = 0; x < canvasWidth; x++)
+            for (int y = 0; y < canvasHeight; y++) {
+                Color col=reader.getColor(x, y);
+                Color D17=Color.WHITE;
+                if ( D17.equals(col)) board[x][y] =88;
+                else board[x][y]=0;
+            }
+
+        return board;
+    }
 
 }
