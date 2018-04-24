@@ -294,6 +294,13 @@ public class Board {
 
     }
 
+    public void whereIsD17(){
+        Map map=new Map();
+        Canvas canvas = map.setCanvas();
+        board=map.readingPixels(canvas,board);
+
+    }
+
     public void printBoard() {
 
         for(int i = 0 ;i<width;i++){

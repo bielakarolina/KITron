@@ -58,9 +58,9 @@ public class Map {
                 Color D17=Color.WHITE;
                 if ( D17.equals(col)) board[x][y] =88;
                 else board[x][y]=0;
-        }
+            }
 
-    return board;
-}
+        return board;
+    }
 
 }
