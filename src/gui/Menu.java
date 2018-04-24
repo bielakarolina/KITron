@@ -7,9 +7,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -33,6 +30,8 @@ public class Menu {
     private int rootSpacing = 10;
 
     public Menu(){
+
+
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
@@ -65,7 +64,15 @@ public class Menu {
         startBttn.setId("play");
         startBttn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
+                try {
+                    Login login = new Login();
+                    login.showLogin();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                owner.close();
 
+/*
                 try {
                     IPSerwer ip = new IPSerwer();
                     ip.showIPSerwer();
@@ -73,6 +80,7 @@ public class Menu {
                     e1.printStackTrace();
                 }
                 owner.close();
+*/
             }
         });
 

@@ -16,7 +16,7 @@ public class AlertView {
         alert.getDialogPane().setContentText(text);
         alert.getDialogPane().setHeaderText(null);
         alert.showAndWait()
-                .filter(response -> response == ButtonType.OK)
-                .ifPresent(response -> System.out.println("The alert was approved"));
+                .filter(response -> response == ButtonType.OK);
+                //.ifPresent(response -> System.out.println("The alert was approved"));
     }
 }

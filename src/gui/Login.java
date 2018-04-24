@@ -17,14 +17,15 @@ import javafx.stage.WindowEvent;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 
 public class Login {
     private Stage owner;
     private int widthScene=450;
-    private int heightScene=350;
+    private int heightScene=600;
     private int widthStage=650;
-    private int heightStage=350;
+    private int heightStage=500;
     private String title = "LOGIN";
     private Scene scene;
     private VBox root;
@@ -34,13 +35,15 @@ public class Login {
     private int leftMarg = 12;
     private int rootSpacing = 10;
 
-    String hostName;
-    int portNumber = 12345;
-    Socket socket = null;
+    private String hostName = null;
+    private int portNumber = 12345;
+    private Socket socket = null;
     public PrintWriter out;
     public BufferedReader in;
+    private TextField text1;
+    public TextField text;
 
-    public Login(String hostName) throws IOException {
+    public Login() throws IOException {
         new JFXPanel();
         owner = new Stage(StageStyle.DECORATED);
         root = new VBox();
@@ -51,18 +54,15 @@ public class Login {
                 (Login.class.getResource("stylesheets/login.css").toExternalForm());
         setStageProperty();
         setHBoxProperty();
-        this.hostName = hostName;
+       // this.hostName = hostName;
 
-        // create socket
-        socket = new Socket(hostName, portNumber);
 
-        // in & out streams
-        out = new PrintWriter(socket.getOutputStream(), true);
-        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         owner.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent we) {
                 try {
-                    socket.close();
+                    if(hostName != null) {
+                        socket.close();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -70,7 +70,7 @@ public class Login {
         });
     }
 
-    public void setStageProperty(){
+    private void setStageProperty(){
         owner.setScene(scene);
         owner.setTitle(title);
         owner.setWidth(widthStage);
@@ -79,7 +79,7 @@ public class Login {
         owner.show();
     }
 
-    public void setHBoxProperty() {
+    private void setHBoxProperty() {
         root.setPadding(new Insets(topMarg, rightMarg, bottomMarg, leftMarg));
         root.setSpacing(rootSpacing);
     }
@@ -91,20 +91,87 @@ public class Login {
 
     }
 
-    public VBox setLogin() throws IOException {
+    private VBox setLogin() throws IOException {
         //VBox
         VBox vbox = new VBox(8);
 
+        Label tytul1 = new Label("Enter Server's IP:");
+        tytul1.setId("tytul");
+
+        text1 = new TextField();
+        text1.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
+        text1.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent ke) {
+                if (ke.getCode().equals(KeyCode.ENTER)) {
+                sendName();
+                }
+            }
+        });
+ /*       text1.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent ke) {
+                if (ke.getCode().equals(KeyCode.ENTER)) {
+                    String IP = text1.getText();
+
+                    //
+                    if (IP.equals("")) {
+                        AlertView alert = new AlertView(owner, "Please enter Server's IP!");
+
+                    } else {
+                        hostName = IP;
+                        // create socket
+                        try {
+                            socket = new Socket(hostName, portNumber);
+
+
+                        // in & out streams
+                        out = new PrintWriter(socket.getOutputStream(), true);
+                        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+
+        Button submit1 = new Button("Submit");
+        submit1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                String IP = text1.getText();
+
+                //
+                if (IP.equals("")) {
+                    AlertView alert = new AlertView(owner, "Please enter Server's IP!");
+
+                } else {
+                    hostName = IP;
+                    // create socket
+                    try {
+                        socket = new Socket(hostName, portNumber);
+
+
+                        // in & out streams
+                        out = new PrintWriter(socket.getOutputStream(), true);
+                        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+        });
+*/
         Label tytul = new Label("Enter your name:");
         tytul.setId("tytul");
 
-        TextField text = new TextField();
+        text = new TextField();
         text.setMaxSize(140, TextField.USE_COMPUTED_SIZE);
         text.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent ke) {
                 if (ke.getCode().equals(KeyCode.ENTER)) {
-                    sendName(text);
+                    sendName();
                 }
             }
         });
@@ -112,21 +179,66 @@ public class Login {
         Button submit = new Button("Submit");
         submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                sendName(text);
+                sendName();
             }
         });
 
-        vbox.getChildren().addAll(tytul,text, submit);
+        vbox.getChildren().addAll(tytul1, text1, tytul,text, submit);
         vbox.setAlignment(Pos.CENTER);
         return vbox;
     }
 
-    public void sendName(TextField text){
-        try {
-            String imie = text.getText();
-            String msg = "initPlayer ".concat(" ".concat(imie));
+    private void sendName() {
+        String IP = text1.getText();
 
-            //
+        if (IP.equals("")) {
+            AlertView alert = new AlertView(owner, "Please enter Server's IP!");
+
+        } else {
+            hostName = IP;
+
+            try {
+                String imie = text.getText();
+                String msg = "initPlayer ".concat(" ".concat(imie));
+
+                if (imie.equals("")) {
+                    AlertView alert = new AlertView(owner, "Please enter your name!");
+                    //System.out.println(IP);
+
+                } else {
+                    socket = new Socket(hostName, portNumber);
+
+                    // in & out streams
+                    out = new PrintWriter(socket.getOutputStream(), true);
+                    in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+                    out.println(msg);
+                    //System.out.println(msg);
+
+                    String response = null;
+                    response = in.readLine();
+                    System.out.println(response);
+
+                    if (response.contains("init OK")) {
+                        owner.close();
+                        String rooms = null;
+                        rooms = setRooms();
+                        RoomsView pokoje = new RoomsView(rooms, socket);
+                        pokoje.showRoomsView();
+                    }
+                }
+
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+/*
+        if (hostName != null) {
+            try {
+                String imie = text.getText();
+                String msg = "initPlayer ".concat(" ".concat(imie));
+
+                //
                 if (imie.equals("")) {
                     AlertView alert = new AlertView(owner, "Please enter your name!");
 
@@ -137,7 +249,7 @@ public class Login {
                     response = in.readLine();
                     System.out.println(response);
 
-                    if(response.contains("init OK")) {
+                    if (response.contains("init OK")) {
                         owner.close();
                         String rooms = null;
                         rooms = setRooms();
@@ -146,20 +258,24 @@ public class Login {
                     }
                 }
 
-        } catch (IOException e1) {
-            e1.printStackTrace();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        } else {
+            AlertView alert = new AlertView(owner, "Please enter Server's IP!");
+
         }
+*/
     }
 
-
-    public String setRooms(){
+    private String setRooms(){
         out.println("roomList");
         String line = null;
         while(line == null) {
             try {
                 line = in.readLine();
-            } catch (IOException e1) {
-
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
         System.out.println(line);

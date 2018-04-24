@@ -122,7 +122,7 @@ public class IPSerwer {
 
     public void sendName(TextField text){
         String IP = text.getText();
-
+/*
         //
         if (IP.equals("")) {
             AlertView alert = new AlertView(owner, "Please enter Server's IP!");
@@ -130,8 +130,8 @@ public class IPSerwer {
         } else {
             Login login = null;
             try {
-                login = new Login(IP);
-                login.showLogin();
+                //login = new Login(IP);
+                //login.showLogin();
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
@@ -139,7 +139,7 @@ public class IPSerwer {
 
 
         }
-
+*/
     }
 
 }

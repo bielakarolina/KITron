@@ -172,7 +172,11 @@ public class RoomsView {
         returnButton.setId("back");
         returnButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-
+                try {
+                    socket.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 Menu menu = new Menu();
                 menu.showMenu();
                 owner.close();
