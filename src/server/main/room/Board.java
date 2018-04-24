@@ -278,7 +278,6 @@ public class Board {
 
     }
 
-
     public void refreshBoard(){
         for(int i = 0; i < this.width; i++){
             for(int j = 0; j< this.height; j++){
