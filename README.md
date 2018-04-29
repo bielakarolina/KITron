@@ -1,4 +1,13 @@
 # KITron
+KiTron to gra sieciowa wzorowana na grze Tron z przewidzianą rozbudową funkcjonalności o bonusy.
+
+Warstwa sieciowa oparta jest na protokole UDP oraz TCP. 
+Klient nasłuchuje na gnieździe UDP wiadomości dotyczących punktów skrętów, koloru linii graczy oraz bonusów. 
+Następnie na podstawie otrzymanych danych rysuje z pomocą biblioteki Canvas trasy graczy.
+Za pomocą połączenia TCP wysyłane są informacje o końcu rozgrywki (w wyniku zderzenia).
+Serwer odpowiada za całą logikę programu. 
+
+
 ## Wskazówki do uruchomienia: 
 
 
